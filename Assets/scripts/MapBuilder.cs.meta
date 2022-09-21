@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: adc175bdd079601428d45b99cd2dc3bb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - basicTile: {fileID: 7865978192765167898, guid: 0e5ce4361ff697b44b1f844b42c83593,
+      type: 3}
+  - specialTile: {fileID: 7865978192765167898, guid: 49cd9415aa997a44a8734e43c94b532a,
+      type: 3}
+  - testTile: {fileID: 7865978192765167898, guid: 088aedb0022308d42ad16c336097e611,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
