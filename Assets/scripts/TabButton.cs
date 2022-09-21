@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Image))]
-public class TabButton : Entity
+public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     public TabGroup tabGroup;
     public Image background;
 
     private void Start() 
     {
-        cords = Utilities.ConvertCordsToInt(transform.position);
         background = GetComponent<Image>();
         tabGroup.Subscribe(this);
     }
 
-    public override void MouseEnter(Vector3Int cords, List<Vector3Int> shape)
+
+    public void OnPointerEnter(PointerEventData eventData)
     {
         tabGroup.OnTabEnter(this);
     }
 
-    public override void MouseExit(Vector3Int cords, List<Vector3Int> shape)
-    {
-        tabGroup.OnTabExit(this);
-    }
-
-    public override void MouseInteractionLeft(Vector3Int cords)
+    public void OnPointerClick(PointerEventData eventData)
     {
         tabGroup.OnTabSelected(this);
     }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tabGroup.OnTabExit(this);
+    }
 }

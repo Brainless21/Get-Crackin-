@@ -8,7 +8,8 @@ public class MouseCursor : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     Vector3 mousePosition = new Vector3();
     private Vector2Int mouseMode = new Vector2Int (1,1);
-    private Entity pointedEntity = null;
+    [SerializeField] private Entity pointedEntity = null;
+    [SerializeField] private GameObject currentRaycastHit;
     public static MouseCursor instance;
 
      void Awake() 
@@ -69,6 +70,8 @@ public class MouseCursor : MonoBehaviour
             return pointedEntity;
         }
 
+        currentRaycastHit = raycastHit.collider.gameObject;
+
         if(pointedEntity!=null)
         {
             if(pointedEntity.gameObject==raycastHit.collider.gameObject)//if the ray hits, and the target is the same as before, nothing needs to happen
@@ -111,13 +114,7 @@ public class MouseCursor : MonoBehaviour
             return pointedEntity;
         }
 
-        TabButton tabButton = raycastHit.collider.gameObject.GetComponent<TabButton>();
-        if(tabButton!=null)
-        {
-            pointedEntity = tabButton;
-            EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
-            return pointedEntity;
-        }
+        
 
         pointedEntity = null;
         return pointedEntity;

@@ -34,8 +34,8 @@ public class TabGroup : MonoBehaviour
     public void OnTabSelected(TabButton button)
     {
         button.background.color = tabSelected;
-        ResetTabs();
         selectedTab = button;
+        ResetTabs();
     }
 
     public void ResetTabs()
