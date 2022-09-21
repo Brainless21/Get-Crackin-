@@ -111,6 +111,14 @@ public class MouseCursor : MonoBehaviour
             return pointedEntity;
         }
 
+        TabButton tabButton = raycastHit.collider.gameObject.GetComponent<TabButton>();
+        if(tabButton!=null)
+        {
+            pointedEntity = tabButton;
+            EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
+            return pointedEntity;
+        }
+
         pointedEntity = null;
         return pointedEntity;
 

@@ -98,7 +98,7 @@ public class MapBuilder : MonoBehaviour
         else if (instance != this) { Destroy(gameObject); }
 
         // DONT DESTROY ON SCENE CHANGE
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
 
         resetMapButton.onClick.AddListener(ResetMap);
         restartMapButton.onClick.AddListener(RestartMap);

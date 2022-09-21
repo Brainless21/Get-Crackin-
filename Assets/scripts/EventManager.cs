@@ -36,7 +36,7 @@ public class EventManager : MonoBehaviour
         else if (instance != this) { Destroy(gameObject); }
 
         // DONT DESTROY ON SCENE CHANGE
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()

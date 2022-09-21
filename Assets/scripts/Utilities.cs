@@ -24,5 +24,13 @@ public class Utilities
         Debug.Log(ausgabe);
     }
    
-   
+   public static Vector3Int ConvertCordsToInt(Vector3 floatCords)
+   {
+       	Vector3Int cordsInt = new Vector3Int();
+        cordsInt.x = Mathf.RoundToInt(floatCords.x);
+        cordsInt.y = Mathf.RoundToInt(floatCords.y);
+        cordsInt.z = Mathf.RoundToInt(floatCords.z);
+
+        return cordsInt;
+    }
 }

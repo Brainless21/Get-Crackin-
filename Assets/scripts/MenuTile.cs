@@ -21,12 +21,7 @@ public class MenuTile : Entity
 
     private void Awake() 
     {
-        int cordsIntX = Convert.ToInt16(this.transform.position.x);
-        int cordsIntY = Convert.ToInt16(this.transform.position.y);
-        int cordsIntZ = Convert.ToInt16(this.transform.position.z);
-        Vector3Int cordsInt = new Vector3Int(cordsIntX,cordsIntY,cordsIntZ);
-
-        cords = cordsInt;
+        cords = Utilities.ConvertCordsToInt(transform.position);
     }
 
     public int GetShapeTypeKey()
