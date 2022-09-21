@@ -36,13 +36,26 @@ public class TabGroup : MonoBehaviour
         button.background.color = tabSelected;
         selectedTab = button;
         ResetTabs();
+        SwitchPageToSelected();
     }
 
-    public void ResetTabs()
+    void ResetTabs()
     {
         foreach(TabButton tab in tabButtons)
         {
             if(tab!=selectedTab) tab.background.color = tabIdle;
         }
     }
+
+    void SwitchPageToSelected()
+    {
+        foreach(TabButton tab in tabButtons)
+        {
+            tab.hidePage();
+            if(tab==selectedTab) tab.showPage();
+        }
+
+    }
+
+
 }

@@ -9,6 +9,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
 {
     public TabGroup tabGroup;
     public Image background;
+    public GameObject page;
 
     private void Start() 
     {
@@ -16,6 +17,16 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
         tabGroup.Subscribe(this);
     }
 
+    public void hidePage()
+    {
+        page.SetActive(false);
+    }
+
+    public void showPage()
+    {
+        page.SetActive(true);
+
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
