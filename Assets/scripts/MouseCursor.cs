@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class MouseCursor : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MouseCursor : MonoBehaviour
     private Vector2Int mouseMode = new Vector2Int (1,1);
     [SerializeField] private Entity pointedEntity = null;
     [SerializeField] private GameObject currentRaycastHit;
+    [SerializeField] private TextMeshPro infoDisplay;
     public static MouseCursor instance;
 
      void Awake() 
@@ -28,6 +30,8 @@ public class MouseCursor : MonoBehaviour
         this.transform.position = mousePosition;
 
         Point(); //zeigt mit der maus in die gegend und schaut, worauf grade gezeigt wird, speichert die information in pointedEntity ab.
+
+        
 
         if(pointedEntity!=null)
         {
@@ -87,6 +91,7 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = matrixTile;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords)); //es wird einmal die location der pointed entity weitergegeben, und die grade angesagte shape.
+            UpdateInfoDisplay(matrixTile);
             return pointedEntity;
         }
 
@@ -95,6 +100,7 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = particleTile1;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
+            UpdateInfoDisplay(particleTile1);
             return pointedEntity;
         }
 
@@ -103,6 +109,7 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = maxPhase;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
+            UpdateInfoDisplay(maxPhase);
             return pointedEntity;
         }
 
@@ -111,6 +118,7 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = menuTile;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
+            UpdateInfoDisplay(menuTile);
             return pointedEntity;
         }
 
@@ -120,6 +128,24 @@ public class MouseCursor : MonoBehaviour
         return pointedEntity;
 
     }
+
+    private void UpdateInfoDisplay(MapTile mapTile)
+    {   
+       string displaytext="";
+       displaytext += "name: ";
+       displaytext += mapTile.tileName;
+       displaytext += "\n toughness: ";
+       displaytext += mapTile.GetBaseToughness().ToString();
+       displaytext += "\n cost: ";
+       displaytext += FundsAccount.instance.GetPriceByType(mapTile.typeKey).ToString();
+       infoDisplay.SetText(displaytext);
+
+    }
+    private void UpdateInfoDisplay(MenuTile menuTile)
+    {   
+       
+    }
+    
 
     public void ChangeMouseModeBranch(int newBranch)
     {

@@ -30,6 +30,7 @@ public class MapTile : Entity
     bool mouseOver = false;
     [SerializeField] private List<Vector3Int> associatedShape = new List<Vector3Int>();
     int mouseOverValidity;
+    [SerializeField] public string tileName = "Maptile";
 
 
     public void SetAssociatedShape(List<Vector3Int> shape)
@@ -415,5 +416,10 @@ public class MapTile : Entity
    internal void UpdateDisplayColor()
     {
         currentDisplayedColor = currentRestingColor;
+    }
+
+    public int GetBaseToughness()
+    {
+        return baseToughness;
     }
 }
