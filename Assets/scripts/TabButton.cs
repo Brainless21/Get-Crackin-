@@ -9,11 +9,15 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
 {
     public TabGroup tabGroup;
     public Image background;
+    public Color backgroudTabIdle;
     public GameObject page;
 
     private void Start() 
     {
         background = GetComponent<Image>();
+
+        backgroudTabIdle = background.color;
+
         tabGroup.Subscribe(this);
     }
 

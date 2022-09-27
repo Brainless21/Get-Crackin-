@@ -11,10 +11,10 @@ public class TabGroup : MonoBehaviour
     public Color tabSelected;
     public TabButton selectedTab;
 
-    private void Start()
-    {
-        tabIdle = GetComponent<Image>().color;
-    }
+    // private void Start()
+    // {
+    //     tabIdle = GetComponent<Image>().color;
+    // }
     public void Subscribe(TabButton button)
     {
         if(tabButtons == null)
@@ -48,7 +48,7 @@ public class TabGroup : MonoBehaviour
     {
         foreach(TabButton tab in tabButtons)
         {
-            if(tab!=selectedTab) tab.background.color = tabIdle;
+            if(tab!=selectedTab) tab.background.color = tab.backgroudTabIdle;
         }
     }
 
