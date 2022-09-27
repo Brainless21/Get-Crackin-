@@ -10,6 +10,11 @@ public class TabGroup : MonoBehaviour
     public Color tabHovered;
     public Color tabSelected;
     public TabButton selectedTab;
+
+    private void Start()
+    {
+        tabIdle = GetComponent<Image>().color;
+    }
     public void Subscribe(TabButton button)
     {
         if(tabButtons == null)
@@ -49,10 +54,10 @@ public class TabGroup : MonoBehaviour
 
     void SwitchPageToSelected()
     {
-        foreach(TabButton tab in tabButtons)
+        foreach(TabButton tabButton in tabButtons)
         {
-            tab.hidePage();
-            if(tab==selectedTab) tab.showPage();
+            tabButton.hidePage();
+            if(tabButton==selectedTab) tabButton.showPage();
         }
 
     }
