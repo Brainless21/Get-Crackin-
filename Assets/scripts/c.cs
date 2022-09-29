@@ -46,18 +46,18 @@ public class c
     public const int tileShapeBranch = 2;
 
     // shapes
-    public const int blob = 0;
+    public const int blob = 0; // order not in agreement with enum, check who still uses those int codes
     public const int fiber = 1;
-    public const int single =3;
     public const int nugget = 2;
+    public const int single =3;
     public const int empty = 4;
 
     public enum Shapes
     {
       Blob,
       Fiber,
-      Single,
       Nugget,
+      Single,
       Empty
     }
 
