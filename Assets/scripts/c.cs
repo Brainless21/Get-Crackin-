@@ -52,6 +52,15 @@ public class c
     public const int nugget = 2;
     public const int empty = 4;
 
+    public enum Shapes
+    {
+      Blob,
+      Fiber,
+      Single,
+      Nugget,
+      Empty
+    }
+
     // mouseOverValiditys arten
     public const int valid = 0;
     public const int noSpace = 1;
@@ -65,23 +74,25 @@ public class c
 
     // tag to int
 
-    static Dictionary<string,int> shapeTagDict = new Dictionary<string,int>()
-    {
-      {"ShapeFiber",c.fiber},
-      {"ShapeNugget",c.nugget},
-      {"ShapeBlob",c.blob},
-      {"ShapeSingle",c.single}
-    };
+    // static Dictionary<string,int> shapeTagDict = new Dictionary<string,int>()
+    // {
+    //   {"ShapeFiber",c.fiber},
+    //   {"ShapeNugget",c.nugget},
+    //   {"ShapeBlob",c.blob},
+    //   {"ShapeSingle",c.single}
+    // };
     
-    public static int GetShapeByString(string shape)
-    {
-      if(shapeTagDict.ContainsKey(shape))
-      {
-        return shapeTagDict[shape];
-      }
-      Debug.Log("shape nicht definiert:c.tagDict");
-      return 0;
-    }
+    // public static int GetShapeByString(string shape)
+    // {
+    //   if(shapeTagDict.ContainsKey(shape))
+    //   {
+    //     return shapeTagDict[shape];
+    //   }
+    //   Debug.Log("shape nicht definiert:c.tagDict");
+    //   return 0;
+    // }
+
+    // public static int GetShapeByEnum(int shape) ??
 
     static Dictionary<string,int> typeTagDict = new Dictionary<string, int>()
     {

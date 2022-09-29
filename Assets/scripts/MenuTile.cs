@@ -11,13 +11,16 @@ public class MenuTile : Entity
     [SerializeField] bool isSize;
     [SerializeField] int sizeMod;
     
-    [SerializeField] bool isShape;
-    [SerializeField] string shapeType; 
+    [SerializeField] bool isShape; 
 
-    [SerializeField] bool isEraser;
 
     int typeKey;
     int shapeTypeKey;
+
+    [SerializeField] bool isEraser;
+
+    [SerializeField] c.Shapes shape;
+
 
     private void Awake() 
     {
@@ -26,8 +29,7 @@ public class MenuTile : Entity
 
     public int GetShapeTypeKey()
     {
-        shapeTypeKey = c.GetShapeByString(shapeType);
-        return shapeTypeKey;
+        return ((int)shape);
     }
 
     public int GetTypeKey()
