@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 5
   isShape: 1
   cost: 0
   baseToughness: 0
   isEraser: 0
-  shape: 0
+  shape: 1
 --- !u!114 &4073090965841120507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,8 +36,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
   cost: 0
   baseToughness: 0
@@ -185,8 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 0
   type: 0
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 2
   isShape: 0
   cost: 0
   baseToughness: 0
@@ -206,13 +209,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 6
   isShape: 1
   cost: 0
   baseToughness: 0
   isEraser: 0
-  shape: 0
+  shape: 1
 --- !u!114 &5526122534405601336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +231,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 0
   type: 0
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 3
   isShape: 0
   cost: 0
   baseToughness: 0
@@ -268,8 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
   cost: 0
   baseToughness: 0
@@ -289,13 +295,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 8
   isShape: 1
   cost: 0
   baseToughness: 0
   isEraser: 0
-  shape: 0
+  shape: 1
 --- !u!114 &6411483827235374066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,13 +317,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 7
   isShape: 1
   cost: 0
   baseToughness: 0
   isEraser: 0
-  shape: 0
+  shape: 1
 --- !u!114 &1493477852408088457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,13 +339,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isType: 1
   type: 1
-  isSize: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 4
   isShape: 1
   cost: 0
   baseToughness: 0
   isEraser: 0
-  shape: 0
+  shape: 1
 --- !u!1001 &159607919711446925
 PrefabInstance:
   m_ObjectHideFlags: 0
