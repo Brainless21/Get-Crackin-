@@ -26,7 +26,7 @@ public class MapBuilder : MonoBehaviour
     Dictionary<int,GameObject> tileTypeDict = new Dictionary<int,GameObject>(); 
     private int shapeSize = 2;
     private int shapeRotation = 0;
-    public int shape {get;set;}
+    [SerializeField] public int shape;
     [SerializeField] private int type = c.particleTile1; // sollte eig nie 0 sein, weil wierdes behavior. ist jetzt hardgecodet
     private Dictionary<int, int> verticalCutoffR = new Dictionary<int, int>();
     private Dictionary<int, int> verticalCutoffL = new Dictionary<int, int>();
