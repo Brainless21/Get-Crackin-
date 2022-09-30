@@ -9,8 +9,9 @@ public class MenuTile : Entity, IPointerClickHandler
     [SerializeField] bool isType;
     [SerializeField] c.types type; 
 
-    [SerializeField] bool isSize;
+    [SerializeField] bool isSizeMod;
     [SerializeField] int sizeMod;
+    [SerializeField] int size;
     
     [SerializeField] bool isShape; 
     [SerializeField] int cost;
@@ -42,42 +43,45 @@ public class MenuTile : Entity, IPointerClickHandler
 
     public override void MouseInteractionLeft(Vector3Int cords)
     {
-        if(cords!=this.cords) return;
-        Debug.Log("OG click also registered");
-        int mouseMode = EventManager.instance.GetMouseMode();
+        Debug.Log("wir sind nach event data umgezogen");
+        // if(cords!=this.cords) return;
+        // Debug.Log("OG click also registered");
+        // int mouseMode = EventManager.instance.GetMouseMode();
 
-        // ändert den placetile Type, wenn das Menutile ein type hat
-        if(isType==true)
-        {
-            int typeKey = GetTypeKey();
-            //EventManager.instance.SetMouseMode(-1,typeKey,-1); // grade ist hier noch der verweis auf sowohl den MouseMode als auch Mapbuilder. Am edne soll alles über den Mapbuilder laufen
-            MapBuilder.instance.SetTileType(typeKey);
-            EventManager.instance.SetMouseMode(c.placeTile);
-        }
+        // // ändert den placetile Type, wenn das Menutile ein type hat
+        // if(isType==true)
+        // {
+        //     int typeKey = GetTypeKey();
+        //     //EventManager.instance.SetMouseMode(-1,typeKey,-1); // grade ist hier noch der verweis auf sowohl den MouseMode als auch Mapbuilder. Am edne soll alles über den Mapbuilder laufen
+        //     MapBuilder.instance.SetTileType(typeKey);
+        //     EventManager.instance.SetMouseMode(c.placeTile);
+        // }
 
-        // ändert den shapeType, wenn das Menutile eine Shape hat
-        if(isShape==true&&mouseMode==c.placeTile)
-        {
-            int shapeType = GetShapeTypeKey();
-            //EventManager.instance.SetMouseMode(-1,-1,shapeType);
-            MapBuilder.instance.SetShape(shapeType);
-            if(shapeType==c.fiber) { MapBuilder.instance.adjustShapeRotation(1); } // klicken auf die fiber dreht die fiber
+        // // ändert den shapeType, wenn das Menutile eine Shape hat
+        // if(isShape==true&&mouseMode==c.placeTile)
+        // {
+        //     int shapeType = GetShapeTypeKey();
+        //     //EventManager.instance.SetMouseMode(-1,-1,shapeType);
+        //     MapBuilder.instance.SetShape(shapeType);
+        //     if(shapeType==c.fiber) { MapBuilder.instance.adjustShapeRotation(1); } // klicken auf die fiber dreht die fiber
             
-        }
-        if(true) //I feel like later it will become apparent that I need some kind of chekc here
-        {
-            MapBuilder.instance.SetCost(cost);
-            MapBuilder.instance.SetBaseToughness(baseToughness);
-        }
-        if(isSize==true&&mouseMode==c.placeTile)
-        {
-            MapBuilder.instance.AdjustShapeSize(sizeMod);
-        }
+        // }
+        // if(true) //I feel like later it will become apparent that I need some kind of chekc here
+        // {
+        //     MapBuilder.instance.SetCost(cost);
+        //     MapBuilder.instance.SetBaseToughness(baseToughness);
+        //     MapBuilder.instance.SetShapeSize(size);
+        //     Debug.Log("done boss");
+        // }
+        // if(isSizeMod==true&&mouseMode==c.placeTile)
+        // {
+        //     MapBuilder.instance.AdjustShapeSize(sizeMod);
+        // }
 
-        if(isEraser==true)
-        {
-            EventManager.instance.SetMouseMode(c.clearTile);
-        }
+        // if(isEraser==true)
+        // {
+        //     EventManager.instance.SetMouseMode(c.clearTile);
+        // }
 
 
     }
@@ -106,7 +110,15 @@ public class MenuTile : Entity, IPointerClickHandler
             
         }
 
-        if(isSize==true&&mouseMode==c.placeTile)
+        if(true) //I feel like later it will become apparent that I need some kind of chekc here
+        {
+            MapBuilder.instance.SetCost(cost);
+            MapBuilder.instance.SetBaseToughness(baseToughness);
+            MapBuilder.instance.SetShapeSize(size);
+            
+        }
+
+        if(isSizeMod==true&&mouseMode==c.placeTile)
         {
             MapBuilder.instance.AdjustShapeSize(sizeMod);
         }

@@ -140,10 +140,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1001 &36291224
@@ -244,10 +247,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &66744520 stripped
@@ -269,10 +275,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &157573906 stripped
@@ -294,10 +303,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &162347658
@@ -437,10 +449,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &166890856 stripped
@@ -462,10 +477,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &171802526 stripped
@@ -520,11 +538,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isType: 0
-  type: 
-  isSize: 0
+  isType: 1
+  type: 2
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 2
 --- !u!1001 &176511677
@@ -694,7 +715,14 @@ PrefabInstance:
       propertyPath: shape
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8874255023515250164, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
+    - {fileID: 9192863541341238701, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
+    - {fileID: 3195356264850757672, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
+    - {fileID: 4374564868927237236, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
+    - {fileID: 7712755711114951012, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
+    - {fileID: 2041856653449501245, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
+    - {fileID: 1061338243285693338, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b196e8c2ee67b044486ca624ee0926db, type: 3}
 --- !u!4 &190426741 stripped
 Transform:
@@ -960,10 +988,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &242486465 stripped
@@ -992,6 +1023,28 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &242486469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242486465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isType: 1
+  type: 1
+  isSizeMod: 0
+  sizeMod: 0
+  size: 0
+  isShape: 1
+  cost: 0
+  baseToughness: 0
+  isEraser: 0
+  shape: 0
 --- !u!1 &278141210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,10 +1160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &327964161
@@ -1432,6 +1488,125 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448047615}
   m_CullTransparentMesh: 0
+--- !u!1001 &460196516
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1756705411}
+    m_Modifications:
+    - target: {fileID: 1442950947662532782, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_Name
+      value: Image Fiber5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c80be717cb42c314d8b9dea07eec4e8c, type: 3}
 --- !u!224 &536110479 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9070335911880619429, guid: 8b96db056363fee45be9a36d47948dfc,
@@ -1469,10 +1644,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &599744631
@@ -1613,10 +1791,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &681701402
@@ -1730,10 +1911,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &705507993
@@ -1996,10 +2180,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &776795775 stripped
@@ -2021,10 +2208,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &791841770 stripped
@@ -2046,10 +2236,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!224 &798887946 stripped
@@ -2077,10 +2270,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &837896980 stripped
@@ -2102,10 +2298,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &852531591 stripped
@@ -2127,10 +2326,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!224 &854091303 stripped
@@ -2291,10 +2493,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &963194225
@@ -2902,10 +3107,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1161723458 stripped
@@ -2927,10 +3135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1001 &1167182036
@@ -3116,10 +3327,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1230074293 stripped
@@ -3141,10 +3355,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1275643718 stripped
@@ -3166,10 +3383,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!224 &1295874213 stripped
@@ -3230,10 +3450,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1338687120 stripped
@@ -3255,10 +3478,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1354501211
@@ -3421,10 +3647,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1432015505 stripped
@@ -3446,10 +3675,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1449152148
@@ -3606,10 +3838,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1456722626 stripped
@@ -3631,10 +3866,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1461271845 stripped
@@ -3656,10 +3894,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1462553808 stripped
@@ -3681,10 +3922,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1467622305
@@ -3798,10 +4042,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1498136727 stripped
@@ -3823,10 +4070,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1570853209 stripped
@@ -3848,10 +4098,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1626820750 stripped
@@ -3873,10 +4126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1708960179
@@ -3973,10 +4229,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1735911430 stripped
@@ -3998,10 +4257,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1749381283
@@ -4142,10 +4404,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1756705410
@@ -4180,6 +4445,7 @@ RectTransform:
   m_Children:
   - {fileID: 395137877}
   - {fileID: 798887946}
+  - {fileID: 1844908584}
   m_Father: {fileID: 972908000}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4269,10 +4535,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!4 &1810396314 stripped
@@ -4281,6 +4550,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4919246069100039410}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1844908583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442950947662532782, guid: c80be717cb42c314d8b9dea07eec4e8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 460196516}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1844908584 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1442950947662532783, guid: c80be717cb42c314d8b9dea07eec4e8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 460196516}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1844908585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844908583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isType: 1
+  type: 1
+  isSizeMod: 0
+  sizeMod: 0
+  size: 5
+  isShape: 1
+  cost: 0
+  baseToughness: 0
+  isEraser: 0
+  shape: 1
 --- !u!1 &1848822709
 GameObject:
   m_ObjectHideFlags: 0
@@ -4330,10 +4633,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &1921208401 stripped
@@ -4355,10 +4661,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1001 &1962977088
@@ -4544,10 +4853,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!114 &2015733381 stripped
@@ -4587,10 +4899,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &2032831613
@@ -4768,10 +5083,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
-  isSize: 0
+  type: 0
+  isSizeMod: 0
   sizeMod: 0
+  size: 0
   isShape: 1
+  cost: 0
+  baseToughness: 0
   isEraser: 0
   shape: 0
 --- !u!1 &2117777657

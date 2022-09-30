@@ -36,7 +36,8 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private int baseToughness;
     public void SetBaseToughness(int baseToughness) {this.baseToughness=baseToughness;}
     private int shapeRotation = 0;
-    private int shapeSize = 2;
+    [SerializeField] private int shapeSize = 2;
+    public void SetShapeSize(int size) { shapeSize = size;}
 
 
     private void BuildVerticalCutoff()
@@ -359,14 +360,16 @@ public class MapBuilder : MonoBehaviour
 
         if(shape==c.fiber)
         {
-            currentShape.Add(origin);
-            for(float i=0;i<=shapeSize;i+=0.5f)
+            //currentShape.Add(origin);
+            for(float i=0;i<shapeSize;i++)
             {
-                int flippy = Convert.ToInt16(Math.Pow(Convert.ToDouble(-1),Convert.ToDouble(i*2))); // all this jazz for a simpe = -1^2i. smh.
-                int pointer = Mathf.FloorToInt(i);
+                //int flippy = Convert.ToInt16(Math.Pow(Convert.ToDouble(-1),Convert.ToDouble(i*2))); // all this jazz for a simpe = -1^2i. smh.
+                
+                int flippy = (int)Mathf.Pow((float)-1,(float)i)*-1; // -1^i*-1
+                int pointer = Mathf.CeilToInt(i/2);
                 Vector3Int result = new Vector3Int();
                 result = origin+pointer*flippy*c.positionsArray[shapeRotation];
-                if(!currentShape.Contains(result)) currentShape.Add(origin+pointer*flippy*c.positionsArray[shapeRotation]);
+                if(!currentShape.Contains(result)) currentShape.Add(result);
                 
             }
         }
