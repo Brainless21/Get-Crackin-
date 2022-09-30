@@ -7,12 +7,14 @@ using UnityEngine.EventSystems;
 public class MenuTile : Entity, IPointerClickHandler
 {
     [SerializeField] bool isType;
-    [SerializeField] string type; 
+    [SerializeField] c.types type; 
 
     [SerializeField] bool isSize;
     [SerializeField] int sizeMod;
     
     [SerializeField] bool isShape; 
+    [SerializeField] int cost;
+    [SerializeField] private int baseToughness;
 
 
     int typeKey;
@@ -30,13 +32,12 @@ public class MenuTile : Entity, IPointerClickHandler
 
     public int GetShapeTypeKey()
     {
-        return ((int)shape);
+        return (int)shape;
     }
 
     public int GetTypeKey()
     {
-        typeKey = c.getTypeByString(type);
-        return typeKey;
+        return (int)type;
     }
 
     public override void MouseInteractionLeft(Vector3Int cords)
@@ -59,11 +60,15 @@ public class MenuTile : Entity, IPointerClickHandler
         {
             int shapeType = GetShapeTypeKey();
             //EventManager.instance.SetMouseMode(-1,-1,shapeType);
-            MapBuilder.instance.shape = shapeType;
+            MapBuilder.instance.SetShape(shapeType);
             if(shapeType==c.fiber) { MapBuilder.instance.adjustShapeRotation(1); } // klicken auf die fiber dreht die fiber
             
         }
-
+        if(true) //I feel like later it will become apparent that I need some kind of chekc here
+        {
+            MapBuilder.instance.SetCost(cost);
+            MapBuilder.instance.SetBaseToughness(baseToughness);
+        }
         if(isSize==true&&mouseMode==c.placeTile)
         {
             MapBuilder.instance.AdjustShapeSize(sizeMod);
@@ -96,7 +101,7 @@ public class MenuTile : Entity, IPointerClickHandler
         {
             int shapeType = GetShapeTypeKey();
             //EventManager.instance.SetMouseMode(-1,-1,shapeType);
-            MapBuilder.instance.shape = shapeType;
+            MapBuilder.instance.SetShape(shapeType);
             if(shapeType==c.fiber) { MapBuilder.instance.adjustShapeRotation(1); } // klicken auf die fiber dreht die fiber
             
         }

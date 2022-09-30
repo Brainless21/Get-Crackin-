@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 681447696326083598}
   - component: {fileID: 681447696326083596}
   - component: {fileID: 681447696326083597}
+  - component: {fileID: 8266176167228201921}
   m_Layer: 5
   m_Name: Image Blob
   m_TagString: Untagged
@@ -75,6 +76,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8266176167228201921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681447696326083599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isType: 1
+  type: 1
+  isSize: 0
+  sizeMod: 0
+  isShape: 1
+  isEraser: 0
+  shape: 0
 --- !u!114 &1061338243285693338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,11 +108,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!114 &2041856653449501245
@@ -108,11 +127,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!114 &7712755711114951012
@@ -128,11 +146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!114 &4374564868927237236
@@ -148,11 +165,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!114 &3195356264850757672
@@ -168,11 +184,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!114 &9192863541341238701
@@ -188,11 +203,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!114 &8874255023515250164
@@ -208,11 +222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isType: 0
-  type: 
+  type: 0
   isSize: 0
   sizeMod: 0
   isShape: 1
-  shapeType: Blob
   isEraser: 0
   shape: 0
 --- !u!1001 &681447697344642127

@@ -24,6 +24,14 @@ public class c
     public const int particleTile1 = 1;
     public const int maxPhase = 2;
 
+    public enum types
+    {
+      MatrixTile,
+      ParticleTile,
+      MaxPhase
+
+    }
+
     //maus buttons
     public const int leftClick = 0;
     public const int rightClick = 1;

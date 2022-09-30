@@ -16,7 +16,7 @@ public class FundsAccount : MonoBehaviour
         return balance;
     }
 
-    public int GetPriceByType(int type)
+    public int GetPriceByType(int type) // gets the *default* price of the tile based on the type
     {
         if(!priceList.ContainsKey(type))
         {

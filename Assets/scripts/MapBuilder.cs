@@ -23,13 +23,21 @@ public class MapBuilder : MonoBehaviour
     public Button restartMapButton;
     public Button deleteMapButton;
     Coroutine coroutineBuild;    
-    Dictionary<int,GameObject> tileTypeDict = new Dictionary<int,GameObject>(); 
-    private int shapeSize = 2;
-    private int shapeRotation = 0;
-    [SerializeField] public int shape;
-    [SerializeField] private int type = c.particleTile1; // sollte eig nie 0 sein, weil wierdes behavior. ist jetzt hardgecodet
+    Dictionary<int,GameObject> tileTypeDict = new Dictionary<int,GameObject>(); // this would probably also better work as an enum but it works now so
     private Dictionary<int, int> verticalCutoffR = new Dictionary<int, int>();
     private Dictionary<int, int> verticalCutoffL = new Dictionary<int, int>();
+
+    // here it saves the values used for the next tile it will place
+    [SerializeField] private int type = c.particleTile1; // sollte eig nie 0 sein, weil wierdes behavior. ist jetzt hardgecodet
+    [SerializeField] private int shape;
+    public void SetShape(int shapeType) {shape=shapeType;}
+    [SerializeField] private int cost;
+    public void SetCost(int modifiedCost) {cost=modifiedCost;}
+    [SerializeField] private int baseToughness;
+    public void SetBaseToughness(int baseToughness) {this.baseToughness=baseToughness;}
+    private int shapeRotation = 0;
+    private int shapeSize = 2;
+
 
     private void BuildVerticalCutoff()
     {
@@ -286,6 +294,10 @@ public class MapBuilder : MonoBehaviour
         foreach(Vector3Int spot in currentShape)
         {
            MapTile handle = PlaceTile(spot,false);
+           // nach dem platzieren werden die kosten und die toughness der Tiles gemäß der im builder gespeicherten custom values geändert, es sein denn die custom values sind 0 (standart fall, keine modifikation)
+           if(cost!=0) {handle.cost=cost;}
+           if(baseToughness!=0) {handle.SetBaseToughness(baseToughness);}
+           
            handle.SetAssociatedShape(currentShape);
            MasterOfShapes.instance.AddShapeToList(currentShape);
         }

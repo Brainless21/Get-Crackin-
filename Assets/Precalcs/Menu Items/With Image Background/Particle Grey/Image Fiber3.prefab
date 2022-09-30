@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3512511579943624981}
   - component: {fileID: 3512511579943624983}
   - component: {fileID: 3512511579943624982}
+  - component: {fileID: 231073933425891317}
   m_Layer: 5
   m_Name: Image Fiber3
   m_TagString: Untagged
@@ -75,6 +76,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &231073933425891317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512511579943624980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isType: 1
+  type: 1
+  isSize: 0
+  sizeMod: 0
+  isShape: 0
+  isEraser: 0
+  shape: 1
 --- !u!1001 &7813830276717852967
 PrefabInstance:
   m_ObjectHideFlags: 0
