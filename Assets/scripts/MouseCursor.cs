@@ -91,7 +91,6 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = matrixTile;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords)); //es wird einmal die location der pointed entity weitergegeben, und die grade angesagte shape.
-            UpdateInfoDisplay(matrixTile);
             return pointedEntity;
         }
 
@@ -100,7 +99,6 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = particleTile1;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
-            UpdateInfoDisplay(particleTile1);
             return pointedEntity;
         }
 
@@ -109,7 +107,6 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = maxPhase;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
-            UpdateInfoDisplay(maxPhase);
             return pointedEntity;
         }
 
@@ -118,7 +115,6 @@ public class MouseCursor : MonoBehaviour
         {
             pointedEntity = menuTile;
             EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
-            UpdateInfoDisplay(menuTile);
             return pointedEntity;
         }
 
@@ -129,22 +125,8 @@ public class MouseCursor : MonoBehaviour
 
     }
 
-    private void UpdateInfoDisplay(MapTile mapTile)
-    {   
-       string displaytext="";
-       displaytext += "name: ";
-       displaytext += mapTile.tileName;
-       displaytext += "\n toughness: ";
-       displaytext += mapTile.GetBaseToughness().ToString();
-       displaytext += "\n cost: ";
-       displaytext += FundsAccount.instance.GetPriceByType(mapTile.typeKey).ToString();
-       infoDisplay.SetText(displaytext);
-
-    }
-    private void UpdateInfoDisplay(MenuTile menuTile)
-    {   
-       
-    }
+    
+    
     
 
     public void ChangeMouseModeBranch(int newBranch)

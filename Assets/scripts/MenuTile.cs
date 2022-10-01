@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
 
-public class MenuTile : Entity, IPointerClickHandler
+public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 {
     [SerializeField] bool isType;
     [SerializeField] c.types type; 
@@ -15,7 +15,17 @@ public class MenuTile : Entity, IPointerClickHandler
     
     [SerializeField] bool isShape; 
     [SerializeField] int cost;
+    public int GetCost() 
+    {
+        if(cost!=0) return cost; 
+        return FundsAccount.instance.GetPriceByType((int)type);
+    }
     [SerializeField] private int baseToughness;
+    public int GetBaseToughness() { return baseToughness; }
+    [SerializeField] string tileName;
+    public string GetName() { return tileName; }
+    [SerializeField] Mesh mesh;
+ 
 
 
     int typeKey;
@@ -29,6 +39,7 @@ public class MenuTile : Entity, IPointerClickHandler
     private void Awake() 
     {
         cords = Utilities.ConvertCordsToInt(transform.position);
+        mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
     }
 
     public int GetShapeTypeKey()
@@ -115,6 +126,7 @@ public class MenuTile : Entity, IPointerClickHandler
             MapBuilder.instance.SetCost(cost);
             MapBuilder.instance.SetBaseToughness(baseToughness);
             MapBuilder.instance.SetShapeSize(size);
+            MapBuilder.instance.SetMesh(mesh);
             
         }
 
@@ -127,5 +139,10 @@ public class MenuTile : Entity, IPointerClickHandler
         {
             EventManager.instance.SetMouseMode(c.clearTile);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        InfoDisplay.instance.UpdateInfoDisplay(this);
     }
 }

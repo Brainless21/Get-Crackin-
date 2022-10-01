@@ -38,6 +38,9 @@ public class MapBuilder : MonoBehaviour
     private int shapeRotation = 0;
     [SerializeField] private int shapeSize = 2;
     public void SetShapeSize(int size) { shapeSize = size;}
+    [SerializeField] Mesh mesh;
+    public void SetMesh(Mesh newMesh) { mesh = newMesh; }
+    
 
 
     private void BuildVerticalCutoff()
@@ -298,6 +301,7 @@ public class MapBuilder : MonoBehaviour
            // nach dem platzieren werden die kosten und die toughness der Tiles gemäß der im builder gespeicherten custom values geändert, es sein denn die custom values sind 0 (standart fall, keine modifikation)
            if(cost!=0) {handle.cost=cost;}
            if(baseToughness!=0) {handle.SetBaseToughness(baseToughness);}
+           handle.gameObject.GetComponent<MeshFilter>().mesh = mesh;
            
            handle.SetAssociatedShape(currentShape);
            MasterOfShapes.instance.AddShapeToList(currentShape);
