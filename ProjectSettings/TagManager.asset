@@ -9,6 +9,7 @@ TagManager:
   - ShapeNugget
   - TypeSelector
   - ShapeSelector
+  - HasMesh
   layers:
   - Default
   - TransparentFX
