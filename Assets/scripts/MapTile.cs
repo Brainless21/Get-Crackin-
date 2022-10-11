@@ -30,7 +30,11 @@ public class MapTile : Entity
     bool mouseOver = false;
     [SerializeField] private List<Vector3Int> associatedShape = new List<Vector3Int>();
     int mouseOverValidity;
-    [SerializeField] public string tileName = "Maptile";
+    [SerializeField] string tileName = "nonNamedMaptile";
+    public void SetName(string newName) {this.tileName = newName;}
+    public string GetTileName() { return this.tileName; }
+
+    //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
 
 
     public void SetAssociatedShape(List<Vector3Int> shape)

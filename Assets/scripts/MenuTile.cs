@@ -22,10 +22,11 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     }
     [SerializeField] private int baseToughness;
     public int GetBaseToughness() { return baseToughness; }
-    [SerializeField] string tileName;
-    public string GetName() { return tileName; }
+    [SerializeField] string menuTileName;
+    public string GetName() { return menuTileName; }
     [SerializeField] Mesh mesh;
- 
+    [SerializeField] float interfaceStrength;
+    public float GetInterfaceStrengh() {return interfaceStrength;}
 
 
     int typeKey;
@@ -127,6 +128,9 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
             MapBuilder.instance.SetBaseToughness(baseToughness);
             MapBuilder.instance.SetShapeSize(size);
             MapBuilder.instance.SetMesh(mesh);
+            MapBuilder.instance.SetTileName(menuTileName);
+            MapBuilder.instance.SetInterfaceStrenth(interfaceStrength);
+            
             
         }
 

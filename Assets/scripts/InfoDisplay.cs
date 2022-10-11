@@ -17,7 +17,7 @@ public class InfoDisplay : MonoBehaviour
     {   
        string displaytext="";
        displaytext += "name: ";
-       displaytext += mapTile.tileName;
+       displaytext += mapTile.GetTileName();
        displaytext += "\n toughness: ";
        displaytext += mapTile.GetBaseToughness().ToString();
        displaytext += "\n cost: ";
