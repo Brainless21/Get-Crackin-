@@ -4130,6 +4130,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1585552360861440320, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585552360861440320, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585552360861440320, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1653972007449302057, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
       propertyPath: m_Enabled
@@ -4275,6 +4290,51 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1979973883791011581, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979973883791011581, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979973883791011581, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173440420197605553, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173440420197605553, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173440420197605553, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286111478408013863, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286111478408013863, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286111478408013863, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2470793620120971623, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
       propertyPath: m_TagString
@@ -4345,6 +4405,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3609349354717457347, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609349354717457347, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609349354717457347, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3753355369802350491, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
       propertyPath: m_Enabled
@@ -4380,6 +4455,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5938647191763477706, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938647191763477706, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938647191763477706, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6314919340426482752, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4410,6 +4500,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7044477339753774980, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044477339753774980, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044477339753774980, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7163283793606478407, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
       propertyPath: m_Enabled
@@ -4423,7 +4528,32 @@ PrefabInstance:
     - target: {fileID: 7708451897380699250, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
       propertyPath: cost
-      value: 0
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7708451897380699250, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 7708451897380699250, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710843039976150100, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710843039976150100, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: tileName
+      value: Carbon Fiber
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710843039976150100, guid: a0f76c60a68e19b4997845343f6fb689,
+        type: 3}
+      propertyPath: baseToughness
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8039178435160821961, guid: a0f76c60a68e19b4997845343f6fb689,
         type: 3}
@@ -5006,7 +5136,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9070335912583433544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 57.034225, y: 57.03422, z: 57.034214}
   m_Children: []
   m_Father: {fileID: 278141211}
