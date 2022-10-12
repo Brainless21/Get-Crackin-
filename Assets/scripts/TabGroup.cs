@@ -10,6 +10,7 @@ public class TabGroup : MonoBehaviour
     public Color tabHovered;
     public Color tabSelected;
     public TabButton selectedTab;
+    //[SerializeField] bool sharesSpace;
 
     // private void Start()
     // {
@@ -42,6 +43,8 @@ public class TabGroup : MonoBehaviour
         selectedTab = button;
         ResetTabs();
         SwitchPageToSelected();
+
+        if(button.isBackbutton) button.resetGroup.Reset();
     }
 
     void ResetTabs()
@@ -52,15 +55,39 @@ public class TabGroup : MonoBehaviour
         }
     }
 
+    // public void HideAllPagesFromButtonsInThisGroup()
+    // {
+    //     foreach(TabButton tabButton in tabButtons)
+    //     {
+    //         tabButton.HidePage();
+    //     }
+    // }
+
     void SwitchPageToSelected()
     {
         foreach(TabButton tabButton in tabButtons)
         {
-            tabButton.hidePage();
-            if(tabButton==selectedTab) tabButton.showPage();
+            // // this is so when there is a hierarchy of tabGroups with buttons inside the page of a button in a tab group, the "children" also get turned off, when the page gets disabled
+            // TabGroup lowerLevel = tabButton.gameObject.GetComponent<TabGroup>();
+            // if(lowerLevel!=null) lowerLevel.HideAllPagesFromButtonsInThisGroup();
+
+            tabButton.HidePage(); // this just hides the pages of all buttons in the group
+            if(tabButton.sharesSpace==true) tabButton.HideSelf();
+            if(tabButton==selectedTab) tabButton.ShowPage();
         }
 
     }
+    // private void OnEnable() 
+    // {
+    //     //when the scrip gets turned on, it checks if the gameObject is also turned on, and then shows all tabbuttons in there
+    //     if(gameObject.activeSelf)
+    //     {
+    //         foreach(TabButton tabButton in tabButtons)
+    //         {
+    //             if(tabButton.sharesSpace==true) tabButton.ShowSelf();
+    //         }
+    //     }
+    // }
 
 
 }
