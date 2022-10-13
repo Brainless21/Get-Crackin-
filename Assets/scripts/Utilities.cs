@@ -33,4 +33,25 @@ public class Utilities
 
         return cordsInt;
     }
+
+    public static int CalculateCostOfShape(int shape, int size, int costPerTile)
+    {
+        int result = 0;
+
+        if(shape==c.fiber) result = shape*costPerTile;
+        
+
+        if(shape == c.nugget) result = 3*costPerTile;
+
+        if(shape == c.single) result = costPerTile;
+
+        if(shape == c.blob)
+        {
+            if(size <= 1) result = costPerTile;
+            if(size == 2) result = 7*costPerTile;
+            if(size == 3) result = 19*costPerTile;
+            if(size>3) Debug.Log("jetzt aber mal kleine brötchen backen pls");
+        }
+        return result;
+    }
 }

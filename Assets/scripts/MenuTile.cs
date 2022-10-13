@@ -127,6 +127,8 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
             MapBuilder.instance.SetCost(cost);
             MapBuilder.instance.SetBaseToughness(baseToughness);
             MapBuilder.instance.SetShapeSize(size);
+            Debug.Log("my size is");
+            Debug.Log(size);
             MapBuilder.instance.SetMesh(mesh);
             MapBuilder.instance.SetTileName(menuTileName);
             MapBuilder.instance.SetInterfaceStrenth(interfaceStrength);

@@ -38,7 +38,7 @@ public class FlexibleGridLayout : LayoutGroup
 
         if(fitType==FitType.FixedRows)
         {
-
+            // da fehlt doch bestimmt noch was
         }
 
         if(fitType == FitType.Width || fitType == FitType.FixedColumns)
