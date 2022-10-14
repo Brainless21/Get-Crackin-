@@ -15,11 +15,22 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     
     [SerializeField] bool isShape; 
     [SerializeField] int cost;
+    [SerializeField] int costOfTile; // wenn die einzelnen Tiles abweichende kosten haben sollen, man aber die neuen kosten nicht selber ausrechnen will weil faul
     public int GetCost() 
     {
+        // wenn im menu tile selber was eingetragen wurde, sind das die gesamt Kosten
         if(cost!=0) return cost; 
-        return FundsAccount.instance.GetPriceByType((int)type);
+        
+        // wenn nichts drinsteht, werden die kosten nach tileanzahl und Cost of one Tile berechnet. Steht bei den Cost of Tile nichts drin, wird der standard wert nach type zurückgegeben
+        return Utilities.CalculateCostOfShape((int)shape, size, GetCostOfTile());
     }
+
+    int GetCostOfTile()
+    {
+        if(costOfTile==0) return FundsAccount.instance.GetPriceByType((int)type);
+        return costOfTile;
+    }
+
     [SerializeField] private int baseToughness;
     public int GetBaseToughness() { return baseToughness; }
     [SerializeField] string menuTileName;
