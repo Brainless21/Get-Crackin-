@@ -14,7 +14,7 @@ public class ParticleTile1 : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        //Debug.Log("bin eingeschrieben(start)");
+        //Debug.Log("bin eingeschrieben(awake)");
     }
 
     public override float GetToughness()

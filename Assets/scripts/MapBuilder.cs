@@ -286,17 +286,17 @@ public class MapBuilder : MonoBehaviour
 
        
 
-        // // es wird überprüft, ob auf der fläche des shapes auch nur tiles sitzen, die üebrschrieben weden dürfen (also nur matrix tiles, die nur matrix tiles als nachbarn haben)
-        // foreach(MapTile tile in targetTiles)
-        // {
-        //     if(tile.CanThisBeOverridden(type,true)==false) return false;
+        // es wird überprüft, ob auf der fläche des shapes auch nur tiles sitzen, die üebrschrieben weden dürfen (also nur matrix tiles, die nur matrix tiles als nachbarn haben)
+        foreach(MapTile tile in targetTiles)
+        {
+            if(tile.CanThisBeOverridden(type,true)==false) return false;
 
-        //     // if(tile.typeKey!=c.matrixTile)
-        //     // {
-        //     //     Debug.Log("hier ist kein platz für die shape, es würde etwas anderes überschnitten");
-        //     //     return false;
-        //     // }
-        // }
+            // if(tile.typeKey!=c.matrixTile)
+            // {
+            //     Debug.Log("hier ist kein platz für die shape, es würde etwas anderes überschnitten");
+            //     return false;
+            // }
+        }
 
         // an jedem spot der shape wird ein tile platziert, diesem wird mitgegeben, zu welcher gruppe an tiles er gehört, shape wise.
         foreach(Vector3Int spot in currentShape)
@@ -307,6 +307,11 @@ public class MapBuilder : MonoBehaviour
            if(baseToughness!=0) {handle.SetBaseToughness(baseToughness);}
            handle.SetName(tileName);
            handle.gameObject.GetComponent<MeshFilter>().mesh = mesh;
+           
+           if(type==c.particleTile1)
+           {
+               handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
+           }
            
            handle.SetAssociatedShape(currentShape);
            MasterOfShapes.instance.AddShapeToList(currentShape);

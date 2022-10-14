@@ -367,6 +367,20 @@ public class MapTile : Entity
         return true;
     }
 
+    public bool ModifyBehavior(int key, float strenght)
+    {
+        if(!myBehaviors.ContainsKey(key)) 
+        {
+            Debug.Log("ein nicht vorhandenes behavior kann nicht modifiziert werden");
+            return false;
+        }
+
+        myBehaviors.Remove(key);
+        myBehaviors.Add(key, strenght);
+        return true;
+
+    }
+
     protected bool RemoveBehavior(int key)
     {
         if(!myBehaviors.ContainsKey(key))

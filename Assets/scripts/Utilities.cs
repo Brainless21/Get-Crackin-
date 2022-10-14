@@ -38,7 +38,7 @@ public class Utilities
     {
         int result = 0;
 
-        if(shape==c.fiber) result = shape*costPerTile;
+        if(shape==c.fiber) result = size*costPerTile;
         
 
         if(shape == c.nugget) result = 3*costPerTile;

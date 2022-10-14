@@ -36,7 +36,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     [SerializeField] string menuTileName;
     public string GetName() { return menuTileName; }
     [SerializeField] Mesh mesh;
-    [SerializeField] float interfaceStrength;
+    [SerializeField] float interfaceStrength =1;
     public float GetInterfaceStrengh() {return interfaceStrength;}
 
 
@@ -47,11 +47,14 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 
     [SerializeField] c.Shapes shape;
 
+    //[SerializeField] MapTile exampleTile; // die idee alle relevanten infos in einem maptile zusammenzufassen und nurdas zuübergeben wird erstmal auf ice gelegt, weil mir keine schlaue lösung einfällt, wie man die verschiedenen datentypen mit particle oder maxphase tile handlen würde ohne das es irgendwie whack werden würd
 
     private void Awake() 
     {
         cords = Utilities.ConvertCordsToInt(transform.position);
         mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
+
+       
     }
 
     public int GetShapeTypeKey()
@@ -63,6 +66,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     {
         return (int)type;
     }
+
 
     public override void MouseInteractionLeft(Vector3Int cords)
     {

@@ -834,6 +834,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_MatrixTileSelect
       objectReference: {fileID: 0}
+    - target: {fileID: 5246361203373421177, guid: 51c809367af92cf4c9b82679070380fc,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c809367af92cf4c9b82679070380fc, type: 3}
 --- !u!1 &212778120
@@ -4761,12 +4766,12 @@ MonoBehaviour:
   sizeMod: 0
   size: 4
   isShape: 1
-  cost: 3
-  costOfTile: 0
+  cost: 0
+  costOfTile: 2
   baseToughness: 5
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
-  interfaceStrength: 0
+  interfaceStrength: 0.8
   isEraser: 0
   shape: 1
 --- !u!114 &526626134672406436
@@ -4787,12 +4792,12 @@ MonoBehaviour:
   sizeMod: 0
   size: 6
   isShape: 1
-  cost: 3
-  costOfTile: 0
+  cost: 0
+  costOfTile: 2
   baseToughness: 5
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
-  interfaceStrength: 0
+  interfaceStrength: 0.8
   isEraser: 0
   shape: 1
 --- !u!1001 &1175551514999217974
@@ -5382,12 +5387,12 @@ MonoBehaviour:
   sizeMod: 0
   size: 7
   isShape: 1
-  cost: 3
-  costOfTile: 0
+  cost: 0
+  costOfTile: 2
   baseToughness: 5
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
-  interfaceStrength: 0
+  interfaceStrength: 0.8
   isEraser: 0
   shape: 1
 --- !u!1001 &5575112608153633606
@@ -5601,12 +5606,12 @@ MonoBehaviour:
   sizeMod: 0
   size: 5
   isShape: 1
-  cost: 3
-  costOfTile: 0
+  cost: 0
+  costOfTile: 2
   baseToughness: 5
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
-  interfaceStrength: 0
+  interfaceStrength: 0.8
   isEraser: 0
   shape: 1
 --- !u!114 &8855734854356544233
