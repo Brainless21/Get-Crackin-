@@ -220,8 +220,13 @@ public class MapBuilder : MonoBehaviour
         // überprüft, ob genug cash money für das platzierenverfügbar ist
         if(careAboutCost==true)
         {
+            // die kosten des tiles werden vom gespeicherten übernommen, außer sie sind 0, dann wird der Fundsaccount nach den stnadard werten gefragt
+            int currentCost;
+            currentCost = cost;
+            if(cost==0) currentCost = FundsAccount.instance.GetPriceByType(type);
+
             int currentBalance = FundsAccount.instance.GetBalance();
-            int transactionBalance = currentOccupant.cost-FundsAccount.instance.GetPriceByType(type);
+            int transactionBalance = currentOccupant.cost-currentCost;
             int futureBalance = currentBalance+transactionBalance;
             if(careAboutCost==true&futureBalance<0) 
             {
@@ -271,9 +276,12 @@ public class MapBuilder : MonoBehaviour
         }
 
         // check the funds situation
+
         foreach(Vector3Int spot in currentShape)
         {
-            transactionBalance += TileLedger.ledgerInstance.GetTileByCords(spot).cost-FundsAccount.instance.GetPriceByType(type); // jedes zu platzierende tile wird durhgegangen und die balance errechnet
+            // *sollte* bedeuten: currentcost ist Getpriceby(type) wen cost==0 und sonst = cost
+            int currentCost = (cost==0)? FundsAccount.instance.GetPriceByType(type) : cost;
+            transactionBalance += TileLedger.ledgerInstance.GetTileByCords(spot).cost-currentCost; // jedes zu platzierende tile wird durhgegangen und die balance errechnet
         }
         futureBalance+=transactionBalance;
 

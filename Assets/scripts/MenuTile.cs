@@ -14,12 +14,12 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     [SerializeField] int size;
     
     [SerializeField] bool isShape; 
-    [SerializeField] int cost;
+    [SerializeField] int costOfShape;
     [SerializeField] int costOfTile; // wenn die einzelnen Tiles abweichende kosten haben sollen, man aber die neuen kosten nicht selber ausrechnen will weil faul
     public int GetCost() 
     {
         // wenn im menu tile selber was eingetragen wurde, sind das die gesamt Kosten
-        if(cost!=0) return cost; 
+        if(costOfShape!=0) return costOfShape; 
         
         // wenn nichts drinsteht, werden die kosten nach tileanzahl und Cost of one Tile berechnet. Steht bei den Cost of Tile nichts drin, wird der standard wert nach type zurückgegeben
         return Utilities.CalculateCostOfShape((int)shape, size, GetCostOfTile());
@@ -139,7 +139,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 
         if(true) //I feel like later it will become apparent that I need some kind of chekc here
         {
-            MapBuilder.instance.SetCost(cost);
+            MapBuilder.instance.SetCost(costOfShape);
             MapBuilder.instance.SetBaseToughness(baseToughness);
             MapBuilder.instance.SetShapeSize(size);
             Debug.Log("my size is");

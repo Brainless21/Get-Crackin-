@@ -22,6 +22,11 @@ public class Crack : MonoBehaviour
     private int etappe = 0;
     float bestResult = 0; 
     float distanceCurrent=1;
+    List<Destination> activeDestinations;
+    public void SubscribeToDestinations(Destination)
+    {
+        if(activeDestinations==null) 
+    }
     Coroutine propagate;
     void Awake()
     {
@@ -179,7 +184,7 @@ public class Crack : MonoBehaviour
         PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
         finalScore = 0;
 
-        cords = new Vector3Int (-9,-2,11);
+        cords = new Vector3Int (-5,-2,7);
         etappe=0;
         UpdateDistance();
 
