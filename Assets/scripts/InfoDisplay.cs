@@ -29,11 +29,11 @@ public class InfoDisplay : MonoBehaviour
     public void UpdateInfoDisplay(MenuTile menuTile)
     {   
        string displaytext="";
-       displaytext += "name: ";
+       displaytext += "Name: ";
        displaytext += menuTile.GetName();
-       displaytext += "\n toughness: ";
+       displaytext += "\n Toughness: ";
        displaytext += menuTile.GetBaseToughness().ToString();
-       displaytext += "\n cost: ";
+       displaytext += "\n Cost: ";
        displaytext += menuTile.GetCost().ToString();
        infoDisplay.SetText(displaytext);
 

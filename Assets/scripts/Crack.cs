@@ -10,29 +10,42 @@ public class Crack : MonoBehaviour
     private float finalScore =0;
     private MapTile occupiedTile;
     //private Vector3Int destinationsCords = new Vector3Int(11,-2,-9);
-    private List<Vector3Int> destinationsCords = new List<Vector3Int>
-        {
-            new Vector3Int(8,-2,-6),
-            // new Vector3Int(-9,4,5),
-            // new Vector3Int(11,-8,-3),
-            // new Vector3Int(-9,-2,11) 
-        };
+    // private List<Vector3Int> destinationsCords = new List<Vector3Int>
+    //     {
+    //         new Vector3Int(8,-2,-6),
+    //         // new Vector3Int(-9,4,5),
+    //         // new Vector3Int(11,-8,-3),
+    //         // new Vector3Int(-9,-2,11) 
+    //     };
     
 
     private int etappe = 0;
     float bestResult = 0; 
     float distanceCurrent=1;
-    List<Destination> activeDestinations;
-    public void SubscribeToDestinations(Destination)
+    // einheitsvektor in richtung crack Propagation
+    Vector3 stressDirection = new Vector3(Mathf.Sqrt(2),0f,-Mathf.Sqrt(2));
+    Vector3Int startPoint = new Vector3Int();
+    [SerializeField] List<Destination> activeDestinations = new List<Destination>();
+    public void SubscribeToDestinations(Destination entry)
     {
-        if(activeDestinations==null) 
+
+        activeDestinations.Add(entry);
+    }
+
+    public void UnsubscribeFromDestinations(Destination entry)
+    {
+        if(activeDestinations==null) Debug.Log("esgibt noch keine liste, something went wrong");
+
+        if(!activeDestinations.Contains(entry)) Debug.Log("eintrag is gar nicht in der liste");
+
+        activeDestinations.Remove(entry);
     }
     Coroutine propagate;
     void Awake()
     {
         cords = Vector3Int.FloorToInt(this.transform.position);
+        startPoint = cords;
 
-        UpdateDistance();
 
         //propagate = StartCoroutine(CrackPropagation());
 
@@ -46,14 +59,21 @@ public class Crack : MonoBehaviour
 
     void StartCrackPropagation()
     {
+        UpdateDistance();
+        foreach(Destination destination in activeDestinations)
+        {
+            destination.FindTile();
+        }
         propagate = StartCoroutine(CrackPropagation());
+        
     }
 
     void UpdateDistance()
     {
-        if(destinationsCords[etappe]!=null)
+        if(activeDestinations==null) return;
+        if(activeDestinations[etappe]!=null)
         {
-            distanceCurrent = Vector3Int.Distance(destinationsCords[etappe], cords);
+            distanceCurrent = Vector3Int.Distance(activeDestinations[etappe].cords, cords);
         }
     }
 
@@ -133,11 +153,11 @@ public class Crack : MonoBehaviour
     private bool Propagate()
     {
 
-        if(cords==destinationsCords[etappe])
+        if(cords==activeDestinations[etappe].cords)
         {   
-            etappe ++; // steht hier, weil bei 0 angefangen wird zu zählen, aber count mind. 1 ausgibt (außer destinationsCords ist leer)
+            etappe ++; // steht hier, weil bei 0 angefangen wird zu zählen, aber count mind. 1 ausgibt (außer activeDestinations ist leer)
             
-            if (etappe==destinationsCords.Count)
+            if (etappe==activeDestinations.Count)
             {
             Debug.Log("bin angekommen");
             return false;
@@ -148,14 +168,14 @@ public class Crack : MonoBehaviour
 
         if(occupiedTile!=null) occupiedTile.SayHelloToFriends(1); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
 
-        if(FindBestFriend(cords, destinationsCords[etappe])==null)
+        if(FindBestFriend(cords, activeDestinations[etappe].cords)==null)
         {
             Debug.Log("Kein passender nächster schritt gefunden");
             return false;        
         }
 
         {
-            cords = FindBestFriend(cords, destinationsCords[etappe]).cords;
+            cords = FindBestFriend(cords, activeDestinations[etappe].cords).cords;
             occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
             UpdateDistance();
             occupiedTile.Crack();
@@ -184,7 +204,7 @@ public class Crack : MonoBehaviour
         PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
         finalScore = 0;
 
-        cords = new Vector3Int (-5,-2,7);
+        cords = startPoint;
         etappe=0;
         UpdateDistance();
 

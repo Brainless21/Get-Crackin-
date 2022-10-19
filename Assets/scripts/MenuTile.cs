@@ -52,7 +52,8 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     private void Awake() 
     {
         cords = Utilities.ConvertCordsToInt(transform.position);
-        mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
+
+        if(isEraser==false) mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
 
        
     }
