@@ -17,6 +17,11 @@ public class ParticleTile1 : MapTile
         //Debug.Log("bin eingeschrieben(awake)");
     }
 
+    public float GetInterfaceStrengh()
+    {
+        return interfaceStrengh;
+    }
+
     public override float GetToughness()
     {
         return baseToughness;

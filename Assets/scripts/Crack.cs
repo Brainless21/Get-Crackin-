@@ -26,6 +26,13 @@ public class Crack : MonoBehaviour
     Vector3 stressDirection = new Vector3(Mathf.Sqrt(2),0f,-Mathf.Sqrt(2));
     Vector3Int startPoint = new Vector3Int();
     [SerializeField] List<Destination> activeDestinations = new List<Destination>();
+    Coroutine propagate;
+    enum CrackMode
+    {
+        Point,
+        Direction
+    }
+    [SerializeField] CrackMode crackMode = CrackMode.Point;
     public void SubscribeToDestinations(Destination entry)
     {
 
@@ -40,7 +47,6 @@ public class Crack : MonoBehaviour
 
         activeDestinations.Remove(entry);
     }
-    Coroutine propagate;
     void Awake()
     {
         cords = Vector3Int.FloorToInt(this.transform.position);
@@ -77,6 +83,16 @@ public class Crack : MonoBehaviour
         }
     }
 
+    // float CalculateProgress(CrackMode mode)
+    // {
+    //     float progress;
+    //     if(mode == CrackMode.Point)
+    //     {
+    //         distanceNew = Vector3Int.Distance(destination, inspectedTile.cords);
+    //         progress = distanceCurrent
+    //     }
+    // }
+
 
     private MapTile FindBestFriend(Vector3Int currentCords, Vector3Int destination)
     {
@@ -99,8 +115,24 @@ public class Crack : MonoBehaviour
         {
             
             if(inspectedTile==null) continue; //skips to next i if the inspected tile is null
+            Vector3Int step = new Vector3Int();
+            // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
+            step = inspectedTile.cords-cords;
             float distanceNew = Vector3Int.Distance(destination, inspectedTile.cords);
-            float progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
+            float progress=0;
+
+            // im Point Modus wird als Progress angesehen wie weit mann dem ziel näher gekommen ist
+            if(crackMode==CrackMode.Point)
+            {
+                progress = distanceCurrent-distanceNew;  
+            }
+
+            // im Direction Mode wird als Progress angesehen, wie weit man gelaufen ist (step) aber projeziert auf die präferierte richtung
+            if(crackMode==CrackMode.Direction)
+            {
+                progress = Vector3.Dot(stressDirection,step);
+            }
+            //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
             if(progress<0)
             {
                 //Debug.Log("dieser schritt führt uns nicht näher zum ziel");
@@ -120,13 +152,20 @@ public class Crack : MonoBehaviour
 
         }
 
-        // der ganze spaß wird ctr v wiederholt, nur diesmal mit den friends in range 2. Deren score bekommt nen faktor von 1/4, um den wurzel-verlauf der spannung zu simulieren
+        // der ganze spaß wird ctr v wiederholt, nur diesmal mit den friends in range 2. Deren score bekommt nen faktor von 0.1, um den wurzel-verlauf der spannung zu simulieren
         foreach(MapTile inspectedTile in currentFriendsRange2)
         {
             
             if(inspectedTile==null) continue; //skips to next i if the inspected tile is null
+            Vector3Int step = new Vector3Int();
+            // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
+            step = inspectedTile.cords-cords;
             float distanceNew = Vector3Int.Distance(destination, inspectedTile.cords);
-            float progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
+            float progress = 0;
+
+            if(crackMode==CrackMode.Point) progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
+            if(crackMode==CrackMode.Direction) progress = Vector3.Dot(stressDirection, step);
+            
             if(progress<0)
             {
                 //Debug.Log("dieser schritt führt uns nicht näher zum ziel");
@@ -134,7 +173,7 @@ public class Crack : MonoBehaviour
             }
 
             // berechnet wie gut das tile ist, basierend darauf wie viel näher es dem ziel kommt, und wie schwierig es dem crack ist, dort hinzugehen
-            float awesomeness = 0.1f*progress/inspectedTile.GetToughness();
+            float awesomeness = 0.0001f*progress/inspectedTile.GetToughness();
 
             // wenn das tile besser ist, als das beste bis jetzt, wird es als neues bestes tile abgespeichert, zusammen mit seinen cords und dem score
             if(awesomeness>bestResult)

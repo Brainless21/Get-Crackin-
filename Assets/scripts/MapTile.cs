@@ -33,6 +33,9 @@ public class MapTile : Entity
     [SerializeField] string tileName = "nonNamedMaptile";
     public void SetName(string newName) {this.tileName = newName;}
     public string GetTileName() { return this.tileName; }
+    [SerializeField] bool isJiggly = false;
+
+    Coroutine Jiggle;
 
     //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
 
@@ -109,6 +112,31 @@ public class MapTile : Entity
         }
 
         GetComponent<MeshRenderer>().material.color = finalColor;
+    }
+
+    private IEnumerator Stretch(Vector3 axis, Vector3 origin)
+    {
+        Vector3 P = new Vector3(); // der Punkt auf der Axe, der dem Tile am nächsten liegt.
+        Vector3 toAxis = new Vector3(); //der Vector vom Tile zu P
+
+        P=origin+axis*Vector3.Dot(this.cords-origin,axis); // https://math.stackexchange.com/questions/1905533/find-perpendicular-distance-from-point-to-line-in-3d
+        toAxis = P-this.cords;
+
+        Vector3 originalPosition = this.transform.position;
+
+        for(float delta = 0; delta<Mathf.PI; delta+=0.2f)
+        {
+            this.transform.position+=toAxis*Mathf.Cos(delta)*0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        this.transform.position = originalPosition;
+        yield break;
+    }
+
+    public void StartStretching(Vector3 axis, Vector3 origin)
+    {
+       Jiggle = StartCoroutine(Stretch(axis,origin));
     }
     public virtual float GetToughness()
     {
@@ -283,6 +311,7 @@ public class MapTile : Entity
     }
     public override void MouseInteractionLeft(Vector3Int cords)
     {
+        this.StartStretching(new Vector3(1f,-2,1f)/Mathf.Sqrt(4),new Vector3(0f,0f,0f));
         if(!associatedShape.Contains(cords)) return;
         int mouseMode = EventManager.instance.GetMouseMode();
 

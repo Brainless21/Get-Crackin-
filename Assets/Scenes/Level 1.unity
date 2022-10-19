@@ -204,6 +204,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
+      propertyPath: crackMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
