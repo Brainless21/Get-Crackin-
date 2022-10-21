@@ -17,6 +17,14 @@ public class c
     public static Vector3Int ul = new Vector3Int(-1,1,0);
     public static Vector3Int l = new Vector3Int(-1,0,1);
     public static Vector3Int ol = new Vector3Int(0,-1,1);
+
+    // richtungsvektoren float
+    public static Vector3 orf = new Vector3(1f,-1f,0f);
+    public static Vector3 rf = new Vector3(1f,0f,-1f);
+    public static Vector3 urf = new Vector3(0f,1f,-1f);
+    public static Vector3 ulf = new Vector3(-1f,1f,0f);
+    public static Vector3 lf = new Vector3(-1f,0f,1f);
+    public static Vector3 olf = new Vector3(0f,-1f,1f);
     
 
     //tile arten

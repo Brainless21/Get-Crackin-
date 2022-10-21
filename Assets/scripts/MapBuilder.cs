@@ -220,7 +220,7 @@ public class MapBuilder : MonoBehaviour
         // überprüft, ob genug cash money für das platzierenverfügbar ist
         if(careAboutCost==true)
         {
-            // die kosten des tiles werden vom gespeicherten übernommen, außer sie sind 0, dann wird der Fundsaccount nach den stnadard werten gefragt
+            // die kosten des tiles werden vom gespeicherten übernommen, außer sie sind 0, dann wird der Fundsaccount nach den standard werten gefragt
             int currentCost;
             currentCost = cost;
             if(cost==0) currentCost = FundsAccount.instance.GetPriceByType(type);

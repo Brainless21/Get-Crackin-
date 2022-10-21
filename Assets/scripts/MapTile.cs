@@ -114,29 +114,53 @@ public class MapTile : Entity
         GetComponent<MeshRenderer>().material.color = finalColor;
     }
 
-    private IEnumerator Stretch(Vector3 axis, Vector3 origin)
+    private IEnumerator Stretch(Vector3 axis, Vector3 origin, float animationTime)
     {
+        //  unsubscribe from the mouse events so you cant get clicked on
+        EventManager.instance.MouseEnter-=MouseEnter;
+        EventManager.instance.MouseExit-=MouseExit;
+        EventManager.instance.MouseClickRight-=MouseInteractionRight;
+        EventManager.instance.MouseClickLeft-=MouseInteractionLeft;
+        
+
         Vector3 P = new Vector3(); // der Punkt auf der Axe, der dem Tile am nächsten liegt.
         Vector3 toAxis = new Vector3(); //der Vector vom Tile zu P
+        int stepsPerSecond = 30;
+        float stepSize = Mathf.PI/(stepsPerSecond*animationTime);
+        float maxDistance = 0.25f;
+        float stepTime = (animationTime*stepSize)/Mathf.PI;
 
         P=origin+axis*Vector3.Dot(this.cords-origin,axis); // https://math.stackexchange.com/questions/1905533/find-perpendicular-distance-from-point-to-line-in-3d
-        toAxis = P-this.cords;
+        toAxis = this.cords-P;
+        
 
         Vector3 originalPosition = this.transform.position;
+        int i=0;
 
-        for(float delta = 0; delta<Mathf.PI; delta+=0.2f)
+        for(float delta = 0; delta<Mathf.PI; delta+=stepSize)
         {
-            this.transform.position+=toAxis*Mathf.Cos(delta)*0.01f;
-            yield return new WaitForSeconds(0.01f);
+            this.transform.position=originalPosition+(toAxis/toAxis.magnitude)*Mathf.Sqrt(toAxis.magnitude)*Mathf.Sin(delta)*maxDistance; // die verschiebung wird skaliert mit wie weit das tile von der achse weg ist, aber mitwurzel, sodass weit weg liegende nicht so sehr krass nach aussen yeeten
+            yield return new WaitForSeconds(stepTime);
+            i++;
         }
 
         this.transform.position = originalPosition;
+        Debug.Log(i);
+        Debug.Log(stepTime);
+
+        // this.MouseExit(this.cords,new List<Vector3Int>{this.cords}); // thats just here so the mouseover color change doesnt stick, it shouldnt be relevant however because the stretch is usually not initiated by a mouse click on the map
+        // re-subscribe to all the mouse events
+        EventManager.instance.MouseExit+=MouseExit;
+        EventManager.instance.MouseEnter+=MouseEnter;
+        EventManager.instance.MouseClickRight+=MouseInteractionRight;
+        EventManager.instance.MouseClickLeft+=MouseInteractionLeft;
+
         yield break;
     }
 
     public void StartStretching(Vector3 axis, Vector3 origin)
     {
-       Jiggle = StartCoroutine(Stretch(axis,origin));
+       Jiggle = StartCoroutine(Stretch(axis,origin,0.5f));
     }
     public virtual float GetToughness()
     {
@@ -311,7 +335,7 @@ public class MapTile : Entity
     }
     public override void MouseInteractionLeft(Vector3Int cords)
     {
-        this.StartStretching(new Vector3(1f,-2,1f)/Mathf.Sqrt(4),new Vector3(0f,0f,0f));
+        //this.StartStretching(c.olf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
         if(!associatedShape.Contains(cords)) return;
         int mouseMode = EventManager.instance.GetMouseMode();
 

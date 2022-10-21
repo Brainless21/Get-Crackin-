@@ -22,6 +22,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
         if(costOfShape!=0) return costOfShape; 
         
         // wenn nichts drinsteht, werden die kosten nach tileanzahl und Cost of one Tile berechnet. Steht bei den Cost of Tile nichts drin, wird der standard wert nach type zurückgegeben
+        Debug.Log(Utilities.CalculateCostOfShape((int)shape, size, GetCostOfTile()));
         return Utilities.CalculateCostOfShape((int)shape, size, GetCostOfTile());
     }
 
@@ -140,11 +141,9 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 
         if(true) //I feel like later it will become apparent that I need some kind of chekc here
         {
-            MapBuilder.instance.SetCost(costOfShape);
+            MapBuilder.instance.SetCost(GetCostOfTile());
             MapBuilder.instance.SetBaseToughness(baseToughness);
             MapBuilder.instance.SetShapeSize(size);
-            Debug.Log("my size is");
-            Debug.Log(size);
             MapBuilder.instance.SetMesh(mesh);
             MapBuilder.instance.SetTileName(menuTileName);
             MapBuilder.instance.SetInterfaceStrenth(interfaceStrength);
