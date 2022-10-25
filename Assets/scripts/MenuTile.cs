@@ -74,7 +74,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 
     public override void MouseInteractionLeft(Vector3Int cords)
     {
-        Debug.Log("wir sind nach event data umgezogen");
+        //Debug.Log("wir sind nach event data umgezogen");
         // if(cords!=this.cords) return;
         // Debug.Log("OG click also registered");
         // int mouseMode = EventManager.instance.GetMouseMode();

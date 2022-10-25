@@ -35,7 +35,7 @@ public class MapTile : Entity
     public string GetTileName() { return this.tileName; }
     [SerializeField] bool isJiggly = false;
     [SerializeField] Vector3 baseStressState;
-    void SetBaseStressState (Vector3 stressState) { baseStressState = stressState; Debug.Log("stress state set"); UpdateIndicatorArrow(stressState);}
+    public void SetBaseStressState (Vector3 stressState) { baseStressState = stressState;  UpdateIndicatorArrow(stressState);}
     GameObject stressStateIndicatorArrow = GameAssets.instance.stressArrow;
     GameObject arrowHandle;
 
@@ -43,11 +43,22 @@ public class MapTile : Entity
 
     //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
 
-    void Awake()
+    void Awake() //apparently never happens? weil die kinder drunter (matrixTile, ParticleTile usw.) schon eine Awake funktion defineirt haben probably
     {
-        EventManager.instance.stressSetupNeedsToHappen+=SetBaseStressState;
+        
     }
-    Vector3 GetStressState()
+
+    public override void StressSetup(Vector3 stress) // die kommt von entity aber steht hier dann als override, damit jede nicht mapTile entity nicht verusucht seinen stress zu setten
+    {
+        SetBaseStressState(stress);
+    }
+
+
+    private void OnDisable() 
+    {
+        EventManager.instance.stressSetupNeedsToHappen-=SetBaseStressState;
+    }
+    public Vector3 GetStressState()
     {
         return baseStressState;
     }
@@ -61,7 +72,7 @@ public class MapTile : Entity
         
         float rotationAngle = Utilities.ConvertVectorToRotationAngle(currentStressVector); //aus dem vektor wird über skalarprodukt ein winkel gemacht, der wird in grad umgerechnet und damit dann der arrow gedreht.
         arrowHandle.transform.localRotation=Quaternion.Euler(0,-Utilities.ConvertRadiansToDegree(rotationAngle),0);
-        arrowHandle.transform.localScale = new Vector3(1f,1f,0.4f);
+        arrowHandle.transform.localScale = new Vector3(0.8f,1f,0.3f);
     }
 
     public void SetAssociatedShape(List<Vector3Int> shape)
@@ -83,9 +94,10 @@ public class MapTile : Entity
         {2, Color.red},
         {3, Color.yellow}
     };
-    // private void Start() 
+    // private void Start() // wenn das an ist, dann wird die entity start funktion nicht mehr ausgeführt und keine der tiles reagiert mehr au die maus
     // {
-    //     EventManager.instance.MouseExit+=
+    //     EventManager.instance.stressSetupNeedsToHappen+=SetBaseStressState;
+    //     Debug.Log("subscribed");
     // }
     private void Update() 
     {
@@ -302,7 +314,7 @@ public class MapTile : Entity
 
             if(TileLedger.ledgerInstance.CanTheyAllBeOverridden(calledShape)==false) 
             {
-                Debug.Log("mouseOverError: collsion with other particle");
+                //Debug.Log("mouseOverError: collsion with other particle");
                 mouseOverValidity = c.noSpace;
             }
             
@@ -340,9 +352,11 @@ public class MapTile : Entity
     }
     public override void MouseInteractionRight(Vector3Int cords)
     {
-        SetBaseStressState(c.orf);
+        //SetBaseStressState(c.orf);
         //this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
         if(cords!=this.cords) return;
+        EventManager.instance.InvokeStressSetup(c.olf);
+        Debug.Log("setup should now have been invoked");
         int mouseMode = EventManager.instance.GetMouseMode();
         if(mouseMode==c.inspect)
         {

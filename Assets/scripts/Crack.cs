@@ -130,7 +130,7 @@ public class Crack : MonoBehaviour
             // im Direction Mode wird als Progress angesehen, wie weit man gelaufen ist (step) aber projeziert auf die präferierte richtung
             if(crackMode==CrackMode.Direction)
             {
-                progress = Vector3.Dot(stressDirection,step);
+                progress = Vector3.Dot(occupiedTile.GetStressState(),step);
             }
             //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
             if(progress<0)

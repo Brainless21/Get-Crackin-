@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
         EventManager.instance.MouseEnter+=MouseEnter;
         EventManager.instance.MouseClickRight+=MouseInteractionRight;
         EventManager.instance.MouseClickLeft+=MouseInteractionLeft;
+        EventManager.instance.stressSetupNeedsToHappen+=StressSetup;
     }
     private void OnDisable() 
     {
@@ -45,5 +46,10 @@ public class Entity : MonoBehaviour
       public virtual void MouseInteractionLeft(Vector3Int cords)
     {
         Debug.Log("base entity mouse interaction");
+    }
+
+    public virtual void StressSetup(Vector3 stress)
+    {
+        Debug.Log("base Entity StressSetup");
     }
 }

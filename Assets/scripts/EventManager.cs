@@ -66,7 +66,9 @@ public class EventManager : MonoBehaviour
 
     public void InvokeStressSetup(Vector3 stress)
     {
+        //Debug.Log(stressSetupNeedsToHappen.ToString());
         stressSetupNeedsToHappen?.Invoke(stress);
+        Debug.Log("stressSetup invoked");
     }
    
 }

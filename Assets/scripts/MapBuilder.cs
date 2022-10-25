@@ -190,6 +190,7 @@ public class MapBuilder : MonoBehaviour
         GameObject tileType = GetTileByTag(type);
 
         MapTile handle = Instantiate(tileType, cords, Quaternion.Euler(55f, 45f, 0f)).GetComponent<MapTile>();
+        //handle.SubscribeToStress(); for some reason passiert das 999+ mal?
         return handle;
 
 
@@ -255,6 +256,7 @@ public class MapBuilder : MonoBehaviour
 
         FundsAccount.instance.UpdateDisplay();
         // return the tile that was created so its accessible
+        //handle.SubscribeToStress(); // steht auhc nochmal bei createTile(). Kann aber eigentlich nicht der way sein, das ding in das event zu bekommen, der müsste das selber machen können, aber awake kommt nicht und start nimmt das vom entity weg
         return handle;
 
     }
@@ -461,7 +463,8 @@ public class MapBuilder : MonoBehaviour
                         if(x<verticalCutoffR[y]+verticalRechts&&x>verticalCutoffL[y]-verticalLinks) // diese lovely abfrage schaut, ob die koordinaten innerhalb der rechten und linken grenzen liegen. dafür wird der y-Wert in die verticalcutoff Liste gegeben und raus kommt, welchen wert x maximal/minimal haben darf, unter berücksichtungung der im editor eingegebenen grenzen.
                         {
                             //Debug.Log("nope, rechter cutoff überschritten");
-                            CreateTile(cordsInt,c.matrixTile);
+                            MapTile handle = CreateTile(cordsInt,c.matrixTile);
+
                             
                         }
 
@@ -474,7 +477,8 @@ public class MapBuilder : MonoBehaviour
 
         //EventManager.instance.SetMouseMode(c.placeTile); // nach bauen der map wird tspe auf 1 gesetzt, weil matrix tile placen eigentlich jetzt von c.cleartile übernommen wird.
         FundsAccount.instance.UpdateDisplay();
-        EventManager.instance.InvokeStressSetup(c.orf);
+        yield return new WaitForEndOfFrame();
+        //EventManager.instance.InvokeStressSetup(c.orf); // das machen die ja schon alle selber on awake()
         yield break;
     }
 }
