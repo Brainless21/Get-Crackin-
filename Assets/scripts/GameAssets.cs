@@ -16,5 +16,6 @@ public static GameAssets instance;
    }
 
    public GameObject pointPopup;
-   public GameObject MatrixTile;
+   public GameObject matrixTile;
+   public GameObject stressArrow;
 }

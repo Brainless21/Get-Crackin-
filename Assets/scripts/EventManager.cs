@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour
     public event Action<Vector3Int> MouseClickRight;
     public event Action<Vector3Int> MouseClickLeft;
     public event Action buttonPressQ;
+    public event Action<Vector3> stressSetupNeedsToHappen;
     [SerializeField] int mouseMode = c.placeTile;
     public int GetMouseMode() { return mouseMode; }
     
@@ -38,17 +39,12 @@ public class EventManager : MonoBehaviour
         // DONT DESTROY ON SCENE CHANGE
         // DontDestroyOnLoad(this.gameObject);
     }
-
-    private void Update()
-    {
-        
-    }
   
     
     public void InvokeMouseExit(Vector3Int cords, List<Vector3Int> shape)
     {
         if(MouseExit!=null) MouseExit(cords, shape);
-       // MouseExit?.Invoke(cords); <- thats the same as above
+       // MouseExit?.Invoke(cords, shape); <- thats the same as above
     }
     public void InvokeMouseEnter(Vector3Int cords, List<Vector3Int> shape)
     {
@@ -66,6 +62,11 @@ public class EventManager : MonoBehaviour
     public void InvokeButtonPressQ()
     {
         buttonPressQ?.Invoke();
+    }
+
+    public void InvokeStressSetup(Vector3 stress)
+    {
+        stressSetupNeedsToHappen?.Invoke(stress);
     }
    
 }

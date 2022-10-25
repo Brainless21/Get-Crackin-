@@ -54,4 +54,15 @@ public class Utilities
         }
         return result;
     }
+
+    public static float ConvertVectorToRotationAngle(Vector3 vector)
+    {
+        float result = Mathf.Acos((Vector3.Dot(c.rf,vector))/(c.rf.magnitude*vector.magnitude)); //mathemagie, phi = arccos(a*b/|a|*|b|)
+        return result;
+    }
+
+    public static float ConvertRadiansToDegree(float radians)
+    {
+        return (radians*360)/(2*Mathf.PI);
+    }
 }

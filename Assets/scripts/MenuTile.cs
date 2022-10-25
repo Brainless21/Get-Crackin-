@@ -5,7 +5,8 @@ using System;
 using UnityEngine.EventSystems;
 
 public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
-{
+{   
+    [SerializeField] bool isTileSelect=true;
     [SerializeField] bool isType;
     [SerializeField] c.types type; 
 
@@ -45,6 +46,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     int shapeTypeKey;
 
     [SerializeField] bool isEraser;
+    [SerializeField] bool isInspector;
 
     [SerializeField] c.Shapes shape;
 
@@ -54,7 +56,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     {
         cords = Utilities.ConvertCordsToInt(transform.position);
 
-        if(isEraser==false) mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
+        if(isEraser==false&&isInspector==false) mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
 
        
     }
@@ -139,7 +141,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
             
         }
 
-        if(true) //I feel like later it will become apparent that I need some kind of chekc here
+        if(isTileSelect==true) //I feel like later it will become apparent that I need some kind of chekc here
         {
             MapBuilder.instance.SetCost(GetCostOfTile());
             MapBuilder.instance.SetBaseToughness(baseToughness);
@@ -159,6 +161,11 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
         if(isEraser==true)
         {
             EventManager.instance.SetMouseMode(c.clearTile);
+        }
+
+        if(isInspector==true)
+        {
+            EventManager.instance.SetMouseMode(c.inspect);
         }
     }
 

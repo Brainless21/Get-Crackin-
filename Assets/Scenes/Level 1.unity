@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 29101649}
   - component: {fileID: 29101651}
   - component: {fileID: 29101650}
+  - component: {fileID: 29101652}
   m_Layer: 5
   m_Name: Tile Inspector
   m_TagString: Untagged
@@ -195,6 +196,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29101648}
   m_CullTransparentMesh: 0
+--- !u!114 &29101652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29101648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTileSelect: 0
+  isType: 0
+  type: 0
+  isSizeMod: 0
+  sizeMod: 0
+  size: 0
+  isShape: 0
+  costOfShape: 0
+  costOfTile: 0
+  baseToughness: 0
+  menuTileName: 
+  mesh: {fileID: 0}
+  interfaceStrength: 1
+  isEraser: 0
+  isInspector: 1
+  shape: 0
 --- !u!1001 &36291224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 1
   isSizeMod: 0
@@ -448,6 +478,7 @@ MonoBehaviour:
   mesh: {fileID: 0}
   interfaceStrength: 1
   isEraser: 0
+  isInspector: 0
   shape: 2
 --- !u!1001 &176511677
 PrefabInstance:
@@ -1128,7 +1159,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17505, y: 139.99997}
+  cellSize: {x: 494.17508, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1257,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 0
   isType: 0
   type: 0
   isSizeMod: 0
@@ -1270,6 +1302,7 @@ MonoBehaviour:
   mesh: {fileID: 0}
   interfaceStrength: 1
   isEraser: 1
+  isInspector: 0
   shape: 0
 --- !u!1 &599744631
 GameObject:
@@ -3185,6 +3218,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameAssets
       objectReference: {fileID: 0}
+    - target: {fileID: 4201792215831011550, guid: 58ad451c3562ad848bc4395789ae14a0,
+        type: 3}
+      propertyPath: stressArrow
+      value: 
+      objectReference: {fileID: 1324876000603432, guid: 501022875c9e09348a7f1f27695f6ceb,
+        type: 3}
     - target: {fileID: 4201792215831011551, guid: 58ad451c3562ad848bc4395789ae14a0,
         type: 3}
       propertyPath: m_RootOrder

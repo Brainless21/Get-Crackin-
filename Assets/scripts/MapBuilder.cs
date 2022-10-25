@@ -46,6 +46,7 @@ public class MapBuilder : MonoBehaviour
     public void SetInterfaceStrenth(float strength) { interfaceStrength = strength;}
     
 
+    
 
     private void BuildVerticalCutoff()
     {
@@ -163,6 +164,7 @@ public class MapBuilder : MonoBehaviour
 
     
         coroutineBuild = StartCoroutine(Build());
+        
     }
 
     void DeleteMap()
@@ -472,6 +474,7 @@ public class MapBuilder : MonoBehaviour
 
         //EventManager.instance.SetMouseMode(c.placeTile); // nach bauen der map wird tspe auf 1 gesetzt, weil matrix tile placen eigentlich jetzt von c.cleartile übernommen wird.
         FundsAccount.instance.UpdateDisplay();
+        EventManager.instance.InvokeStressSetup(c.orf);
         yield break;
     }
 }

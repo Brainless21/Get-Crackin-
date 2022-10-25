@@ -34,11 +34,35 @@ public class MapTile : Entity
     public void SetName(string newName) {this.tileName = newName;}
     public string GetTileName() { return this.tileName; }
     [SerializeField] bool isJiggly = false;
+    [SerializeField] Vector3 baseStressState;
+    void SetBaseStressState (Vector3 stressState) { baseStressState = stressState; Debug.Log("stress state set"); UpdateIndicatorArrow(stressState);}
+    GameObject stressStateIndicatorArrow = GameAssets.instance.stressArrow;
+    GameObject arrowHandle;
 
     Coroutine Jiggle;
 
     //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
 
+    void Awake()
+    {
+        EventManager.instance.stressSetupNeedsToHappen+=SetBaseStressState;
+    }
+    Vector3 GetStressState()
+    {
+        return baseStressState;
+    }
+    void UpdateIndicatorArrow(Vector3 currentStressVector)
+    {
+        if(arrowHandle==null)
+        {
+            arrowHandle = Instantiate(stressStateIndicatorArrow, transform.position, Quaternion.identity);
+            arrowHandle.transform.parent = this.transform;
+        }
+        
+        float rotationAngle = Utilities.ConvertVectorToRotationAngle(currentStressVector); //aus dem vektor wird über skalarprodukt ein winkel gemacht, der wird in grad umgerechnet und damit dann der arrow gedreht.
+        arrowHandle.transform.localRotation=Quaternion.Euler(0,-Utilities.ConvertRadiansToDegree(rotationAngle),0);
+        arrowHandle.transform.localScale = new Vector3(1f,1f,0.4f);
+    }
 
     public void SetAssociatedShape(List<Vector3Int> shape)
     {  
@@ -162,7 +186,7 @@ public class MapTile : Entity
     {
        Jiggle = StartCoroutine(Stretch(axis,origin,0.5f));
     }
-    public virtual float GetToughness()
+    public virtual float GetToughness() //wird glaub ich nie actually verwendet, alle tiles overriden das mit ihrem eigenen ding
     {
         float modifier = 1;
         List<int> appliedBehaviours = new List<int>();
@@ -290,6 +314,11 @@ public class MapTile : Entity
         {
             mouseOver = true;
         }
+
+        if(EventManager.instance.IsMouseModeEqualTo(c.inspect))
+        {
+            InfoDisplay.instance.UpdateInfoDisplay(this);
+        }
     }
 
     public override void MouseExit(Vector3Int calledCords, List<Vector3Int> shape)
@@ -311,6 +340,8 @@ public class MapTile : Entity
     }
     public override void MouseInteractionRight(Vector3Int cords)
     {
+        SetBaseStressState(c.orf);
+        //this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
         if(cords!=this.cords) return;
         int mouseMode = EventManager.instance.GetMouseMode();
         if(mouseMode==c.inspect)
@@ -335,7 +366,7 @@ public class MapTile : Entity
     }
     public override void MouseInteractionLeft(Vector3Int cords)
     {
-        //this.StartStretching(c.olf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
+        
         if(!associatedShape.Contains(cords)) return;
         int mouseMode = EventManager.instance.GetMouseMode();
 
