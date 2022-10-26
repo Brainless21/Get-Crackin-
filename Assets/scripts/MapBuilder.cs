@@ -9,6 +9,7 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] GameObject matrixTile;
     [SerializeField] GameObject particleTile1;
     [SerializeField] GameObject maxPhase;
+    [SerializeField] GameObject phaseChangeTile;
     [SerializeField] GameObject testTile;
     [SerializeField] GameObject Crack;
     [SerializeField] int oben;
@@ -44,6 +45,10 @@ public class MapBuilder : MonoBehaviour
     public void SetTileName(string newName) {tileName = newName;}
     [SerializeField] float interfaceStrength;
     public void SetInterfaceStrenth(float strength) { interfaceStrength = strength;}
+    [SerializeField] float stressFieldStrength;
+    public void SetStressFieldStrength(float strength) { stressFieldStrength = strength; }
+    [SerializeField] bool star;
+    public void SetStar(bool isStar) { star = isStar;}
     
 
     
@@ -74,7 +79,7 @@ public class MapBuilder : MonoBehaviour
 
     public bool SetTileType(int typeKey)
     {
-        if(typeKey<0|typeKey>3)
+        if(typeKey<0|typeKey>4)
         {
             Debug.Log("tile type nicht definiert");
             return false;
@@ -124,6 +129,7 @@ public class MapBuilder : MonoBehaviour
         tileTypeDict.Add(c.matrixTile, matrixTile);
         tileTypeDict.Add(c.particleTile1, particleTile1);
         tileTypeDict.Add(c.maxPhase, maxPhase);
+        tileTypeDict.Add(c.PhaseChangeTile, phaseChangeTile);
 
         BuildVerticalCutoff();
         
@@ -315,6 +321,7 @@ public class MapBuilder : MonoBehaviour
         {
            MapTile handle = PlaceTile(spot,false);
            // nach dem platzieren werden die kosten und die toughness der Tiles gemäß der im builder gespeicherten custom values geändert, es sein denn die custom values sind 0 (standart fall, keine modifikation)
+           // hier muss noch ein system hin, sodass tiles mit standartwerten diese auch bekommen, wenn sie nach tiles mit nicht standartwerten platziert werden. Grade wird ja der speicher mit den details zum tile nach dem platzieren nicht gewiped.
            if(cost!=0) {handle.cost=cost;}
            if(baseToughness!=0) {handle.SetBaseToughness(baseToughness);}
            handle.SetName(tileName);
@@ -323,6 +330,11 @@ public class MapBuilder : MonoBehaviour
            if(type==c.particleTile1)
            {
                handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
+           }
+
+           if(type==c.PhaseChangeTile)
+           {
+               //(PhaseChangeTile)handle.SetS
            }
            
            handle.SetAssociatedShape(currentShape);

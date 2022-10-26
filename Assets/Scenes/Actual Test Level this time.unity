@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 2
   isSizeMod: 0
@@ -480,7 +481,10 @@ MonoBehaviour:
   menuTileName: 
   mesh: {fileID: 0}
   interfaceStrength: 0
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
+  isInspector: 0
   shape: 2
 --- !u!1001 &176511677
 PrefabInstance:
@@ -845,6 +849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI_MatrixTileSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239576034418449410, guid: 51c809367af92cf4c9b82679070380fc,
+        type: 3}
+      propertyPath: isType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246361203373421177, guid: 51c809367af92cf4c9b82679070380fc,
         type: 3}
@@ -1415,7 +1424,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17505, y: 139.99997}
+  cellSize: {x: 494.17508, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -4641,6 +4650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 2
   isSizeMod: 0
@@ -4653,7 +4663,10 @@ MonoBehaviour:
   menuTileName: 
   mesh: {fileID: 0}
   interfaceStrength: 0
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
+  isInspector: 0
   shape: 2
 --- !u!1001 &408088316643571898
 PrefabInstance:
@@ -4846,6 +4859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 1
   isSizeMod: 0
@@ -4858,7 +4872,10 @@ MonoBehaviour:
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
   interfaceStrength: 0.8
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
+  isInspector: 0
   shape: 1
 --- !u!114 &526626134672406436
 MonoBehaviour:
@@ -4872,6 +4889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 1
   isSizeMod: 0
@@ -4884,7 +4902,10 @@ MonoBehaviour:
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
   interfaceStrength: 0.8
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
+  isInspector: 0
   shape: 1
 --- !u!1001 &1175551514999217974
 PrefabInstance:
@@ -5314,6 +5335,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameAssets
       objectReference: {fileID: 0}
+    - target: {fileID: 4201792215831011550, guid: 58ad451c3562ad848bc4395789ae14a0,
+        type: 3}
+      propertyPath: stressArrow
+      value: 
+      objectReference: {fileID: 1324876000603432, guid: 501022875c9e09348a7f1f27695f6ceb,
+        type: 3}
     - target: {fileID: 4201792215831011551, guid: 58ad451c3562ad848bc4395789ae14a0,
         type: 3}
       propertyPath: m_RootOrder
@@ -5467,6 +5494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 1
   isSizeMod: 0
@@ -5479,7 +5507,10 @@ MonoBehaviour:
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
   interfaceStrength: 0.8
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
+  isInspector: 0
   shape: 1
 --- !u!1001 &5575112608153633606
 PrefabInstance:
@@ -5609,6 +5640,12 @@ PrefabInstance:
       objectReference: {fileID: 599744633}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
+      propertyPath: phaseChangeTile
+      value: 
+      objectReference: {fileID: 5115224817366191898, guid: 943dee1ec96ef7447be9930c80b69d19,
+        type: 3}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
       propertyPath: restartMapButton
       value: 
       objectReference: {fileID: 1749381285}
@@ -5701,6 +5738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 1
   type: 1
   isSizeMod: 0
@@ -5713,7 +5751,10 @@ MonoBehaviour:
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
   interfaceStrength: 0.8
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
+  isInspector: 0
   shape: 1
 --- !u!114 &8855734854356544233
 MonoBehaviour:

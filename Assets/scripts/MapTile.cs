@@ -35,6 +35,8 @@ public class MapTile : Entity
     public string GetTileName() { return this.tileName; }
     [SerializeField] bool isJiggly = false;
     [SerializeField] Vector3 baseStressState; // that is given by the level, should be the same for all tiles. (unless I add some weird wavy stress field later who knows)
+    [SerializeField] List<Vector3> stressStates = new List<Vector3>();
+    [SerializeField] Vector3 currentStressVector =new Vector3(0f,0f,0f);
     GameObject stressStateIndicatorArrow = GameAssets.instance.stressArrow;
     GameObject arrowHandle;
 
@@ -46,13 +48,18 @@ public class MapTile : Entity
     {
         
     }
-    public void SetBaseStressState (Vector3 stressState) 
+    public void AddToStressStates(Vector3 newStressState)
+    {
+        stressStates.Add(newStressState);
+        UpdateStressState();
+    }
+    public void SetBaseStressState (Vector3 baseStressState) 
     {
         Vector3 result = new Vector3();
 
         if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
         {
-        result = stressState; 
+        result = baseStressState; 
         }
 
         if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
@@ -62,7 +69,7 @@ public class MapTile : Entity
 
         result/=result.magnitude; //skaliert länge auf 1
         baseStressState = result;
-        UpdateIndicatorArrow(result);
+        AddToStressStates(result);
     }
 
     public override void StressSetup(Vector3 stress) // die kommt von entity aber steht hier dann als override, damit jede nicht mapTile entity nicht verusucht seinen stress zu setten
@@ -79,15 +86,20 @@ public class MapTile : Entity
     {
         return baseStressState;
     }
-    void UpdateIndicatorArrow(Vector3 currentStressVector)
+    void UpdateStressState()
     {
         if(arrowHandle==null)
         {
             arrowHandle = Instantiate(stressStateIndicatorArrow, transform.position, Quaternion.identity);
             arrowHandle.transform.parent = this.transform;
         }
-        
-        currentStressVector/=currentStressVector.magnitude; //Skaliert länge auf 1
+        //nudel alle stressVectors zusammen in einen Current Vector, dafür wird er erst einmal resettet:
+        currentStressVector =new Vector3(0f,0f,0f);
+        foreach(Vector3 stressVector in stressStates)
+        {
+            currentStressVector += stressVector;
+        }
+
         float rotationAngle = Utilities.ConvertVectorToRotationAngle(currentStressVector); //aus dem vektor wird über skalarprodukt ein winkel gemacht, der wird in grad umgerechnet und damit dann der arrow gedreht.
         arrowHandle.transform.localRotation=Quaternion.Euler(0,-Utilities.ConvertRadiansToDegree(rotationAngle),0);
         arrowHandle.transform.localScale = new Vector3(0.8f,1f,0.3f);

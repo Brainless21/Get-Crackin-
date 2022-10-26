@@ -25,18 +25,25 @@ public class c
     public static Vector3 ulf = new Vector3(-1f,1f,0f);
     public static Vector3 lf = new Vector3(-1f,0f,1f);
     public static Vector3 olf = new Vector3(0f,-1f,1f);
+
+    // einträge für die drehmatrix 90°
+    public static float a = 1/3 - 1/Mathf.Sqrt(3);
+    public static float b = 1/3 + 1/Mathf.Sqrt(3);
+    public static float t = 1/3;
     
 
     //tile arten
     public const int matrixTile = 0;
     public const int particleTile1 = 1;
     public const int maxPhase = 2;
+    public const int PhaseChangeTile = 3;
 
     public enum types
     {
       MatrixTile,
       ParticleTile,
-      MaxPhase
+      MaxPhase,
+      PhaseChangeTile
 
     }
 

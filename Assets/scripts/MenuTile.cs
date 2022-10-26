@@ -40,6 +40,10 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     [SerializeField] Mesh mesh;
     [SerializeField] float interfaceStrength =1;
     public float GetInterfaceStrengh() {return interfaceStrength;}
+    [SerializeField] float stressFieldStrength;
+    public float GetStressFieldStrength() {return stressFieldStrength;}
+    [SerializeField] bool star;
+    public bool IsStar() {return star;}
 
 
     int typeKey;
@@ -149,6 +153,8 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
             MapBuilder.instance.SetMesh(mesh);
             MapBuilder.instance.SetTileName(menuTileName);
             MapBuilder.instance.SetInterfaceStrenth(interfaceStrength);
+            MapBuilder.instance.SetStar(star);
+            MapBuilder.instance.SetStressFieldStrength(stressFieldStrength);
             
             
         }
