@@ -27,12 +27,17 @@ public class Crack : MonoBehaviour
     Vector3Int startPoint = new Vector3Int();
     [SerializeField] List<Destination> activeDestinations = new List<Destination>();
     Coroutine propagate;
-    enum CrackMode
-    {
-        Point,
-        Direction
-    }
-    [SerializeField] CrackMode crackMode = CrackMode.Point;
+    // public enum CrackMode
+    // {
+    //     Point,
+    //     Direction
+    // }
+    c.CrackMode crackMode;
+    // public CrackMode GetCrackMode()
+    // {
+    //     return crackMode;
+    // }
+
     public void SubscribeToDestinations(Destination entry)
     {
 
@@ -66,6 +71,7 @@ public class Crack : MonoBehaviour
     void StartCrackPropagation()
     {
         UpdateDistance();
+        crackMode = EventManager.instance.GetCrackMode();
         foreach(Destination destination in activeDestinations)
         {
             destination.FindTile();
@@ -122,13 +128,13 @@ public class Crack : MonoBehaviour
             float progress=0;
 
             // im Point Modus wird als Progress angesehen wie weit mann dem ziel näher gekommen ist
-            if(crackMode==CrackMode.Point)
+            if(crackMode==c.CrackMode.Point)
             {
                 progress = distanceCurrent-distanceNew;  
             }
 
             // im Direction Mode wird als Progress angesehen, wie weit man gelaufen ist (step) aber projeziert auf die präferierte richtung
-            if(crackMode==CrackMode.Direction)
+            if(crackMode==c.CrackMode.Direction)
             {
                 progress = Vector3.Dot(occupiedTile.GetStressState(),step);
             }
@@ -163,8 +169,8 @@ public class Crack : MonoBehaviour
             float distanceNew = Vector3Int.Distance(destination, inspectedTile.cords);
             float progress = 0;
 
-            if(crackMode==CrackMode.Point) progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
-            if(crackMode==CrackMode.Direction) progress = Vector3.Dot(stressDirection, step);
+            if(crackMode==c.CrackMode.Point) progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
+            if(crackMode==c.CrackMode.Direction) progress = Vector3.Dot(stressDirection, step);
             
             if(progress<0)
             {

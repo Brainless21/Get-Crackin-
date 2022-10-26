@@ -40,6 +40,13 @@ public class c
 
     }
 
+    // crack modes
+    public enum CrackMode
+    {
+        Point,
+        Direction
+    }
+
     //maus buttons
     public const int leftClick = 0;
     public const int rightClick = 1;

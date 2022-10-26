@@ -34,8 +34,7 @@ public class MapTile : Entity
     public void SetName(string newName) {this.tileName = newName;}
     public string GetTileName() { return this.tileName; }
     [SerializeField] bool isJiggly = false;
-    [SerializeField] Vector3 baseStressState;
-    public void SetBaseStressState (Vector3 stressState) { baseStressState = stressState;  UpdateIndicatorArrow(stressState);}
+    [SerializeField] Vector3 baseStressState; // that is given by the level, should be the same for all tiles. (unless I add some weird wavy stress field later who knows)
     GameObject stressStateIndicatorArrow = GameAssets.instance.stressArrow;
     GameObject arrowHandle;
 
@@ -46,6 +45,24 @@ public class MapTile : Entity
     void Awake() //apparently never happens? weil die kinder drunter (matrixTile, ParticleTile usw.) schon eine Awake funktion defineirt haben probably
     {
         
+    }
+    public void SetBaseStressState (Vector3 stressState) 
+    {
+        Vector3 result = new Vector3();
+
+        if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
+        {
+        result = stressState; 
+        }
+
+        if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
+        {
+            Debug.Log("what are you doing with stresses, youre in point mode my dude");
+        }
+
+        result/=result.magnitude; //skaliert länge auf 1
+        baseStressState = result;
+        UpdateIndicatorArrow(result);
     }
 
     public override void StressSetup(Vector3 stress) // die kommt von entity aber steht hier dann als override, damit jede nicht mapTile entity nicht verusucht seinen stress zu setten
@@ -70,6 +87,7 @@ public class MapTile : Entity
             arrowHandle.transform.parent = this.transform;
         }
         
+        currentStressVector/=currentStressVector.magnitude; //Skaliert länge auf 1
         float rotationAngle = Utilities.ConvertVectorToRotationAngle(currentStressVector); //aus dem vektor wird über skalarprodukt ein winkel gemacht, der wird in grad umgerechnet und damit dann der arrow gedreht.
         arrowHandle.transform.localRotation=Quaternion.Euler(0,-Utilities.ConvertRadiansToDegree(rotationAngle),0);
         arrowHandle.transform.localScale = new Vector3(0.8f,1f,0.3f);

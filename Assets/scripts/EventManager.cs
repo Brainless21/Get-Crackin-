@@ -14,6 +14,13 @@ public class EventManager : MonoBehaviour
     public event Action<Vector3Int> MouseClickLeft;
     public event Action buttonPressQ;
     public event Action<Vector3> stressSetupNeedsToHappen;
+    
+    [SerializeField] c.CrackMode crackMode = c.CrackMode.Direction;
+    public c.CrackMode GetCrackMode()
+    {
+        return crackMode;
+    }
+
     [SerializeField] int mouseMode = c.placeTile;
     public int GetMouseMode() { return mouseMode; }
     
