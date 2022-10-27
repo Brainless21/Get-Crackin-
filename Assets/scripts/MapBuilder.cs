@@ -317,7 +317,8 @@ public class MapBuilder : MonoBehaviour
         }
 
         // an jedem spot der shape wird ein tile platziert, diesem wird mitgegeben, zu welcher gruppe an tiles er gehört, shape wise.
-        foreach(Vector3Int spot in currentShape)
+        bool firstIteration = true;
+        foreach(Vector3Int spot in currentShape) // jedes tile bekommt ausserdem seine eigenschaften zugewiesen
         {
            MapTile handle = PlaceTile(spot,false);
            // nach dem platzieren werden die kosten und die toughness der Tiles gemäß der im builder gespeicherten custom values geändert, es sein denn die custom values sind 0 (standart fall, keine modifikation)
@@ -329,16 +330,22 @@ public class MapBuilder : MonoBehaviour
            
            if(type==c.particleTile1)
            {
-               handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
+                handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
            }
 
            if(type==c.PhaseChangeTile)
            {
-               //(PhaseChangeTile)handle.SetS
+                PhaseChangeTile phaseChangeHandle = handle.gameObject.GetComponent<PhaseChangeTile>();
+                phaseChangeHandle.SetStressFieldStrength(stressFieldStrength);
+                phaseChangeHandle.SetStar(star);
+                phaseChangeHandle.SetMinRange(shapeSize);
+                if(firstIteration) phaseChangeHandle.MakeActive();
+
            }
            
            handle.SetAssociatedShape(currentShape);
            MasterOfShapes.instance.AddShapeToList(currentShape);
+           firstIteration = false;
         }
 
         PointPopup.Create(origin,transactionBalance);

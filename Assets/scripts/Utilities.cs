@@ -24,6 +24,22 @@ public class Utilities
         Debug.Log(ausgabe);
     }
    
+    public static void PrintList(List<MapTile> list)
+    {
+        string ausgabe = "";
+        foreach(MapTile tile in list)
+        {
+            ausgabe += string.Format("{0} \n", tile.cords);
+        }
+        Debug.Log(ausgabe);
+    }
+
+    public static void PrintVector(Vector3 vector)
+    {
+        string ausgabe = "";
+        ausgabe += string.Format("\n {0} \n {1} \n {2}",vector.x,vector.y,vector.z);
+        Debug.Log(ausgabe);
+    }
    public static Vector3Int ConvertCordsToInt(Vector3 floatCords)
    {
        	Vector3Int cordsInt = new Vector3Int();
@@ -58,6 +74,17 @@ public class Utilities
     public static float ConvertVectorToRotationAngle(Vector3 vector)
     {
         float result = Mathf.Acos((Vector3.Dot(c.rf,vector))/(c.rf.magnitude*vector.magnitude)); //mathemagie, phi = arccos(a*b/|a|*|b|)
+        bool isPointingDown = false;
+        //vektor wird überprüft ob er nach unten zeigt
+        vector/=vector.magnitude; // skaliert auf länge 1
+        vector*=Mathf.Sqrt(2); // skaliert auf länge wurzel(2) //und weil das nicht klappt versuchen wirs direkt nochmal
+        if(vector.y<0) isPointingDown = true; // das überprüft ob der vektor nach unten zeigt. wenn die werte der einheitsvektoren ungefähr zu den angegebenen stimmen, ist es nach unten, dann wird der winkel andersrum gezählt
+
+        if(isPointingDown==false)
+        {
+            result*=-1;
+            Debug.Log("i flipped the arrow");
+        }
         return result;
     }
 

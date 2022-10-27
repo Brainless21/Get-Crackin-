@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour
         EventManager.instance.MouseEnter+=MouseEnter;
         EventManager.instance.MouseClickRight+=MouseInteractionRight;
         EventManager.instance.MouseClickLeft+=MouseInteractionLeft;
-        EventManager.instance.stressSetupNeedsToHappen+=StressSetup;
+        //EventManager.instance.stressSetupNeedsToHappen+=StressSetup;
     }
     private void OnDisable() 
     {
@@ -21,6 +21,7 @@ public class Entity : MonoBehaviour
         EventManager.instance.MouseExit-=MouseExit;
         EventManager.instance.MouseClickRight-=MouseInteractionRight;
         EventManager.instance.MouseClickLeft-=MouseInteractionLeft;
+        //EventManager.instance.stressSetupNeedsToHappen-=StressSetup;
         
     }
     public virtual void MouseEnter(Vector3Int cords, List<Vector3Int> shape)

@@ -34,11 +34,13 @@ public class MapTile : Entity
     public void SetName(string newName) {this.tileName = newName;}
     public string GetTileName() { return this.tileName; }
     [SerializeField] bool isJiggly = false;
-    [SerializeField] Vector3 baseStressState; // that is given by the level, should be the same for all tiles. (unless I add some weird wavy stress field later who knows)
+    Vector3 baseStressState; // that is given by the level, should be the same for all tiles. (unless I add some weird wavy stress field later who knows)
     [SerializeField] List<Vector3> stressStates = new List<Vector3>();
     [SerializeField] Vector3 currentStressVector =new Vector3(0f,0f,0f);
     GameObject stressStateIndicatorArrow = GameAssets.instance.stressArrow;
     GameObject arrowHandle;
+  
+
 
     Coroutine Jiggle;
 
@@ -53,13 +55,14 @@ public class MapTile : Entity
         stressStates.Add(newStressState);
         UpdateStressState();
     }
-    public void SetBaseStressState (Vector3 baseStressState) 
+    public void SetBaseStressState (Vector3 baseStress) 
     {
+        if(baseStress.x==0f&baseStress.y==0f&baseStress.z==0f) return; //trägt nichts ein wenn der base stress 0 ist
         Vector3 result = new Vector3();
 
         if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
         {
-        result = baseStressState; 
+        result = baseStress; 
         }
 
         if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
@@ -67,9 +70,11 @@ public class MapTile : Entity
             Debug.Log("what are you doing with stresses, youre in point mode my dude");
         }
 
+        
         result/=result.magnitude; //skaliert länge auf 1
-        baseStressState = result;
-        AddToStressStates(result);
+        baseStress = result;
+        AddToStressStates(baseStress);
+        Debug.Log("I happened, follow the rabbit");
     }
 
     public override void StressSetup(Vector3 stress) // die kommt von entity aber steht hier dann als override, damit jede nicht mapTile entity nicht verusucht seinen stress zu setten

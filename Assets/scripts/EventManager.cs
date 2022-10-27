@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour
         if(mode!=mouseMode) return false;
         return true;
     }
-    
+    public Vector3 globalStress = new Vector3(2f,3f,-5f);
     // so basically instead of something happens-> that calls a function | we have the event manager as an intermediary.
     //Something happens-> that calls a function of EM-> EM function invokes that event-> that event calls the function |
 

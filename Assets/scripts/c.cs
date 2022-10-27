@@ -141,4 +141,7 @@ public class c
       return 0;
     }
 
+  // misc constants
+  public const float stressRangeToStrengthRatio = 2.5f;
+
 }
