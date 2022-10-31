@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour
         if(mode!=mouseMode) return false;
         return true;
     }
-    private Vector3 globalStress = new Vector3(0f,-1f,1f);
+    [SerializeField] private Vector3 globalStress;
     public Vector3 GetGlobalStress()
     {
         return globalStress;

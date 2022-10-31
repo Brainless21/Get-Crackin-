@@ -73,7 +73,8 @@ public class Utilities
 
     public static float ConvertVectorToRotationAngle(Vector3 vector)
     {
-        if(vector==c.rf) return 0;
+        // Vector3 delta = vector-c.rf;
+        // if(delta.magnitude<0.01) return 0; //didnt work :(
         if(vector==c.rf)
         {
             float test = Vector3.Dot(c.rf,vector);

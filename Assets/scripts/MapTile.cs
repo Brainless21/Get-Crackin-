@@ -90,17 +90,22 @@ public class MapTile : Entity
             arrowHandle.transform.parent = this.transform;
         }
         Vector3 globalDirection = EventManager.instance.GetGlobalStress();
+       
         //nudel alle stressVectors zusammen in einen Current Vector, dafür wird er erst einmal resettet:
         currentStressVector =new Vector3(0f,0f,0f);
         foreach(Vector3 stressVector in stressStates)
         {
-            // if the angle between the vector and the base stress isgreater than 90 degrees, flip the vector around so it becomes smaller 
+            // if the angle between the vector and the base stress is greater than 90 degrees, flip the vector around, so all the vectors point in the same direction. this assures symetric stress field overlapping
             if(Vector3.Angle(globalDirection,stressVector)>90)
             {
-               Vector3 flippedStressvector = stressVector*-1;
+                
+                Vector3 flippedStressvector = stressVector*-1;
+                currentStressVector += flippedStressvector;
             }
+            else currentStressVector += stressVector;
 
-            currentStressVector += stressVector;
+            // addiert die vektoren aufeinender, entweder erst nachdem der vektor einmal geflippt wird (das ist der fall wenn die beiden nicht in die gleiche richtung zeigen) oder einfach so
+
         }
         // wenn der stressvektor zu klein ist, wird kein pfeil mehr angezeigt und es wird auch nicht versucht, irgendwaas zu drehen
         if(currentStressVector.magnitude<0.001)

@@ -68,7 +68,7 @@ public class PhaseChangeTile : MapTile
                 Vector3 resultGedreht = new Vector3(result.x*c.t+result.y*c.a+result.z*c.b,result.x*c.b+result.y*c.t+result.z*c.a,result.x*c.a+result.y*c.b+result.z*c.t); 
                 
                 float differenz = resultGedreht.magnitude - result.magnitude;
-                Debug.Log(differenz);
+                // Debug.Log(differenz); // da kommt immer 0 raus, das drehen klappt also
 
                 tile.AddToStressStates(resultGedreht);
             }
