@@ -48,9 +48,4 @@ public class Entity : MonoBehaviour
     {
         Debug.Log("base entity mouse interaction");
     }
-
-    public virtual void StressSetup(Vector3 stress)
-    {
-        Debug.Log("base Entity StressSetup");
-    }
 }

@@ -73,23 +73,49 @@ public class Utilities
 
     public static float ConvertVectorToRotationAngle(Vector3 vector)
     {
+        if(vector==c.rf) return 0;
+        if(vector==c.rf)
+        {
+            float test = Vector3.Dot(c.rf,vector);
+            Debug.Log(test);
+        }
+
         float result = Mathf.Acos((Vector3.Dot(c.rf,vector))/(c.rf.magnitude*vector.magnitude)); //mathemagie, phi = arccos(a*b/|a|*|b|)
         bool isPointingDown = false;
+        
         //vektor wird überprüft ob er nach unten zeigt
         vector/=vector.magnitude; // skaliert auf länge 1
+        
         vector*=Mathf.Sqrt(2); // skaliert auf länge wurzel(2) //und weil das nicht klappt versuchen wirs direkt nochmal
         if(vector.y<0) isPointingDown = true; // das überprüft ob der vektor nach unten zeigt. wenn die werte der einheitsvektoren ungefähr zu den angegebenen stimmen, ist es nach unten, dann wird der winkel andersrum gezählt
 
         if(isPointingDown==false)
         {
             result*=-1;
-            Debug.Log("i flipped the arrow");
         }
+
+
+        // if(result!=0)
+        // {   
+        //    if(vector==c.rf) Debug.Log(vector);
+        //    if(vector==c.rf) Debug.Log(result);
+        // }
+
+        if(vector==c.rf)
+        {
+            if(result!=0)
+            {
+                Debug.Log(vector);
+                Debug.Log(result);
+            }
+        }
+
         return result;
     }
 
     public static float ConvertRadiansToDegree(float radians)
-    {
-        return (radians*360)/(2*Mathf.PI);
+    {   
+        float result = (radians*360)/(2*Mathf.PI);
+        return result;
     }
 }

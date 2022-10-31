@@ -11,8 +11,9 @@ public class MatrixTile : MapTile
         this.typeKey = c.matrixTile;
         this.SetBaseToughness(1);
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        //this.SetBaseStressState(EventManager.instance.globalStress);
+        this.SetBaseStressState(EventManager.instance.GetGlobalStress());
     }
+  
 
    
 

@@ -30,9 +30,11 @@ public class PhaseChangeTile : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        this.SetBaseStressState(EventManager.instance.globalStress);
+        this.SetBaseStressState(EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
     }
+
+   
 
     // public void SetStar(bool star) { this.star = star;} // steht jetzt in mapTile
     // public void SetStressFieldStrength(float strength) {stressFieldStrength = strength;}

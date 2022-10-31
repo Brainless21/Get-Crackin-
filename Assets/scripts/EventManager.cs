@@ -13,7 +13,7 @@ public class EventManager : MonoBehaviour
     public event Action<Vector3Int> MouseClickRight;
     public event Action<Vector3Int> MouseClickLeft;
     public event Action buttonPressQ;
-    public event Action<Vector3> stressSetupNeedsToHappen;
+    
     
     [SerializeField] c.CrackMode crackMode = c.CrackMode.Direction;
     public c.CrackMode GetCrackMode()
@@ -33,7 +33,11 @@ public class EventManager : MonoBehaviour
         if(mode!=mouseMode) return false;
         return true;
     }
-    public Vector3 globalStress = new Vector3(2f,3f,-5f);
+    private Vector3 globalStress = new Vector3(0f,-1f,1f);
+    public Vector3 GetGlobalStress()
+    {
+        return globalStress;
+    }
     // so basically instead of something happens-> that calls a function | we have the event manager as an intermediary.
     //Something happens-> that calls a function of EM-> EM function invokes that event-> that event calls the function |
 
@@ -69,13 +73,6 @@ public class EventManager : MonoBehaviour
     public void InvokeButtonPressQ()
     {
         buttonPressQ?.Invoke();
-    }
-
-    public void InvokeStressSetup(Vector3 stress)
-    {
-        //Debug.Log(stressSetupNeedsToHappen.ToString());
-        stressSetupNeedsToHappen?.Invoke(stress);
-        Debug.Log("stressSetup invoked");
     }
    
 }

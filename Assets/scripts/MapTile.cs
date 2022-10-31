@@ -37,19 +37,17 @@ public class MapTile : Entity
     Vector3 baseStressState; // that is given by the level, should be the same for all tiles. (unless I add some weird wavy stress field later who knows)
     [SerializeField] List<Vector3> stressStates = new List<Vector3>();
     [SerializeField] Vector3 currentStressVector =new Vector3(0f,0f,0f);
-    GameObject stressStateIndicatorArrow = GameAssets.instance.stressArrow;
+    internal GameObject stressStateIndicatorArrow;  
     GameObject arrowHandle;
-  
-
-
     Coroutine Jiggle;
 
     //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
-
+   
     void Awake() //apparently never happens? weil die kinder drunter (matrixTile, ParticleTile usw.) schon eine Awake funktion defineirt haben probably
     {
         
     }
+    
     public void AddToStressStates(Vector3 newStressState)
     {
         stressStates.Add(newStressState);
@@ -57,36 +55,28 @@ public class MapTile : Entity
     }
     public void SetBaseStressState (Vector3 baseStress) 
     {
-        if(baseStress.x==0f&baseStress.y==0f&baseStress.z==0f) return; //trägt nichts ein wenn der base stress 0 ist
+        //Debug.Log(baseStress);
+        
         Vector3 result = new Vector3();
 
-        if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
-        {
-        result = baseStress; 
-        }
+        // if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
+        // {
+        // result = baseStress; 
+        // }
 
-        if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
-        {
-            Debug.Log("what are you doing with stresses, youre in point mode my dude");
-        }
+        // if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
+        // {
+        //     Debug.Log("what are you doing with stresses, youre in point mode my dude");
+        // }
 
         
-        result/=result.magnitude; //skaliert länge auf 1
-        baseStress = result;
-        AddToStressStates(baseStress);
-        Debug.Log("I happened, follow the rabbit");
+        result = baseStress;
+        //Debug.Log(result);
+        //result /= result.magnitude; //skaliert länge auf 1
+        AddToStressStates(result);
+        //Debug.Log("I happened, follow the rabbit");
     }
 
-    public override void StressSetup(Vector3 stress) // die kommt von entity aber steht hier dann als override, damit jede nicht mapTile entity nicht verusucht seinen stress zu setten
-    {
-        SetBaseStressState(stress);
-    }
-
-
-    private void OnDisable() 
-    {
-        EventManager.instance.stressSetupNeedsToHappen-=SetBaseStressState;
-    }
     public Vector3 GetStressState()
     {
         return baseStressState;
@@ -95,14 +85,29 @@ public class MapTile : Entity
     {
         if(arrowHandle==null)
         {
+            stressStateIndicatorArrow = GameAssets.instance.stressArrow;
             arrowHandle = Instantiate(stressStateIndicatorArrow, transform.position, Quaternion.identity);
             arrowHandle.transform.parent = this.transform;
         }
+        Vector3 globalDirection = EventManager.instance.GetGlobalStress();
         //nudel alle stressVectors zusammen in einen Current Vector, dafür wird er erst einmal resettet:
         currentStressVector =new Vector3(0f,0f,0f);
         foreach(Vector3 stressVector in stressStates)
         {
+            // if the angle between the vector and the base stress isgreater than 90 degrees, flip the vector around so it becomes smaller 
+            if(Vector3.Angle(globalDirection,stressVector)>90)
+            {
+               Vector3 flippedStressvector = stressVector*-1;
+            }
+
             currentStressVector += stressVector;
+        }
+        // wenn der stressvektor zu klein ist, wird kein pfeil mehr angezeigt und es wird auch nicht versucht, irgendwaas zu drehen
+        if(currentStressVector.magnitude<0.001)
+        {
+            Destroy(arrowHandle);
+            arrowHandle = null;
+            return;
         }
 
         float rotationAngle = Utilities.ConvertVectorToRotationAngle(currentStressVector); //aus dem vektor wird über skalarprodukt ein winkel gemacht, der wird in grad umgerechnet und damit dann der arrow gedreht.
@@ -390,8 +395,6 @@ public class MapTile : Entity
         //SetBaseStressState(c.orf);
         //this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
         if(cords!=this.cords) return;
-        EventManager.instance.InvokeStressSetup(c.olf);
-        Debug.Log("setup should now have been invoked");
         int mouseMode = EventManager.instance.GetMouseMode();
         if(mouseMode==c.inspect)
         {
