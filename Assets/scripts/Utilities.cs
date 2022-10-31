@@ -83,6 +83,15 @@ public class Utilities
             if(delta>0.01) Debug.Log(string.Format("die abweichung war mit {0} größer als erwartet",delta));
             boundsCheck =1;
         }
+
+        if(boundsCheck<-1) // da arccos nur bis 1 definiert ist, und manchmal floatbedingt eine 1.000001 rauskommt, wenn eigentlich 1 rauskommen müsste, wird das hier einmal abgefangen
+        {
+            float delta = boundsCheck+1;
+            if(delta>0.01) Debug.Log(string.Format("die abweichung war mit {0} größer als erwartet",delta));
+            boundsCheck =-1;
+        }
+
+
         float result = Mathf.Acos(boundsCheck); //mathemagie, phi = arccos(a*b/|a|*|b|)
         bool isPointingDown = false;
         
