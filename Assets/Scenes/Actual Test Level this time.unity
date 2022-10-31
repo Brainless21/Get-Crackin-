@@ -2381,7 +2381,7 @@ MonoBehaviour:
   menuTileName: Phase Change Particle
   mesh: {fileID: 0}
   interfaceStrength: 1
-  stressFieldStrength: 2
+  stressFieldStrength: 4
   star: 0
   isEraser: 0
   isInspector: 0
@@ -3910,7 +3910,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: -3.3333333, y: -10}
+  cellSize: {x: 119.326355, y: 130}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -6502,6 +6502,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3422934744154880166, guid: e19e2d1b95f23af46b418e322c862f26,
+        type: 3}
+      propertyPath: globalStress.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422934744154880166, guid: e19e2d1b95f23af46b418e322c862f26,
+        type: 3}
+      propertyPath: globalStress.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3422934744154880167, guid: e19e2d1b95f23af46b418e322c862f26,
         type: 3}
       propertyPath: m_RootOrder

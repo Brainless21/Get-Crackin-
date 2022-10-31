@@ -75,40 +75,26 @@ public class Utilities
     {
         // Vector3 delta = vector-c.rf;
         // if(delta.magnitude<0.01) return 0; //didnt work :(
-        if(vector==c.rf)
+      
+        float boundsCheck = (Vector3.Dot(c.rf,vector))/(c.rf.magnitude*vector.magnitude);
+        if(boundsCheck>1) // da arccos nur bis 1 definiert ist, und manchmal floatbedingt eine 1.000001 rauskommt, wenn eigentlich 1 rauskommen müsste, wird das hier einmal abgefangen
         {
-            float test = Vector3.Dot(c.rf,vector);
-            Debug.Log(test);
+            float delta = boundsCheck-1;
+            if(delta>0.01) Debug.Log(string.Format("die abweichung war mit {0} größer als erwartet",delta));
+            boundsCheck =1;
         }
-
-        float result = Mathf.Acos((Vector3.Dot(c.rf,vector))/(c.rf.magnitude*vector.magnitude)); //mathemagie, phi = arccos(a*b/|a|*|b|)
+        float result = Mathf.Acos(boundsCheck); //mathemagie, phi = arccos(a*b/|a|*|b|)
         bool isPointingDown = false;
         
         //vektor wird überprüft ob er nach unten zeigt
-        vector/=vector.magnitude; // skaliert auf länge 1
+        vector/=vector.magnitude; // skaliert auf länge 1       // DAS GLEICH WIEDER AUS AUSKOMMENTTIEREN!
         
-        vector*=Mathf.Sqrt(2); // skaliert auf länge wurzel(2) //und weil das nicht klappt versuchen wirs direkt nochmal
+        vector*=Mathf.Sqrt(2); // skaliert auf länge wurzel(2) //und weil das nicht klappt versuchen wirs direkt nochmal //DAS AUCH!!
         if(vector.y<0) isPointingDown = true; // das überprüft ob der vektor nach unten zeigt. wenn die werte der einheitsvektoren ungefähr zu den angegebenen stimmen, ist es nach unten, dann wird der winkel andersrum gezählt
 
         if(isPointingDown==false)
         {
             result*=-1;
-        }
-
-
-        // if(result!=0)
-        // {   
-        //    if(vector==c.rf) Debug.Log(vector);
-        //    if(vector==c.rf) Debug.Log(result);
-        // }
-
-        if(vector==c.rf)
-        {
-            if(result!=0)
-            {
-                Debug.Log(vector);
-                Debug.Log(result);
-            }
         }
 
         return result;
