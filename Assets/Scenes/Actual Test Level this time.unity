@@ -234,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956948875019876, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4956948875019876, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -242,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956948875019876, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4956948875019876, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1596,7 +1596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -218.73999, y: 70}
+  m_AnchoredPosition: {x: -218.74002, y: 70}
   m_SizeDelta: {x: -437.47485, y: 139.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513037804
@@ -2381,7 +2381,7 @@ MonoBehaviour:
   menuTileName: Phase Change Particle
   mesh: {fileID: 0}
   interfaceStrength: 1
-  stressFieldStrength: 4
+  stressFieldStrength: 8
   star: 0
   isEraser: 0
   isInspector: 0
@@ -2494,7 +2494,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2894,7 +2894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -218.70001, y: -77.100006}
+  m_AnchoredPosition: {x: -218.69998, y: -77.100006}
   m_SizeDelta: {x: -437.47473, y: 154.15753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1049254865
@@ -3910,7 +3910,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 119.326355, y: 130}
+  cellSize: {x: -3.3333333, y: -10}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -6505,12 +6505,12 @@ PrefabInstance:
     - target: {fileID: 3422934744154880166, guid: e19e2d1b95f23af46b418e322c862f26,
         type: 3}
       propertyPath: globalStress.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3422934744154880166, guid: e19e2d1b95f23af46b418e322c862f26,
         type: 3}
       propertyPath: globalStress.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3422934744154880167, guid: e19e2d1b95f23af46b418e322c862f26,
         type: 3}
@@ -7060,23 +7060,38 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 0164b949b56b05642992be3ce4f5a9c7, type: 3}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
+      propertyPath: oben
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
       propertyPath: unten
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: obenLinks
-      value: 17
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: obenRechts
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: untenLinks
-      value: 14
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: untenRechts
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: verticalLinks
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
@@ -7086,7 +7101,7 @@ PrefabInstance:
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: verticalRechts
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
@@ -7206,7 +7221,7 @@ MonoBehaviour:
   menuTileName: Phase Change Particle
   mesh: {fileID: 0}
   interfaceStrength: 1
-  stressFieldStrength: 4
+  stressFieldStrength: 6
   star: 1
   isEraser: 0
   isInspector: 0

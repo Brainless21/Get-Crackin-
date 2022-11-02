@@ -72,7 +72,7 @@ public class MapTile : Entity
         
         result = baseStress;
         //Debug.Log(result);
-        //result /= result.magnitude; //skaliert länge auf 1
+        if(result.magnitude>0.0001) result /= result.magnitude; //skaliert länge auf 1
         AddToStressStates(result);
         //Debug.Log("I happened, follow the rabbit");
     }
@@ -113,6 +113,11 @@ public class MapTile : Entity
         }
 
         float rotationAngle = Utilities.ConvertVectorToRotationAngle(currentStressVector); //aus dem vektor wird über skalarprodukt ein winkel gemacht, der wird in grad umgerechnet und damit dann der arrow gedreht.
+        if(float.IsNaN(rotationAngle))
+        {
+            Debug.Log("ERRORO: es konnte kein winkel errechnet werden");
+            return;
+        }
         arrowHandle.transform.localRotation=Quaternion.Euler(0,-Utilities.ConvertRadiansToDegree(rotationAngle),0);
         arrowHandle.transform.localScale = new Vector3(0.8f,1f,0.3f);
     }

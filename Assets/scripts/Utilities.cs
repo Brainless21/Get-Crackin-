@@ -106,6 +106,11 @@ public class Utilities
             result*=-1;
         }
 
+        if(float.IsNaN(result))
+        {
+            Debug.Log(string.Format("eingehender Vektor; {0}\n boundsCheck: {1}",vector,(Vector3.Dot(c.rf,vector))/(c.rf.magnitude*vector.magnitude)));
+        }
+       
         return result;
     }
 
