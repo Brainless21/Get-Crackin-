@@ -36,7 +36,9 @@ public class EventManager : MonoBehaviour
     [SerializeField] private Vector3 globalStress;
     public Vector3 GetGlobalStress()
     {
-        return globalStress;
+        // geht sicher, dass der global stress vektor immer betraglich 1 ist
+        Vector3 result = globalStress/globalStress.magnitude;
+        return result;
     }
     // so basically instead of something happens-> that calls a function | we have the event manager as an intermediary.
     //Something happens-> that calls a function of EM-> EM function invokes that event-> that event calls the function |

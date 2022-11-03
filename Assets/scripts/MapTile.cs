@@ -48,37 +48,52 @@ public class MapTile : Entity
         
     }
     
-    public void AddToStressStates(Vector3 newStressState)
-    {
-        stressStates.Add(newStressState);
-        UpdateStressState();
-    }
-    public void SetBaseStressState (Vector3 baseStress) 
-    {
-        //Debug.Log(baseStress);
+    // public void AddToStressStates(Vector3 newStressState) // das muss alles in das stressdict rein
+    // {
+    //     stressStates.Add(newStressState);
+    //     UpdateStressState();
+    // }
+
+    // public bool RemoveFromStressStates(Vector3 outdatedStressState) // im Stressledger jetzt
+    // {
+    //     float delta;
+    //     foreach(Vector3 stressState in stressStates)
+    //     {
+    //         delta = (stressState-outdatedStressState).magnitude;
+    //         if(delta<0.001)
+    //         {
+    //             stressStates.Remove(stressState);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+    // public void SetBaseStressState (Vector3 baseStress) // ist jetzt zum tileledger umgezogen
+    // {
+    //     //Debug.Log(baseStress);
         
-        Vector3 result = new Vector3();
+    //     Vector3 result = new Vector3();
 
-        // if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
-        // {
-        // result = baseStress; 
-        // }
+    //     // if(EventManager.instance.GetCrackMode()==c.CrackMode.Direction)
+    //     // {
+    //     // result = baseStress; 
+    //     // }
 
-        // if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
-        // {
-        //     Debug.Log("what are you doing with stresses, youre in point mode my dude");
-        // }
+    //     // if(EventManager.instance.GetCrackMode()==c.CrackMode.Point)
+    //     // {
+    //     //     Debug.Log("what are you doing with stresses, youre in point mode my dude");
+    //     // }
 
         
-        result = baseStress;
-        //Debug.Log(result);
-        if(result.magnitude>0.0001) result /= result.magnitude; //skaliert länge auf 1
-        AddToStressStates(result);
-        //Debug.Log("I happened, follow the rabbit");
-    }
+    //     result = baseStress;
+    //     //Debug.Log(result);
+    //     if(result.magnitude>0.0001) result /= result.magnitude; //skaliert länge auf 1
+    //     AddToStressStates(result);
+    //     //Debug.Log("I happened, follow the rabbit");
+    // }
 
     public Vector3 GetStressState() => currentStressVector; // "=> currentStressVector;" apparently means: {return currentStressVector;}
-    void UpdateStressState()
+    public void UpdateStressState()
     {
         if(arrowHandle==null)
         {
@@ -90,7 +105,10 @@ public class MapTile : Entity
        
         //nudel alle stressVectors zusammen in einen Current Vector, dafür wird er erst einmal resettet:
         currentStressVector =new Vector3(0f,0f,0f);
-        foreach(Vector3 stressVector in stressStates)
+
+        List<Vector3> stressStatesHere = TileLedger.ledgerInstance.GetStressStatesAtPosition(this.cords);
+        stressStates = stressStatesHere; //für visualisierungs purposes
+        foreach(Vector3 stressVector in stressStatesHere)
         {
             // if the angle between the vector and the base stress is greater than 90 degrees, flip the vector around, so all the vectors point in the same direction. this assures symetric stress field overlapping
             if(Vector3.Angle(globalDirection,stressVector)>90)

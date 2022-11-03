@@ -7,15 +7,12 @@ public class TileLedger : MonoBehaviour
     public static TileLedger ledgerInstance;
 
     [SerializeField] private Dictionary<Vector3Int,MapTile> tilesDict = new Dictionary<Vector3Int, MapTile>();
+    [SerializeField] private Dictionary<Vector3Int,List<Vector3>> stressDict = new Dictionary<Vector3Int, List<Vector3>>();
 
     public Dictionary<Vector3Int,MapTile> PassTilesDict()
     {
         return tilesDict;
     }
-
-    Vector3Int unpassableCords = new Vector3Int(-10,-10,-10);
-    [SerializeField] GameObject InvisibleTile;
-
 
     void Awake() 
     {
@@ -26,6 +23,73 @@ public class TileLedger : MonoBehaviour
         // DONT DESTROY ON SCENE CHANGE
         //DontDestroyOnLoad(this.gameObject);
     
+    }
+
+    private bool IsVectorAtPosition(Vector3Int position, Vector3 gesuchterStressVektor)
+    {
+        if(!stressDict.ContainsKey(position)) return false; // wenn an der stelle noch kein eintrag besteht, ist da auch kein vektor drin
+        
+        float delta;
+        foreach(Vector3 stressAtPosition in stressDict[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
+        {
+            delta = (stressAtPosition - gesuchterStressVektor).magnitude;
+            if(delta<0.001) return true;
+        }
+        return false;
+    }
+    
+    public void RemoveStressFromPosition(Vector3Int position, Vector3 obsoleteStressVector)
+    {
+        if(!stressDict.ContainsKey(position))
+        {
+            Debug.Log("hier wurde versucht ein stress zu removen, wo gar nichts ist. weird.");
+            return;
+        }
+
+        float delta;
+        foreach(Vector3 stressAtPosition in stressDict[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
+        {
+            delta = (stressAtPosition - obsoleteStressVector).magnitude;
+            if(delta<0.001)
+            {
+                stressDict[position].Remove(stressAtPosition); // wenn der grade überprüfte vektor der Liste auf den gesuchten passt, wird er aus der Liste entfernt
+            }
+        }
+
+    }
+
+    public void SetGlobalStress(Vector3Int position, Vector3 globalStressState)  // this function will only add the vector if its not at the position already
+    {
+       if(!IsVectorAtPosition(position, globalStressState))
+       {
+           AddToStressStates(position, globalStressState);
+           return;
+       }
+
+       Debug.Log(string.Format("hier ist schon ein base stress eingetragen:{0}",position));
+       GetTileByCords(position).UpdateStressState();
+    }
+    public void AddToStressStates(Vector3Int position, Vector3 stressState)
+    {
+        // wenn an der position noch nichts vermerkt ist, wird ein eintrag erstellt mit der position und einer leeren Liste
+       if(!stressDict.ContainsKey(position))
+       {
+           stressDict.Add(position, new List<Vector3>());
+       }
+       
+        stressDict[position].Add(stressState); // zu der Liste an stelle position wird der Stress state geadded
+        GetTileByCords(position).UpdateStressState(); // dem tile an der stelle, wo sich der stress verändert hat, wird gesagt seinen state zu updaten
+    }
+
+    public List<Vector3> GetStressStatesAtPosition(Vector3Int position)
+    {
+        if(!stressDict.ContainsKey(position))
+        {
+            Debug.Log("hier sind keine StressStates eingetragen. du bekommst eine ganz frische, leere liste");
+            return new List<Vector3>();
+        }
+
+        return stressDict[position];
     }
  
     public bool AddTileToLedger(MapTile tile)

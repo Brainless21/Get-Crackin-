@@ -14,7 +14,8 @@ public class ParticleTile1 : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        this.SetBaseStressState(EventManager.instance.GetGlobalStress());
+        // this.SetBaseStressState(EventManager.instance.GetGlobalStress());
+        TileLedger.ledgerInstance.SetGlobalStress(this.cords, EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
     }
     

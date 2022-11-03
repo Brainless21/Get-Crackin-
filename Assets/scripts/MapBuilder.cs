@@ -191,6 +191,7 @@ public class MapBuilder : MonoBehaviour
         if(TileLedger.ledgerInstance.GetTileByCords(cords)!=null)
         {
            // Debug.Log("hier ist schon ein tile, nutze bitte die placeTile Funktion");
+           return null;
         }
 
         GameObject tileType = GetTileByTag(type);

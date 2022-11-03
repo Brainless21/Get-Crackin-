@@ -28,7 +28,7 @@ public class PhaseChangeTile : MapTile
     public void MakeActive() 
     {
         isActive = true;
-        StressOutFriends(stressFieldStrength, star,minRange,15);
+        StressOutFriends(stressFieldStrength, star, minRange,15);
         delayedStress = StartCoroutine(WaitFrameAndStress());
     }
      private void Awake()
@@ -38,16 +38,20 @@ public class PhaseChangeTile : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        this.SetBaseStressState(EventManager.instance.GetGlobalStress());
+        TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
     }
 
+    private void OnDisable() 
+    {
+        StressOutFriends(stressFieldStrength, star, minRange, 15, true); //removed die stressstates, die es vorher platziert hat. klappt nur wenn sich zwischendurch die werte für fieldsStrength, star und minRange nicht ändern!
+    }
    
 
     // public void SetStar(bool star) { this.star = star;} // steht jetzt in mapTile
     // public void SetStressFieldStrength(float strength) {stressFieldStrength = strength;}
 
-    void StressOutFriends( float strength, bool isStar, int minRange, int maxRange)
+    void StressOutFriends( float strength, bool isStar, int minRange, int maxRange, bool remove=false)
     {
     
         
@@ -80,21 +84,26 @@ public class PhaseChangeTile : MapTile
                 Vector3 result = rangeMod*connection*stressFieldStrength; // der resultierende vektor muss eventuell noch um 90° gefreht werden, falls das particle zu klein ist, also radiale druckspannung erzeugt
                 
                 if(result.magnitude<0.5) doNextStep = false;
-
-                if(isStar)
+                
+                if(isStar&&!remove)
                 {
-                    tile.AddToStressStates(result);
+                    //tile.AddToStressStates(result);
+                    TileLedger.ledgerInstance.AddToStressStates(tile.cords, result);
                     continue;
                 }
+                if(isStar&&remove) 
+                {
+                TileLedger.ledgerInstance.RemoveStressFromPosition(tile.cords, result);  // Debug.Log(tile.RemoveFromStressStates(result));
+                continue;
+                }
+
                 // wär wahrschienlich übersichtlicher gewesen, zu schauen wie man hier matrixmultiplikation macht und dann einfach die drehmatrix zu definieren. stattdessen steht hier schon ausgerechnet das ergebnis des vektors drin, die as und bs sind in c zu finden (lol) und sind 1/3 +- 1/sqrt3
                 Vector3 resultGedreht = new Vector3(result.x*c.t+result.y*c.a+result.z*c.b,result.x*c.b+result.y*c.t+result.z*c.a,result.x*c.a+result.y*c.b+result.z*c.t); 
-                
-                float differenz = resultGedreht.magnitude - result.magnitude;
-                // Debug.Log(differenz); // da kommt immer 0 raus, das drehen klappt also
-
-                tile.AddToStressStates(resultGedreht);
+            
+                if(remove) TileLedger.ledgerInstance.RemoveStressFromPosition(tile.cords,resultGedreht);  // Debug.Log(tile.RemoveFromStressStates(resultGedreht));
+                if(!remove) TileLedger.ledgerInstance.AddToStressStates(tile.cords,resultGedreht); // tile.AddToStressStates(resultGedreht);
             }
-            if(i==maxRange) Debug.Log("maxed out");
+            if(i==maxRange&&star==isStar) Debug.Log("maxed out");
             
         }
 
