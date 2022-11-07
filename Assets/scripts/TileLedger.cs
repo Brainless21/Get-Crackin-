@@ -29,11 +29,11 @@ public class TileLedger : MonoBehaviour
     {
         if(!stressDict.ContainsKey(position)) return false; // wenn an der stelle noch kein eintrag besteht, ist da auch kein vektor drin
         
-        float delta;
+        Vector3 delta;
         foreach(Vector3 stressAtPosition in stressDict[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
         {
-            delta = (stressAtPosition - gesuchterStressVektor).magnitude;
-            if(delta<0.001) return true;
+            delta = new Vector3(stressAtPosition.x-gesuchterStressVektor.x,stressAtPosition.y-gesuchterStressVektor.y,stressAtPosition.z-gesuchterStressVektor.z);
+            if(delta.magnitude<0.001) return true;
         }
         return false;
     }
@@ -46,16 +46,49 @@ public class TileLedger : MonoBehaviour
             return;
         }
 
-        float delta;
+        int i = 0;
         foreach(Vector3 stressAtPosition in stressDict[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
         {
-            delta = (stressAtPosition - obsoleteStressVector).magnitude;
-            if(delta<0.001)
+            // float delta = (stressAtPosition - obsoleteStressVector).magnitude; // thats actually not good with all the symmetry going around... this only checks length
+            // float angle = Vector3.Angle(stressAtPosition, obsoleteStressVector);
+            Vector3 deltaVector = new Vector3(stressAtPosition.x-obsoleteStressVector.x,stressAtPosition.y-obsoleteStressVector.y,stressAtPosition.z-obsoleteStressVector.z);
+            if(deltaVector.magnitude<0.01)
             {
-                stressDict[position].Remove(stressAtPosition); // wenn der grade überprüfte vektor der Liste auf den gesuchten passt, wird er aus der Liste entfernt
+                //Debug.Log("imma try to remove this stress that I found");
+                // if(!removeSpecificStressEntry(position, stressAtPosition))
+                // {
+                //     Debug.Log(string.Format( "I tried to remove {0} from {1} but something didnt work",obsoleteStressVector,position));
+                // }
+                Debug.Log(string.Format("stress vector to be removed:{0} \n liste aus der removed werden soll: {1}",Utilities.GetPreciseVectorString(stressAtPosition), Utilities.GetListString(stressDict[position])));
+                Debug.Log(string.Format("\ni ist grade bei: {0}\n",i));
+                // List<Vector3> testList = new List<Vector3>(stressDict[position]);
+                // testList.RemoveAt(i);
+                stressDict[position].RemoveAt(i); //whyyy you no working. You got the stupid vector in there man.
+                //stressDict[position].Remove(stressAtPosition); // wenn der grade überprüfte vektor der Liste auf den gesuchten passt, wird er aus der Liste entfernt
             }
+
+            i++;
         }
 
+    }
+
+    private bool removeSpecificStressEntry(Vector3Int position, Vector3 stress)
+    {
+        if(!stressDict.ContainsKey(position))
+        {
+            Debug.Log(string.Format("an der position {0} gibt es keine liste, da ist wohl was schiefgelaufen",position));
+            return false;
+        }
+
+        if(!stressDict[position].Contains(stress))
+        {
+            Debug.Log(string.Format("der gesuchte vektor {0} ist hier nicht aufzufinden",stress));
+            return false;
+        }
+
+    	Debug.Log("all tests passed, ready for extraction");
+        stressDict[position].Remove(stress);
+        return true;
     }
 
     public void SetGlobalStress(Vector3Int position, Vector3 globalStressState)  // this function will only add the vector if its not at the position already
@@ -66,7 +99,7 @@ public class TileLedger : MonoBehaviour
            return;
        }
 
-       Debug.Log(string.Format("hier ist schon ein base stress eingetragen:{0}",position));
+       //Debug.Log(string.Format("hier ist schon ein base stress eingetragen:{0}",position));
        GetTileByCords(position).UpdateStressState();
     }
     public void AddToStressStates(Vector3Int position, Vector3 stressState)
@@ -79,6 +112,20 @@ public class TileLedger : MonoBehaviour
        
         stressDict[position].Add(stressState); // zu der Liste an stelle position wird der Stress state geadded
         GetTileByCords(position).UpdateStressState(); // dem tile an der stelle, wo sich der stress verändert hat, wird gesagt seinen state zu updaten
+    }
+
+    public void AddStressField(Dictionary<Vector3Int,Vector3> fieldList)
+    {
+        foreach (KeyValuePair<Vector3Int,Vector3> entry in fieldList)
+        {
+            AddToStressStates(entry.Key, entry.Value);
+        }
+    }
+
+    public void RemoveStressField(Dictionary<Vector3Int,Vector3> fieldList)
+    {
+        foreach(KeyValuePair<Vector3Int, Vector3> entry in fieldList)
+        RemoveStressFromPosition(entry.Key, entry.Value);
     }
 
     public List<Vector3> GetStressStatesAtPosition(Vector3Int position)

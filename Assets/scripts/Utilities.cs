@@ -23,6 +23,23 @@ public class Utilities
         }
         Debug.Log(ausgabe);
     }
+
+    public static string GetListString(List<Vector3> List)
+    {
+        string ausgabe = "";
+        foreach(Vector3 vector in List)
+        {
+            ausgabe+=string.Format("{0} \n",GetPreciseVectorString(vector));
+        }
+        return ausgabe;
+    }
+
+    public static string GetPreciseVectorString(Vector3 vector)
+    {
+        string ausgabe = "";
+        ausgabe += string.Format("\nx: {0}\ny: {1}\nz: {2}",vector.x,vector.y,vector.z);
+        return ausgabe;
+    }
    
     public static void PrintList(List<MapTile> list)
     {

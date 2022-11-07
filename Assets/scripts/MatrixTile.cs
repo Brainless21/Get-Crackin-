@@ -12,7 +12,7 @@ public class MatrixTile : MapTile
         this.SetBaseToughness(1);
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
         
-        TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); // war früher this.SetBaseStressState(EventManager.instance.GetGlobalStress()); bevor die stresses zum ledger umgezogen sind
+        //TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); // war früher this.SetBaseStressState(EventManager.instance.GetGlobalStress()); bevor die stresses zum ledger umgezogen sind
        
     }
   
