@@ -389,6 +389,7 @@ public class MapTile : Entity
         // wenn die "mitte" des mousecursors auf ein member der eigenen shape zeigt, particle behaviour
         if(associatedShape.Contains(calledCords))
         {
+            //Debug.Log(string.Format( "map tile mouse enter at {0}",this.cords));
             mouseOver = true;
         }
 

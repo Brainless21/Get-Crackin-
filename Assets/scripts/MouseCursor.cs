@@ -118,6 +118,14 @@ public class MouseCursor : MonoBehaviour
             return pointedEntity;
         }
 
+        PhaseChangeTile phaseChangeTile = raycastHit.collider.gameObject.GetComponent<PhaseChangeTile>();
+        if(phaseChangeTile!=null)
+        {
+            pointedEntity = phaseChangeTile;
+            EventManager.instance.InvokeMouseEnter(pointedEntity.cords, MapBuilder.instance.DrawShape(pointedEntity.cords));
+            return pointedEntity;
+        }
+
         
 
         pointedEntity = null;

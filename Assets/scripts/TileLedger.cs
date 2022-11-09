@@ -69,8 +69,9 @@ public class TileLedger : MonoBehaviour
                 //Debug.Log(string.Format("korrigierte Liste: {0}",Utilities.GetListString(listCopy)));
                 stressDict.Remove(position); // thtas gonna fuck me again isnt it?
                 stressDict.Add(position,listCopy);
+                GetTileByCords(position).UpdateStressState();
                 //Debug.Log(string.Format("was steht an der stelle {0} jetzt im stressdict:{1}",position,Utilities.GetListString(listCopy)));
-                if(stressDict[position]!=listCopy) Debug.Log("come on man");
+                
                 //stressDictCopy[position].RemoveAt(i); //whyyy you no working. You got the stupid vector in there man.
 
                 //stressDict[position].Remove(stressAtPosition); // wenn der grade überprüfte vektor der Liste auf den gesuchten passt, wird er aus der Liste entfernt
