@@ -8,6 +8,8 @@ public class PhaseChangeTile : MapTile
     [SerializeField] bool isActive = false;
     [SerializeField] float stressFieldStrength=1;
     [SerializeField] bool star = true;
+    private Dictionary<Vector3Int, Vector3> stressFieldOutside;
+    private Dictionary<Vector3Int, Vector3> stressFieldInside;
     public void SetStar(bool star) { this.star = star;}
     public void SetStressFieldStrength(float strength) {stressFieldStrength = strength;}
     internal int minRange=2; // wird beim placement overridden durch blob size
@@ -20,7 +22,7 @@ public class PhaseChangeTile : MapTile
     {
         // waits for one frame before calling the stressout function, so the new tiles are already placed when it happens. 
         yield return 0;
-        StressOutFriends(stressFieldStrength, !star,1,1);
+        TileLedger.ledgerInstance.AddStressField(StressOutFriendsButOnlyMakeList(stressFieldStrength, !star,1,1));
         yield break;
     }
     
@@ -28,8 +30,12 @@ public class PhaseChangeTile : MapTile
     public void MakeActive() 
     {
         isActive = true;
-        StressOutFriends(stressFieldStrength, star, minRange,15);
-        delayedStress = StartCoroutine(WaitFrameAndStress());
+        stressFieldOutside = StressOutFriendsButOnlyMakeList(stressFieldStrength, star, minRange, 15);
+        stressFieldInside = StressOutFriendsButOnlyMakeList(stressFieldStrength, !star, 1, 1);
+    
+        TileLedger.ledgerInstance.AddStressField(stressFieldOutside);
+        TileLedger.ledgerInstance.AddStressField(stressFieldInside);
+        //delayedStress = StartCoroutine(WaitFrameAndStress());
     }
      private void Awake()
     {
@@ -38,7 +44,7 @@ public class PhaseChangeTile : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        //TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
+        TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
     }
 
@@ -47,7 +53,9 @@ public class PhaseChangeTile : MapTile
         if(isActive)
         {
         Debug.Log("imma remove some stress");
-        StressOutFriends(stressFieldStrength, star, minRange, 15, true); //removed die stresstates, die es vorher platziert hat. klappt nur wenn sich zwischendurch die werte für fieldsStrength, star und minRange nicht ändern!
+        //StressOutFriendsButOnlyMakeList(stressFieldStrength, star, minRange, 15); //removed die stresstates, die es vorher platziert hat. klappt nur wenn sich zwischendurch die werte für fieldsStrength, star und minRange nicht ändern!
+        TileLedger.ledgerInstance.RemoveStressField(stressFieldOutside);
+        TileLedger.ledgerInstance.RemoveStressField(stressFieldInside);
         }
     }
 
