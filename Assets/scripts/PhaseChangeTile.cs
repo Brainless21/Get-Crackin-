@@ -68,7 +68,7 @@ public class PhaseChangeTile : MapTile
         
         for(int i = minRange; i<=maxRange; i++)
         {
-            Debug.Log(i);
+            //Debug.Log(i);
             //wenn das tile nicht im aktiv gemacht wurde nach dem plazieren (weil es im ursprung lag) dann passiert nichts. redundant, weil die funktion nur aufgerufen wird wenn das tile aktiv geschaltet wird
             if(!isActive) return;
             if(doNextStep==false) return; // wenn das resultat der stressvektoren zu klein wird, setzt das den bool auf false, und es wird nichtmehr weitergemacht, selbst wenn die maxrange noch nicht erreicht ist
@@ -80,7 +80,7 @@ public class PhaseChangeTile : MapTile
             // give them all their stress by figuring out the vector between source and friend, and then if the stress should be parallel or perpendicular
             foreach(MapTile tile in currentFriends) 
             {
-                Debug.Log("one iteration in the current range group");
+                //Debug.Log("one iteration in the current range group");
                 Vector3 connection = this.cords - tile.cords; // this has information about the direction but also already about the strength because the farther, the longer the vector
                 float rangeMod = 1;
                 if(star==isStar) // dies überprüft, ob der aufruf dem PartikelÄußeren zugehört. Weil dann wurde die funktion als StressoutFriends(,x star,y,z) aufgerufen. Ist das nicht der Fall, wurde (x,!star,y,z) aufgerufen
@@ -112,7 +112,7 @@ public class PhaseChangeTile : MapTile
                     continue;
                 }
 
-                if(isStar&&remove)
+                if(!isStar&&remove)
                 {
                     TileLedger.ledgerInstance.RemoveStressFromPosition(tile.cords,resultGedreht);  // Debug.Log(tile.RemoveFromStressStates(resultGedreht));
                     continue;
@@ -131,8 +131,6 @@ public class PhaseChangeTile : MapTile
         
         //Vector3 result = new Vector3 (5,5,5); // wird hier schon deklariert, damit es im forloop als exit condition benutzt werden kann
         bool doNextStep = true;
-
-        // weggabelung zwischen intern oder extern:
         
         
         for(int i = minRange; i<=maxRange; i++)

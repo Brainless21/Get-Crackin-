@@ -40,32 +40,42 @@ public class TileLedger : MonoBehaviour
     
     public void RemoveStressFromPosition(Vector3Int position, Vector3 obsoleteStressVector)
     {
+        Debug.Log(" I got called");
         if(!stressDict.ContainsKey(position))
         {
             Debug.Log("hier wurde versucht ein stress zu removen, wo gar nichts ist. weird.");
             return;
         }
 
+        Dictionary<Vector3Int,List<Vector3>> stressDictCopy = new Dictionary<Vector3Int, List<Vector3>>(stressDict);
+
         int i = 0;
-        foreach(Vector3 stressAtPosition in stressDict[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
+        foreach(Vector3 stressAtPosition in stressDictCopy[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
         {
             // float delta = (stressAtPosition - obsoleteStressVector).magnitude; // thats actually not good with all the symmetry going around... this only checks length
             // float angle = Vector3.Angle(stressAtPosition, obsoleteStressVector);
             Vector3 deltaVector = new Vector3(stressAtPosition.x-obsoleteStressVector.x,stressAtPosition.y-obsoleteStressVector.y,stressAtPosition.z-obsoleteStressVector.z);
-            if(deltaVector.magnitude<0.01)
+            if(deltaVector.magnitude<=0.01)
             {
                 //Debug.Log("imma try to remove this stress that I found");
                 // if(!removeSpecificStressEntry(position, stressAtPosition))
                 // {
                 //     Debug.Log(string.Format( "I tried to remove {0} from {1} but something didnt work",obsoleteStressVector,position));
                 // }
-                Debug.Log(string.Format("stress vector to be removed:{0} \n liste aus der removed werden soll: {1}",Utilities.GetPreciseVectorString(stressAtPosition), Utilities.GetListString(stressDict[position])));
-                Debug.Log(string.Format("\ni ist grade bei: {0}\n",i));
-                // List<Vector3> testList = new List<Vector3>(stressDict[position]);
-                // testList.RemoveAt(i);
-                stressDict[position].RemoveAt(i); //whyyy you no working. You got the stupid vector in there man.
+                //Debug.Log(string.Format("stress vector to be removed:{0} \n liste aus der removed werden soll: {1}",Utilities.GetPreciseVectorString(stressAtPosition), Utilities.GetListString(stressDict[position])));
+                //Debug.Log(string.Format("\ni ist grade bei: {0}\n",i));
+                List<Vector3> listCopy = new List<Vector3>(stressDict[position]);
+                listCopy.RemoveAt(i);
+                //Debug.Log(string.Format("korrigierte Liste: {0}",Utilities.GetListString(listCopy)));
+                stressDict.Remove(position); // thtas gonna fuck me again isnt it?
+                stressDict.Add(position,listCopy);
+                //Debug.Log(string.Format("was steht an der stelle {0} jetzt im stressdict:{1}",position,Utilities.GetListString(listCopy)));
+                if(stressDict[position]!=listCopy) Debug.Log("come on man");
+                //stressDictCopy[position].RemoveAt(i); //whyyy you no working. You got the stupid vector in there man.
+
                 //stressDict[position].Remove(stressAtPosition); // wenn der grade überprüfte vektor der Liste auf den gesuchten passt, wird er aus der Liste entfernt
             }
+            if(!(deltaVector.magnitude<=0.01)) Debug.Log(string.Format("vektor nicht gefunden. das steht an der stelle {0} jetzt im stressdict:{1}\n und der vektor {2} wird gesucht", position, Utilities.GetListString(stressDict[position]),Utilities.GetPreciseVectorString(obsoleteStressVector)));
 
             i++;
         }
@@ -116,6 +126,8 @@ public class TileLedger : MonoBehaviour
 
     public void AddStressField(Dictionary<Vector3Int,Vector3> fieldList)
     {
+       // Dictionary<Vector3Int,List<Vector3>> stressDictCopy = new Dictionary<Vector3Int, List<Vector3>>(stressDict);
+
         foreach (KeyValuePair<Vector3Int,Vector3> entry in fieldList)
         {
             AddToStressStates(entry.Key, entry.Value);
