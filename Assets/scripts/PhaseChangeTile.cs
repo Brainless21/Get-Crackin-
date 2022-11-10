@@ -50,6 +50,15 @@ public class PhaseChangeTile : MapTile
         }
     }
 
+    // public override void SetAssociatedShape(List<Vector3Int> shape)
+    // {
+    //     base.SetAssociatedShape(shape);
+    //     if(this.cords==this.associatedShape[0])
+    //     {
+    //         MakeActive();
+    //     }
+    // }
+
    
 
     // public void SetStar(bool star) { this.star = star;} // steht jetzt in mapTile
@@ -145,7 +154,6 @@ public class PhaseChangeTile : MapTile
             // give them all their stress by figuring out the vector between source and friend, and then if the stress should be parallel or perpendicular
             foreach(MapTile tile in currentFriends) 
             {
-                Debug.Log("one iteration in the current range group");
                 Vector3 connection = this.cords - tile.cords; // this has information about the direction but also already about the strength because the farther, the longer the vector
                 float rangeMod = 1;
                 if(star==isStar) // dies überprüft, ob der aufruf dem PartikelÄußeren zugehört. Weil dann wurde die funktion als StressoutFriends(,x star,y,z) aufgerufen. Ist das nicht der Fall, wurde (x,!star,y,z) aufgerufen

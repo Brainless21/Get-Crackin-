@@ -8,6 +8,7 @@ public class TileLedger : MonoBehaviour
 
     [SerializeField] private Dictionary<Vector3Int,MapTile> tilesDict = new Dictionary<Vector3Int, MapTile>();
     [SerializeField] private Dictionary<Vector3Int,List<Vector3>> stressDict = new Dictionary<Vector3Int, List<Vector3>>();
+    private List<Vector3Int> positionsWithOutOfDateStress = new List<Vector3Int>();
 
     public Dictionary<Vector3Int,MapTile> PassTilesDict()
     {
@@ -25,6 +26,21 @@ public class TileLedger : MonoBehaviour
     
     }
 
+    private void Update() 
+    {
+        // wenn in der liste, in der die positionen stehen, die geänderte aber noch nicht geupdatete positionen haben, einträge drinne sind, werden die geupdated und die liste dann gecleart
+        if(positionsWithOutOfDateStress.Count==0) return;
+        int i = 0;
+        foreach(Vector3Int position in positionsWithOutOfDateStress)
+        {
+            GetTileByCords(position).UpdateStressState();
+            i++;
+        }
+        positionsWithOutOfDateStress.Clear();
+        Debug.Log(string.Format("es wurden {0} tiles geupdated",i));
+        
+    }
+
     private bool IsVectorAtPosition(Vector3Int position, Vector3 gesuchterStressVektor)
     {
         if(!stressDict.ContainsKey(position)) return false; // wenn an der stelle noch kein eintrag besteht, ist da auch kein vektor drin
@@ -40,21 +56,20 @@ public class TileLedger : MonoBehaviour
     
     public void RemoveStressFromPosition(Vector3Int position, Vector3 obsoleteStressVector)
     {
-        Debug.Log(" I got called");
         if(!stressDict.ContainsKey(position))
         {
             Debug.Log("hier wurde versucht ein stress zu removen, wo gar nichts ist. weird.");
             return;
         }
 
-        Dictionary<Vector3Int,List<Vector3>> stressDictCopy = new Dictionary<Vector3Int, List<Vector3>>(stressDict);
+        List<Vector3> stressDictAtPositionCopy = new List<Vector3>(stressDict[position]);
 
         int i = 0;
-        foreach(Vector3 stressAtPosition in stressDictCopy[position]) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
+        foreach(Vector3 stressAtPosition in stressDictAtPositionCopy) // jeder an position anzutreffender vektor wird mit dem gesuchten abgeglichen, wenn die differenz klein genug ist, wird true zurückgegeben, wenn alle durch sind wird flase durchgegeben
         {
             // float delta = (stressAtPosition - obsoleteStressVector).magnitude; // thats actually not good with all the symmetry going around... this only checks length
             // float angle = Vector3.Angle(stressAtPosition, obsoleteStressVector);
-            Vector3 deltaVector = new Vector3(stressAtPosition.x-obsoleteStressVector.x,stressAtPosition.y-obsoleteStressVector.y,stressAtPosition.z-obsoleteStressVector.z);
+            Vector3 deltaVector = new Vector3(stressAtPosition.x-obsoleteStressVector.x, stressAtPosition.y-obsoleteStressVector.y, stressAtPosition.z-obsoleteStressVector.z);
             if(deltaVector.magnitude<=0.01)
             {
                 //Debug.Log("imma try to remove this stress that I found");
@@ -68,15 +83,19 @@ public class TileLedger : MonoBehaviour
                 listCopy.RemoveAt(i);
                 //Debug.Log(string.Format("korrigierte Liste: {0}",Utilities.GetListString(listCopy)));
                 stressDict.Remove(position); // thtas gonna fuck me again isnt it?
+                //Debug.Log("about to add the list back in");
                 stressDict.Add(position,listCopy);
-                GetTileByCords(position).UpdateStressState();
+                //Debug.Log("list added ");
+                // GetTileByCords(position).UpdateStressState(); wird replaced durch:
+                positionsWithOutOfDateStress.Add(position);
+                //Debug.Log("stress updated in list");
                 //Debug.Log(string.Format("was steht an der stelle {0} jetzt im stressdict:{1}",position,Utilities.GetListString(listCopy)));
                 
                 //stressDictCopy[position].RemoveAt(i); //whyyy you no working. You got the stupid vector in there man.
 
                 //stressDict[position].Remove(stressAtPosition); // wenn der grade überprüfte vektor der Liste auf den gesuchten passt, wird er aus der Liste entfernt
             }
-            if(!(deltaVector.magnitude<=0.01)) Debug.Log(string.Format("vektor nicht gefunden. das steht an der stelle {0} jetzt im stressdict:{1}\n und der vektor {2} wird gesucht", position, Utilities.GetListString(stressDict[position]),Utilities.GetPreciseVectorString(obsoleteStressVector)));
+            //if(deltaVector.magnitude>0.01) Debug.Log(string.Format("dieser Vektor wars nicht. An der stelle {0} wurden verglichen {1} \n und der vektor {2} wird gesucht", position, Utilities.GetPreciseVectorString(stressAtPosition), Utilities.GetPreciseVectorString(obsoleteStressVector)));
 
             i++;
         }
@@ -122,7 +141,7 @@ public class TileLedger : MonoBehaviour
        }
        
         stressDict[position].Add(stressState); // zu der Liste an stelle position wird der Stress state geadded
-        GetTileByCords(position).UpdateStressState(); // dem tile an der stelle, wo sich der stress verändert hat, wird gesagt seinen state zu updaten
+        positionsWithOutOfDateStress.Add(position); // die geänderten einträge werden in der Liste aufgenommen, um dann beim nächsten frame geupdated zu werden.
     }
 
     public void AddStressField(Dictionary<Vector3Int,Vector3> fieldList)

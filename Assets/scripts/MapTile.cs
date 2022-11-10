@@ -28,7 +28,7 @@ public class MapTile : Entity
     [SerializeField] public bool isMortal = true;
     bool isCracked = false;
     bool mouseOver = false;
-    [SerializeField] private List<Vector3Int> associatedShape = new List<Vector3Int>();
+    [SerializeField] internal List<Vector3Int> associatedShape = new List<Vector3Int>();
     int mouseOverValidity;
     [SerializeField] string tileName = "nonNamedMaptile";
     public void SetName(string newName) {this.tileName = newName;}
@@ -40,6 +40,7 @@ public class MapTile : Entity
     internal GameObject stressStateIndicatorArrow;  
     GameObject arrowHandle;
     Coroutine Jiggle;
+    bool stressOutOfDate = false;
 
     //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
    
@@ -93,6 +94,11 @@ public class MapTile : Entity
     // }
 
     public Vector3 GetStressState() => currentStressVector; // "=> currentStressVector;" apparently means: {return currentStressVector;}
+
+    public void PingUpdateStressState()
+    {
+        stressOutOfDate = true;
+    }
     public void UpdateStressState()
     {
         if(arrowHandle==null)
@@ -140,7 +146,7 @@ public class MapTile : Entity
         arrowHandle.transform.localScale = new Vector3(0.8f,1f,0.3f);
     }
 
-    public void SetAssociatedShape(List<Vector3Int> shape)
+    public virtual void SetAssociatedShape(List<Vector3Int> shape)
     {  
         associatedShape = shape;   
     }
@@ -169,6 +175,11 @@ public class MapTile : Entity
         //if(GetComponent<MeshRenderer>().material.color!=currentDisplayedColor) GetComponent<MeshRenderer>().material.color = currentDisplayedColor; 
         //currentDisplayedColor = currentRestingColor;
         Render();
+        if(stressOutOfDate==true)
+        {
+            UpdateStressState();
+            stressOutOfDate = false;
+        }
     }
 
      protected void Initialize(MapTile myself)
