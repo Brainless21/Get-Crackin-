@@ -128,7 +128,7 @@ public class MapBuilder : MonoBehaviour
 
         tileTypeDict.Add(c.matrixTile, matrixTile);
         tileTypeDict.Add(c.particleTile1, particleTile1);
-        tileTypeDict.Add(c.maxPhase, maxPhase);
+        tileTypeDict.Add(c.maxPhase, phaseChangeTile); // das ist extra, MaxPhase sind jetzt einfach PhaseChangeTiles, die nen extre bool IsMaxPhase haben und sich damit dann leicht anders verhalten
         tileTypeDict.Add(c.PhaseChangeTile, phaseChangeTile);
 
         BuildVerticalCutoff();
@@ -318,7 +318,7 @@ public class MapBuilder : MonoBehaviour
         }
 
         // an jedem spot der shape wird ein tile platziert, diesem wird mitgegeben, zu welcher gruppe an tiles er gehört, shape wise.
-        bool firstIteration = true;
+        //bool firstIteration = true;
         foreach(Vector3Int spot in currentShape) // jedes tile bekommt ausserdem seine eigenschaften zugewiesen
         {
            MapTile handle = PlaceTile(spot,false);
@@ -334,19 +334,28 @@ public class MapBuilder : MonoBehaviour
                 handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
            }
 
+           if(type==c.maxPhase)
+           {
+                PhaseChangeTile phaseChangeHandle = handle.gameObject.GetComponent<PhaseChangeTile>();
+                phaseChangeHandle.SetStressFieldStrength(stressFieldStrength);
+                phaseChangeHandle.SetStar(false);
+                phaseChangeHandle.SetMinRange(shapeSize);
+                phaseChangeHandle.isMaxPhase = true;  
+           }
+
            if(type==c.PhaseChangeTile)
            {
                 PhaseChangeTile phaseChangeHandle = handle.gameObject.GetComponent<PhaseChangeTile>();
                 phaseChangeHandle.SetStressFieldStrength(stressFieldStrength);
                 phaseChangeHandle.SetStar(star);
                 phaseChangeHandle.SetMinRange(shapeSize);
-                if(firstIteration) phaseChangeHandle.MakeActive();
+                //if(firstIteration) phaseChangeHandle.MakeActive();
 
            }
            
            handle.SetAssociatedShape(currentShape);
            MasterOfShapes.instance.AddShapeToList(currentShape);
-           firstIteration = false;
+           //firstIteration = false;
         }
 
         PointPopup.Create(origin,transactionBalance);

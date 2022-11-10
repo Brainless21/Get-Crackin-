@@ -4087,7 +4087,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 119.326355, y: 130}
+  cellSize: {x: -3.3333333, y: -10}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -5771,7 +5771,7 @@ MonoBehaviour:
   menuTileName: 
   mesh: {fileID: 0}
   interfaceStrength: 0
-  stressFieldStrength: 0
+  stressFieldStrength: 2
   star: 0
   isEraser: 0
   isInspector: 0

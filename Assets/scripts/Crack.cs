@@ -211,7 +211,7 @@ public class Crack : MonoBehaviour
             UpdateDistance();
         }
 
-        if(occupiedTile!=null) occupiedTile.SayHelloToFriends(1); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
+        if(occupiedTile!=null) occupiedTile.SayHelloToFriends(2); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
 
         if(FindBestFriend(cords, activeDestinations[etappe].cords)==null)
         {
