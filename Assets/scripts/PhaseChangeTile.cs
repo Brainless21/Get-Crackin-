@@ -30,6 +30,26 @@ public class PhaseChangeTile : MapTile
         TileLedger.ledgerInstance.AddStressField(stressFieldInside);
         //delayedStress = StartCoroutine(WaitFrameAndStress());
     }
+
+    public void MakeInactive()
+    {
+        if(!isActive) return;
+        isActive = false;
+        // Utilities.PrintDictionary(stressFieldInside);
+        // Utilities.PrintDictionary(stressFieldOutside);
+
+        TileLedger.ledgerInstance.RemoveStressField(stressFieldInside);
+        TileLedger.ledgerInstance.RemoveStressField(stressFieldOutside);
+    }
+
+    public override void Reset()
+    {
+        Debug.Log("base reset about to be called");
+        base.Reset();
+        if(!isMaxPhase) return;
+        Debug.Log("makeInactive aout ot be called");
+        MakeInactive();
+    }
     private void Awake()
     {
         Initialize(this);

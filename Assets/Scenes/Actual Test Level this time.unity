@@ -5763,14 +5763,14 @@ MonoBehaviour:
   type: 2
   isSizeMod: 0
   sizeMod: 0
-  size: 0
+  size: 2
   isShape: 1
   costOfShape: 0
-  costOfTile: 0
-  baseToughness: 0
-  menuTileName: 
+  costOfTile: 3
+  baseToughness: 3
+  menuTileName: Max Phase TIle
   mesh: {fileID: 0}
-  interfaceStrength: 0
+  interfaceStrength: 1
   stressFieldStrength: 2
   star: 0
   isEraser: 0

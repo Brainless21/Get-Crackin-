@@ -23,6 +23,15 @@ public class Utilities
         }
         Debug.Log(ausgabe);
     }
+    public static void PrintDictionary(Dictionary <Vector3Int,Vector3> dict)
+    {
+        string ausgabe = "";
+        foreach (KeyValuePair<Vector3Int, Vector3> kvp in dict)
+    	{
+            ausgabe += string.Format("Key = {0}, Value = {1} \n", kvp.Key, Utilities.GetPreciseVectorString(kvp.Value));
+        }
+        Debug.Log(ausgabe);
+    }
 
     public static string GetListString(List<Vector3> List)
     {
