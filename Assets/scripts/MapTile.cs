@@ -228,6 +228,7 @@ public class MapTile : Entity
 
     private IEnumerator Stretch(Vector3 axis, Vector3 origin, float animationTime)
     {
+        yield return 0; // Warte auf den nächsten frame, damit alle gleichzeitig anfangen
         //  unsubscribe from the mouse events so you cant get clicked on
         EventManager.instance.MouseEnter-=MouseEnter;
         EventManager.instance.MouseExit-=MouseExit;
@@ -430,7 +431,7 @@ public class MapTile : Entity
     public override void MouseInteractionRight(Vector3Int cords)
     {
         //SetBaseStressState(c.orf);
-        //this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
+        this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
         if(cords!=this.cords) return;
         int mouseMode = EventManager.instance.GetMouseMode();
         if(mouseMode==c.inspect)
