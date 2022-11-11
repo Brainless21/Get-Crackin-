@@ -228,6 +228,7 @@ public class MapTile : Entity
 
     private IEnumerator Stretch(Vector3 axis, Vector3 origin, float animationTime)
     {
+        //if(isJiggly==false) yield break;
         yield return 0; // Warte auf den nächsten frame, damit alle gleichzeitig anfangen
         //  unsubscribe from the mouse events so you cant get clicked on
         EventManager.instance.MouseEnter-=MouseEnter;
@@ -245,6 +246,8 @@ public class MapTile : Entity
 
         P=origin+axis*Vector3.Dot(this.cords-origin,axis); // https://math.stackexchange.com/questions/1905533/find-perpendicular-distance-from-point-to-line-in-3d
         toAxis = this.cords-P;
+        Vector3 toAxisScaledToOne = toAxis/toAxis.magnitude;
+        if(toAxis.magnitude==0) toAxisScaledToOne = c.originf;
         
 
         Vector3 originalPosition = this.transform.position;
@@ -252,7 +255,8 @@ public class MapTile : Entity
 
         for(float delta = 0; delta<Mathf.PI; delta+=stepSize)
         {
-            this.transform.position=originalPosition+(toAxis/toAxis.magnitude)*Mathf.Sqrt(toAxis.magnitude)*Mathf.Sin(delta)*maxDistance; // die verschiebung wird skaliert mit wie weit das tile von der achse weg ist, aber mitwurzel, sodass weit weg liegende nicht so sehr krass nach aussen yeeten
+            Debug.Log(string.Format("original position:{0}\n next step: {1}",Utilities.GetPreciseVectorString(originalPosition),Utilities.GetPreciseVectorString((toAxis/toAxis.magnitude)*Mathf.Sqrt(toAxis.magnitude)*Mathf.Sin(delta)*maxDistance)));
+            this.transform.position=originalPosition+(toAxisScaledToOne)*Mathf.Sqrt(toAxis.magnitude)*Mathf.Sin(delta)*maxDistance; // die verschiebung wird skaliert mit wie weit das tile von der achse weg ist, aber mitwurzel, sodass weit weg liegende nicht so sehr krass nach aussen yeeten
             yield return new WaitForSeconds(stepTime);
             i++;
         }
@@ -273,7 +277,7 @@ public class MapTile : Entity
 
     public void StartStretching(Vector3 axis, Vector3 origin)
     {
-       Jiggle = StartCoroutine(Stretch(axis,origin,0.5f));
+       Jiggle = StartCoroutine(Stretch(axis,origin,0.25f));
     }
     public virtual float GetToughness() //wird glaub ich nie actually verwendet, alle tiles overriden das mit ihrem eigenen ding
     {
@@ -431,7 +435,7 @@ public class MapTile : Entity
     public override void MouseInteractionRight(Vector3Int cords)
     {
         //SetBaseStressState(c.orf);
-        this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
+        //this.StartStretching(c.rf*(1/Mathf.Sqrt(2)) ,new Vector3(-2.5f,-2f,4.5f));
         if(cords!=this.cords) return;
         int mouseMode = EventManager.instance.GetMouseMode();
         if(mouseMode==c.inspect)
