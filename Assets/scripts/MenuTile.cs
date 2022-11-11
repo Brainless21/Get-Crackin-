@@ -52,7 +52,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     [SerializeField] bool isEraser;
     [SerializeField] bool isInspector;
 
-    [SerializeField] c.Shapes shape;
+    [SerializeField] c.shapes shape;
 
     //[SerializeField] MapTile exampleTile; // die idee alle relevanten infos in einem maptile zusammenzufassen und nurdas zuübergeben wird erstmal auf ice gelegt, weil mir keine schlaue lösung einfällt, wie man die verschiedenen datentypen mit particle oder maxphase tile handlen würde ohne das es irgendwie whack werden würd
 

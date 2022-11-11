@@ -20,6 +20,8 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] int untenRechts;
     [SerializeField] int verticalRechts;
     [SerializeField] int verticalLinks;
+    [SerializeField] c.mapSize mapSize = c.mapSize.small;
+    [SerializeField] Camera levelCam;
     public Button resetMapButton;
     public Button restartMapButton;
     public Button deleteMapButton;
@@ -49,6 +51,7 @@ public class MapBuilder : MonoBehaviour
     public void SetStressFieldStrength(float strength) { stressFieldStrength = strength; }
     [SerializeField] bool star;
     public void SetStar(bool isStar) { star = isStar;}
+
     
 
     
@@ -462,6 +465,33 @@ public class MapBuilder : MonoBehaviour
 
     private IEnumerator Build()
     {
+        if(mapSize == c.mapSize.small)
+        {
+            oben           = 8;
+            obenLinks      = 17;
+            obenRechts     = 9;
+            unten          = 4;
+            untenRechts    = 6;
+            untenLinks     = 14;
+            verticalRechts = 4;
+            verticalLinks  = 10;
+
+            levelCam.orthographicSize = 10;
+        }
+
+        if(mapSize == c.mapSize.large)
+        {
+            oben           = 11;
+            obenLinks      = 20;
+            unten          = 7;
+            obenRechts     = 12;
+            untenLinks     = 17;
+            untenRechts    = 9;
+            verticalRechts = 7;
+            verticalLinks  = 13;
+
+            levelCam.orthographicSize = 16;
+        }
        //Debug.Log("coroutine started");
        int xStart = -untenLinks;
        int xEnd = obenRechts;

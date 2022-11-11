@@ -82,13 +82,23 @@ public class c
     public const int single =3;
     public const int empty = 4;
 
-    public enum Shapes
+    public enum shapes
     {
       Blob,
       Fiber,
       Nugget,
       Single,
       Empty
+    }
+
+    public enum mapSize
+    {
+      tiny,
+      small,
+      medium,
+      large,
+      huge,
+      custom
     }
 
     // mouseOverValiditys arten

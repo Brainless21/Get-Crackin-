@@ -221,6 +221,8 @@ MonoBehaviour:
   menuTileName: 
   mesh: {fileID: 0}
   interfaceStrength: 1
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
   isInspector: 1
   shape: 0
@@ -477,6 +479,8 @@ MonoBehaviour:
   menuTileName: Base Particle
   mesh: {fileID: 0}
   interfaceStrength: 1
+  stressFieldStrength: 0
+  star: 0
   isEraser: 0
   isInspector: 0
   shape: 2
@@ -1159,7 +1163,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17508, y: 139.99997}
+  cellSize: {x: 494.17502, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1301,6 +1305,8 @@ MonoBehaviour:
   menuTileName: 
   mesh: {fileID: 0}
   interfaceStrength: 1
+  stressFieldStrength: 0
+  star: 0
   isEraser: 1
   isInspector: 0
   shape: 0
@@ -3461,6 +3467,11 @@ PrefabInstance:
       propertyPath: unten
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: levelCam
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: obenLinks

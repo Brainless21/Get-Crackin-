@@ -1145,7 +1145,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17505, y: 139.99997}
+  cellSize: {x: 494.17502, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1274,6 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a31858c99150f488463b473ba86a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileSelect: 1
   isType: 0
   type: 0
   isSizeMod: 0
@@ -1286,7 +1287,10 @@ MonoBehaviour:
   menuTileName: 
   mesh: {fileID: 0}
   interfaceStrength: 1
+  stressFieldStrength: 0
+  star: 0
   isEraser: 1
+  isInspector: 0
   shape: 0
 --- !u!1 &599744631
 GameObject:
@@ -2622,7 +2626,7 @@ MonoBehaviour:
   forcedSquares: 1
   rows: 1
   columns: 2
-  cellSize: {x: 130, y: 130}
+  cellSize: {x: -10, y: -10}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -3552,6 +3556,16 @@ PrefabInstance:
       propertyPath: unten
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: mapSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: levelCam
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: obenLinks
