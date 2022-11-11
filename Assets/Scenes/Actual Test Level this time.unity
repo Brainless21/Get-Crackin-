@@ -4087,7 +4087,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: -3.3333333, y: -10}
+  cellSize: {x: 119.326355, y: 130}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1

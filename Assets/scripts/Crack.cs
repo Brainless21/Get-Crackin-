@@ -198,7 +198,7 @@ public class Crack : MonoBehaviour
     private bool Propagate()
     {
 
-        if(cords==activeDestinations[etappe].cords)
+        if(cords==activeDestinations[etappe].cords) // hier müsste ne neue exit condtiton hin, falls der modus auf direction ist.
         {   
             etappe ++; // steht hier, weil bei 0 angefangen wird zu zählen, aber count mind. 1 ausgibt (außer activeDestinations ist leer)
             
