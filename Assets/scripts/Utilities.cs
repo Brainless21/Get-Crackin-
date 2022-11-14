@@ -33,6 +33,11 @@ public class Utilities
         Debug.Log(ausgabe);
     }
 
+    public static Vector3 ScaleLenghtToOne(Vector3 vector)
+    {
+        if(vector.magnitude==0) return c.origin;
+        return vector/vector.magnitude;
+    }
     public static string GetListString(List<Vector3> List)
     {
         string ausgabe = "";

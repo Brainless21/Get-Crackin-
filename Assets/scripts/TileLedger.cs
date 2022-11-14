@@ -7,7 +7,7 @@ public class TileLedger : MonoBehaviour
     public static TileLedger ledgerInstance;
 
     [SerializeField] private Dictionary<Vector3Int,MapTile> tilesDict = new Dictionary<Vector3Int, MapTile>();
-    [SerializeField] private Dictionary<Vector3Int,List<Vector3>> stressDict = new Dictionary<Vector3Int, List<Vector3>>();
+    [SerializeField] private Dictionary<Vector3Int,List<Vector4>> stressDict = new Dictionary<Vector3Int, List<Vector4>>();
     private List<Vector3Int> positionsWithOutOfDateStress = new List<Vector3Int>();
 
     public Dictionary<Vector3Int,MapTile> PassTilesDict()
