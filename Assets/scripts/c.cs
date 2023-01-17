@@ -9,6 +9,12 @@ public class c
       { 
         new Vector3Int(1,-1,0), new Vector3Int(1,0,-1), new Vector3Int(0,1,-1), //ein array mitden richtungsvektoren, durchgezaehlt von oben rechts, im uhrzeigersinn
         new Vector3Int(-1,1,0), new Vector3Int(-1,0,1), new Vector3Int(0,-1,1) 
+      };
+
+    public static List<Vector3Int> positionsArrayHalb = new List<Vector3Int>()
+    {
+      new Vector3Int(1,-2,1),  new Vector3Int(2,-1,1), new Vector3Int(1,1,-2),
+      new Vector3Int(-1,2,-1), new Vector3Int(-1,1,1), new Vector3Int(-1,-1,2)
     };
     // richtungsvektoren
     public static Vector3Int or = new Vector3Int(1,-1,0);
@@ -152,6 +158,21 @@ public class c
       Debug.Log("tileType nicht definiert; c.typetagdict");
       return 0;
     }
+
+// serialization
+
+public const int xCord = 0;
+public const int yCord = 1;
+public const int zCord = 2;
+public const int cost  = 3;
+public const int baseToughness  = 4;
+public const int interfaceStrength  = 5;
+public const int stressFieldStrength  = 6;
+public const int star  = 7;
+public const int minRange  = 8;
+public const int isMaxPhase  = 9;
+public const int type  = 10;
+
 
   // misc constants
   public const float stressRangeToStrengthRatio = 2.5f;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
@@ -13,8 +14,15 @@ public class EventManager : MonoBehaviour
     public event Action<Vector3Int> MouseClickRight;
     public event Action<Vector3Int> MouseClickLeft;
     public event Action buttonPressQ;
+
+    [SerializeField] bool isStressVisible = false;
+    public void SetStressVisibility(bool isVisible)
+    {
+        isStressVisible = isVisible;
+    }
+    public bool GetStressVisibility => isStressVisible;
     
-    
+    [SerializeField] string levelName;
     [SerializeField] c.CrackMode crackMode = c.CrackMode.Direction;
     public c.CrackMode GetCrackMode()
     {
@@ -34,10 +42,16 @@ public class EventManager : MonoBehaviour
         return true;
     }
     [SerializeField] private Vector3 globalStress;
+
+    public void SetGlobalStress(Vector3Int newGlobalStress)
+    {
+        globalStress = newGlobalStress;
+    }
     public Vector3 GetGlobalStress()
     {
         // geht sicher, dass der global stress vektor immer betraglich 1 ist
         Vector3 result = globalStress/globalStress.magnitude;
+        if(globalStress.magnitude==0) return new Vector3 (0f,0f,0f); //falls der stress 0 ist wird auch nullvektor returned, das /0 macht sonst NaN bs
         return result;
     }
     // so basically instead of something happens-> that calls a function | we have the event manager as an intermediary.
@@ -51,6 +65,12 @@ public class EventManager : MonoBehaviour
 
         // DONT DESTROY ON SCENE CHANGE
         // DontDestroyOnLoad(this.gameObject);
+
+        levelName = SceneManager.GetActiveScene().name;
+    }
+    public string GetLevelName()
+    {
+        return levelName;
     }
   
     

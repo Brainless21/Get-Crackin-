@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class Utilities
 {
+    public static void PrintArray(int[] intArray)
+    {
+        string ausgabe = "";
+        ausgabe = intArray.ToString();
+        Debug.Log(ausgabe);
+    }
+
+    public static void PrintArray(float[] floatArray)
+    {
+        if(floatArray==null)
+        {
+            Debug.Log("Array ist NULL");
+            return;
+        }
+        string ausgabe = "";
+        ausgabe = floatArray.ToString();
+        Debug.Log(ausgabe);
+        Debug.Log("printing completed");
+    }
     public static void PrintDictionary(Dictionary<Vector3Int, MapTile> dict)
     {
         string ausgabe = "";
@@ -81,6 +100,12 @@ public class Utilities
         return cordsInt;
     }
 
+    public static Vector3 ConvertIntToCords(Vector3Int intCords)
+    {
+        Vector3 floatCords = new Vector3((float)intCords.x,(float)intCords.y,(float)intCords.z);
+        return floatCords;
+    }
+
     public static int CalculateCostOfShape(int shape, int size, int costPerTile)
     {
         int result = 0;
@@ -127,10 +152,10 @@ public class Utilities
         bool isPointingDown = false;
         
         //vektor wird überprüft ob er nach unten zeigt
-        vector/=vector.magnitude; // skaliert auf länge 1       // DAS GLEICH WIEDER AUS AUSKOMMENTTIEREN!
+        vector/=vector.magnitude; // skaliert auf länge 1       // DAS GLEICH WIEDER EINKOMMENTTIEREN!
         
         vector*=Mathf.Sqrt(2); // skaliert auf länge wurzel(2) //und weil das nicht klappt versuchen wirs direkt nochmal //DAS AUCH!!
-        if(vector.y<0) isPointingDown = true; // das überprüft ob der vektor nach unten zeigt. wenn die werte der einheitsvektoren ungefähr zu den angegebenen stimmen, ist es nach unten, dann wird der winkel andersrum gezählt
+        if(vector.y>0) isPointingDown = true; // das überprüft ob der vektor nach unten zeigt. wenn die werte der einheitsvektoren ungefähr zu den angegebenen stimmen, ist es nach unten, dann wird der winkel andersrum gezählt
 
         if(isPointingDown==false)
         {
@@ -145,9 +170,39 @@ public class Utilities
         return result;
     }
 
+    public bool isValidPosition(Vector3Int position)
+    {
+        if(position.x+position.y+position.z==0) return true;
+        return false;
+    }
+
     public static float ConvertRadiansToDegree(float radians)
     {   
         float result = (radians*360)/(2*Mathf.PI);
         return result;
     }
+
+    public static bool IsBasicallyEqual(float number1, float number2)
+    {
+        if((number1 - number2)<0.001 ) return true;
+        return false;
+    }
+
+   public static float FindSmallestDistance(Vector3Int pos1, List<Vector3Int> destinationsList) // returns the magnitude of the smallest possible distance between pos1 and all the spots in the list
+   {
+       if(destinationsList == null)
+       {
+           Debug.Log("keine validen Destinations mitgegeben");
+           return 0;
+       }
+       float smallestDistance = Vector3Int.Distance(pos1, destinationsList[0]);
+       foreach(Vector3Int spot in destinationsList)
+       {
+           float distance = Vector3Int.Distance(spot, pos1);
+           if(distance<smallestDistance) smallestDistance = distance;
+       }
+
+       return smallestDistance;
+   }
+
 }

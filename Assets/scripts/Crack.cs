@@ -9,23 +9,17 @@ public class Crack : MonoBehaviour
     public Vector3Int cords{get;set;}
     private float finalScore =0;
     private MapTile occupiedTile;
-    //private Vector3Int destinationsCords = new Vector3Int(11,-2,-9);
-    // private List<Vector3Int> destinationsCords = new List<Vector3Int>
-    //     {
-    //         new Vector3Int(8,-2,-6),
-    //         // new Vector3Int(-9,4,5),
-    //         // new Vector3Int(11,-8,-3),
-    //         // new Vector3Int(-9,-2,11) 
-    //     };
-    
+    [SerializeField] List<Etappe> etappen;
+    [SerializeField] Mesh lookOfDestiny;
 
-    private int etappe = 0;
+    Etappe currentEtappe;
+    private int etappenCounter = 0;
     float bestResult = 0; 
     float distanceCurrent=1;
     // einheitsvektor in richtung crack Propagation
     Vector3 stressDirection = new Vector3(Mathf.Sqrt(2),0f,-Mathf.Sqrt(2));
     Vector3Int startPoint = new Vector3Int();
-    [SerializeField] List<Destination> activeDestinations = new List<Destination>();
+    [SerializeField] List<Vector3Int> activeDestinations = new List<Vector3Int>();
     Coroutine propagate;
     // public enum CrackMode
     // {
@@ -38,20 +32,7 @@ public class Crack : MonoBehaviour
     //     return crackMode;
     // }
 
-    public void SubscribeToDestinations(Destination entry)
-    {
 
-        activeDestinations.Add(entry);
-    }
-
-    public void UnsubscribeFromDestinations(Destination entry)
-    {
-        if(activeDestinations==null) Debug.Log("esgibt noch keine liste, something went wrong");
-
-        if(!activeDestinations.Contains(entry)) Debug.Log("eintrag is gar nicht in der liste");
-
-        activeDestinations.Remove(entry);
-    }
     void Awake()
     {
         cords = Vector3Int.FloorToInt(this.transform.position);
@@ -72,9 +53,9 @@ public class Crack : MonoBehaviour
     {
         UpdateDistance();
         crackMode = EventManager.instance.GetCrackMode();
-        foreach(Destination destination in activeDestinations)
+        foreach(Vector3Int destination in activeDestinations)
         {
-            destination.FindTile();
+            TileLedger.ledgerInstance.GetTileByCords(destination).gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
         }
         propagate = StartCoroutine(CrackPropagation());
         
@@ -83,10 +64,10 @@ public class Crack : MonoBehaviour
     void UpdateDistance()
     {
         if(activeDestinations==null) return;
-        if(activeDestinations[etappe]!=null)
-        {
-            distanceCurrent = Vector3Int.Distance(activeDestinations[etappe].cords, cords);
-        }
+        
+        
+        distanceCurrent = Utilities.FindSmallestDistance(cords, activeDestinations);
+        
     }
 
     // float CalculateProgress(CrackMode mode)
@@ -100,7 +81,7 @@ public class Crack : MonoBehaviour
     // }
 
 
-    private MapTile FindBestFriend(Vector3Int currentCords, Vector3Int destination)
+    private MapTile FindBestFriend(Vector3Int currentCords, List<Vector3Int> destinations)
     {
         if(occupiedTile==null)
         {
@@ -124,7 +105,7 @@ public class Crack : MonoBehaviour
             Vector3Int step = new Vector3Int();
             // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
             step = inspectedTile.cords-cords;
-            float distanceNew = Vector3Int.Distance(destination, inspectedTile.cords);
+            float distanceNew = Utilities.FindSmallestDistance(inspectedTile.cords,destinations);
             float progress=0;
 
             // im Point Modus wird als Progress angesehen wie weit mann dem ziel näher gekommen ist
@@ -140,6 +121,7 @@ public class Crack : MonoBehaviour
                 // ich probier als erstes mal, die vorm zusammenwursten nicht zu skalieren, den resultierenden vor dem skalarprodukt aber schon. Die hoffnung ist, dass ich dadurch das abstoßende verhalten an der interfac der phase Change TIles behalte, aber nicht mehr das weirde hin her bei den abstoßenden 
                 Vector3 stressDirection = 0.5f*inspectedTile.GetStressState()+0.5f*occupiedTile.GetStressState();
                 progress = Vector3.Dot(Utilities.ScaleLenghtToOne(stressDirection),step);
+            
             }
             //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
             if(progress<0)
@@ -150,13 +132,13 @@ public class Crack : MonoBehaviour
 
             // berechnet wie gut das tile ist, basierend darauf wie viel näher es dem ziel kommt, und wie schwierig es dem crack ist, dort hinzugehen
             float awesomeness = progress/inspectedTile.GetToughness();
-
             // wenn das tile besser ist, als das beste bis jetzt, wird es als neues bestes tile abgespeichert, zusammen mit seinen cords und dem score
             if(awesomeness>bestResult)
             {
                bestResult = awesomeness;
                bestFriend = inspectedTile;
                bestFriendCords = inspectedTile.cords; 
+                
             } 
 
         }
@@ -169,7 +151,7 @@ public class Crack : MonoBehaviour
             Vector3Int step = new Vector3Int();
             // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
             step = inspectedTile.cords-cords;
-            float distanceNew = Vector3Int.Distance(destination, inspectedTile.cords);
+            float distanceNew = Utilities.FindSmallestDistance(inspectedTile.cords, destinations);
             float progress = 0;
 
             if(crackMode==c.CrackMode.Point) progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
@@ -197,33 +179,69 @@ public class Crack : MonoBehaviour
         if(bestFriend==null) Debug.Log("die tile auswahl war leider shit");
         return bestFriend;
     }
+    
+    bool InitiateNextStage()
+    {
+        // if(currentEtappe==null) currentEtappe = etappen[0]; I feel like not putting this in the beginning makes it more intuitive, and we can start by upping the etappe by one and then laoding all the new stuff in
+        if(currentEtappe==etappen[etappen.Count-1]) return false; //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt dercrack ist fertig
+        
+        etappenCounter ++; // zählt ein hoch
+        currentEtappe = etappen[etappenCounter]; // läd die werte der neuen etappe in den speicher
+        {
+            cords = currentEtappe.start; // versetzt den riss in die neue position
+
+            // aktualisiert die liste wo alle aktiven ziele drinstehen
+            activeDestinations.Clear();
+            foreach(Vector3Int destination in currentEtappe.destinations)
+            {
+                activeDestinations.AddRange(currentEtappe.destinations);
+            }
+
+
+
+            return true;  
+        }
+    }
 
     private bool Propagate()
     {
 
-        if(cords==activeDestinations[etappe].cords) // hier müsste ne neue exit condtiton hin, falls der modus auf direction ist.
-        {   
-            etappe ++; // steht hier, weil bei 0 angefangen wird zu zählen, aber count mind. 1 ausgibt (außer activeDestinations ist leer)
-            
-            if (etappe==activeDestinations.Count)
+        bool amIOnADestination = false;
+        foreach(Vector3Int destination in activeDestinations)
+        {
+            if(cords==destination)
             {
-            Debug.Log("bin angekommen");
-            return false;
+                amIOnADestination = true;
+                break;
             }
+        }
+
+        if(amIOnADestination == true) 
+        {   
+            // etappe ++; // steht hier, weil bei 0 angefangen wird zu zählen, aber count mind. 1 ausgibt (außer activeDestinations ist leer)
+            
+            // if (etappe==activeDestinations.Count) // das stimmt jetzt so auch nicht mehr, es sollte eine extra variable geben die sagt wie vilee stationen es denn gibt
+            // {
+            // Debug.Log("bin angekommen");
+            // return false;
+            // }
+
+            // overhaul für das obenstehende
+            InitiateNextStage();
 
             UpdateDistance();
         }
 
-        if(occupiedTile!=null) occupiedTile.SayHelloToFriends(2); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
+        if(occupiedTile!=null) occupiedTile.SayHelloToFriends(4); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
 
-        if(FindBestFriend(cords, activeDestinations[etappe].cords)==null)
+        if(FindBestFriend(cords, activeDestinations)==null)
         {
             Debug.Log("Kein passender nächster schritt gefunden");
             return false;        
         }
 
         {
-            cords = FindBestFriend(cords, activeDestinations[etappe].cords).cords;
+            cords = FindBestFriend(cords, activeDestinations).cords;
             occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
             UpdateDistance();
             occupiedTile.Crack();
@@ -253,7 +271,7 @@ public class Crack : MonoBehaviour
         finalScore = 0;
 
         cords = startPoint;
-        etappe=0;
+        etappenCounter=0;
         UpdateDistance();
 
         yield break;

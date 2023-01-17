@@ -25,6 +25,7 @@ public class MapBuilder : MonoBehaviour
     public Button resetMapButton;
     public Button restartMapButton;
     public Button deleteMapButton;
+    public Button loadSavedMapButton;
     Coroutine coroutineBuild;    
     Dictionary<int,GameObject> tileTypeDict = new Dictionary<int,GameObject>(); // this would probably also better work as an enum but it works now so
     private Dictionary<int, int> verticalCutoffR = new Dictionary<int, int>();
@@ -128,6 +129,7 @@ public class MapBuilder : MonoBehaviour
         resetMapButton.onClick.AddListener(ResetMap);
         restartMapButton.onClick.AddListener(RestartMap);
         deleteMapButton.onClick.AddListener(DeleteMap);
+        loadSavedMapButton.onClick.AddListener(BuildSavedMap);
 
         tileTypeDict.Add(c.matrixTile, matrixTile);
         tileTypeDict.Add(c.particleTile1, particleTile1);
@@ -135,9 +137,12 @@ public class MapBuilder : MonoBehaviour
         tileTypeDict.Add(c.PhaseChangeTile, phaseChangeTile);
 
         BuildVerticalCutoff();
-        
-
     
+    }
+
+    private void Start() 
+    {
+        BuildSavedMap();
     }
 
     GameObject GetTileByTag(int tag)
@@ -327,15 +332,30 @@ public class MapBuilder : MonoBehaviour
            MapTile handle = PlaceTile(spot,false);
            // nach dem platzieren werden die kosten und die toughness der Tiles gemäß der im builder gespeicherten custom values geändert, es sein denn die custom values sind 0 (standart fall, keine modifikation)
            // hier muss noch ein system hin, sodass tiles mit standartwerten diese auch bekommen, wenn sie nach tiles mit nicht standartwerten platziert werden. Grade wird ja der speicher mit den details zum tile nach dem platzieren nicht gewiped.
-           if(cost!=0) {handle.cost=cost;}
-           if(baseToughness!=0) {handle.SetBaseToughness(baseToughness);}
+
+
+            handle.typeKey = type;
+
+           if(cost!=0)
+           {
+               handle.cost=cost; 
+           }
+
+
+           if(baseToughness!=0)
+            {
+               handle.SetBaseToughness(baseToughness);
+            }
+            
            handle.SetName(tileName);
+           
            handle.gameObject.GetComponent<MeshFilter>().mesh = mesh;
            
            if(type==c.particleTile1)
            {
                 handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
            }
+
 
            if(type==c.maxPhase)
            {
@@ -344,6 +364,7 @@ public class MapBuilder : MonoBehaviour
                 phaseChangeHandle.SetStar(false);
                 phaseChangeHandle.SetMinRange(shapeSize);
                 phaseChangeHandle.isMaxPhase = true;  
+
            }
 
            if(type==c.PhaseChangeTile)
@@ -352,9 +373,10 @@ public class MapBuilder : MonoBehaviour
                 phaseChangeHandle.SetStressFieldStrength(stressFieldStrength);
                 phaseChangeHandle.SetStar(star);
                 phaseChangeHandle.SetMinRange(shapeSize);
-                //if(firstIteration) phaseChangeHandle.MakeActive();
-
+                
            }
+    
+        
            
            handle.SetAssociatedShape(currentShape);
            MasterOfShapes.instance.AddShapeToList(currentShape);
@@ -459,11 +481,84 @@ public class MapBuilder : MonoBehaviour
 
     }
 
-   
+    private void BuildFromDictionary(string currentMapName, string[] currentTileNames, int[][] currentTileShapes, float[][] currentTileProperties)
+    {
+        int i = 0;
+        foreach(string TileName in currentTileNames)
+        {
+            // Utilities.PrintArray(currentTileShapes[0]);
+            // Utilities.PrintArray(currentTileProperties[0]); //should print out the properties of the fist tile in the map
+            Vector3Int position = new Vector3Int(Mathf.RoundToInt(currentTileProperties[i][c.xCord]), Mathf.RoundToInt(currentTileProperties[i][c.yCord]), Mathf.RoundToInt(currentTileProperties[i][c.zCord]));
+            int type = Mathf.RoundToInt(currentTileProperties[i][c.type]);
+            MapTile handle = CreateTile(position, type); //Mathf.RoundToInt(currentTileProperties[i][c.type])
+            handle.name = TileName;
+
+            handle.cost = Mathf.RoundToInt(currentTileProperties[i][c.cost]);
+            handle.SetBaseToughness(Mathf.RoundToInt(currentTileProperties[i][c.baseToughness]));
+            if(type==c.particleTile1)
+            {
+                handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
+            }
+
+            if(type==c.maxPhase)
+           {
+                PhaseChangeTile phaseChangeHandle = handle.gameObject.GetComponent<PhaseChangeTile>();
+                phaseChangeHandle.SetStressFieldStrength(currentTileProperties[i][c.stressFieldStrength]);
+                phaseChangeHandle.SetStar(false);
+                phaseChangeHandle.SetMinRange(Mathf.RoundToInt(currentTileProperties[i][c.minRange]));
+                phaseChangeHandle.isMaxPhase = true;
+           }
+
+             if(type==c.PhaseChangeTile)
+           {
+                PhaseChangeTile phaseChangeHandle = handle.gameObject.GetComponent<PhaseChangeTile>();
+                phaseChangeHandle.SetStressFieldStrength(currentTileProperties[i][c.stressFieldStrength]);
+                bool isStar = Mathf.RoundToInt(currentTileProperties[i][c.star]) == 1 ? true : false; // basically converting the float 1 or 0 into an int and then into a bool depending on if tis a 1 or a 0
+                phaseChangeHandle.SetStar(isStar);
+                phaseChangeHandle.SetMinRange(Mathf.RoundToInt(currentTileProperties[i][c.minRange]));
+
+           }
+
+
+            //now we collapse the array of the shapes into a neat list of Vector3Ints
+            List<Vector3Int> associatedShapes = new List<Vector3Int>();
+            Vector3Int intVector = new Vector3Int();
+            int j = 0;
+
+            foreach(int shapeCord in currentTileShapes[i])
+            {
+                if(j%3==0) intVector.x=shapeCord;     //bei 0,3,6, also den ersten einträgen
+                if(j%3==1) intVector.y=shapeCord;
+                if(j%3==2)
+                {
+                    intVector.z=shapeCord;
+                    associatedShapes.Add(intVector);
+                }
+                j++;
+            }
+            // damit sollte die liste komplett sein, und kann nun dem tile zugewiesen werden. Danach wird sie gewiped. Wobei die wir ja eh in jedem durchgang neu erstellt
+            handle.SetAssociatedShape(associatedShapes);
+            
+            
+            i++;
+        }
+    }
+    public void BuildSavedMap() //sollte jetzt nur die alte map löschen und die geladene bauen, wenn diese auch existiert, ansonsten tut sie nicht viel. Also sollte sie am anfang ausgeführt werden können, und dann das gespeicherte level bauen, falls vorhanden
+    {
+        String nameStr = EventManager.instance.GetLevelName();
+        if(!save.LoadSavedMap(nameStr)) 
+        {
+            Debug.Log("es konnte keine map geladen werden, weil keine savedatei existiert");
+            return;
+        }
+        DeleteMap();
+        BuildFromDictionary(save.GetMapName(), save.GetTileNames(), save.GetTileShapes(), save.GetTileProperties());
+    }
     
 
 
     private IEnumerator Build()
+
     {
         if(mapSize == c.mapSize.small)
         {

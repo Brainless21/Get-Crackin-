@@ -40,7 +40,18 @@ public class MapTile : Entity
     internal GameObject stressStateIndicatorArrow;  
     GameObject arrowHandle;
     Coroutine Jiggle;
-    bool stressOutOfDate = false;
+
+    [SerializeField] int typeForInspection;
+
+    float[] propertyArray = new float[11]; //das sollte okay sein, weil bei der zuweisung über die placetileshape funktion das eh komplett neu zugewiesen wird
+
+    public void SetPropertyArray(float[] array)
+    {
+        propertyArray = array;
+    }
+
+    public float[] GetPropertyArray() => propertyArray;
+
 
     //interface strength und alles andere der anderen unterklassen I guess. Ich hätte echt keine unterklassen gebraucht, huh...
    
@@ -95,25 +106,22 @@ public class MapTile : Entity
 
     public Vector3 GetStressState() => currentStressVector; // "=> currentStressVector;" apparently means: {return currentStressVector;}
 
-    public void PingUpdateStressState()
-    {
-        stressOutOfDate = true;
-    }
+    
     public void UpdateStressState()
     {
-        if(arrowHandle==null)
-        {
-            stressStateIndicatorArrow = GameAssets.instance.stressArrow;
-            arrowHandle = Instantiate(stressStateIndicatorArrow, transform.position, Quaternion.identity);
-            arrowHandle.transform.parent = this.transform;
-        }
+
         Vector3 globalDirection = EventManager.instance.GetGlobalStress();
        
-        //nudel alle stressVectors zusammen in einen Current Vector, dafür wird er erst einmal resettet:
+        // nudel alle stressVectors zusammen in einen Current Vector, dafür wird er erst einmal resettet:
         currentStressVector =new Vector3(0f,0f,0f);
 
-        List<Vector3> stressStatesHere = TileLedger.ledgerInstance.GetStressStatesAtPosition(this.cords);
-        stressStates = stressStatesHere; //für visualisierungs purposes
+        // erstellt eine liste mit allen hier grade wirkenden vektoren. Das sind die im ledger plus der globalStress
+        List<Vector3> stressStatesHere = new List<Vector3>(TileLedger.ledgerInstance.GetStressStatesAtPosition(this.cords));
+        
+        stressStatesHere.Add(globalDirection); //so its always there, but doesnt need to be in the stressdict for every single entry or changed for every entry when the globalStress changes.
+        
+        this.stressStates = new List<Vector3>(stressStatesHere); //für visualisierungs purposes
+        
         foreach(Vector3 stressVector in stressStatesHere)
         {
             // if the angle between the vector and the base stress is greater than 90 degrees, flip the vector around, so all the vectors point in the same direction. this assures symetric stress field overlapping
@@ -128,8 +136,25 @@ public class MapTile : Entity
             // addiert die vektoren aufeinender, entweder erst nachdem der vektor einmal geflippt wird (das ist der fall wenn die beiden nicht in die gleiche richtung zeigen) oder einfach so
 
         }
-        // wenn der stressvektor zu klein ist, wird kein pfeil mehr angezeigt und es wird auch nicht versucht, irgendwaas zu drehen
-        if(currentStressVector.magnitude<0.001)
+
+        // wenn der sress nicht angezeigt werden muss, und auch keiner da ist, sind wir hier fertig. Ansonsten wird der pfeil erstellt bzw. gedreht
+        if(!EventManager.instance.GetStressVisibility&arrowHandle==null) return; // das kann ich auch noch machen wenn es wegen performance sein muss, grade komm ihc auch damit klar die pfeile im ersntfall einmal zu kreiren und dann direkt wieder zu löschen
+        // wenn schon (von vorher) ein pfeil da ist aber die bisibility jetzt aus ist,muss der pfeil ausßerdem gelöscht werden
+        if(!EventManager.instance.GetStressVisibility&arrowHandle!=null)
+         {
+            Destroy(arrowHandle);
+            arrowHandle = null;
+            return;
+        }
+        
+        if(arrowHandle==null)
+        {
+            stressStateIndicatorArrow = GameAssets.instance.stressArrow;
+            arrowHandle = Instantiate(stressStateIndicatorArrow, transform.position, Quaternion.identity);
+            arrowHandle.transform.parent = this.transform;
+        }
+        // wenn der stressvektor zu klein ist, wird kein pfeil mehr angezeigt und es wird auch nicht versucht, irgendwas zu drehen
+        if(currentStressVector.magnitude<0.001|!EventManager.instance.GetStressVisibility)
         {
             Destroy(arrowHandle);
             arrowHandle = null;
@@ -142,8 +167,8 @@ public class MapTile : Entity
             Debug.Log("ERRORO: es konnte kein winkel errechnet werden");
             return;
         }
-        arrowHandle.transform.localRotation=Quaternion.Euler(0,-Utilities.ConvertRadiansToDegree(rotationAngle),0);
-        arrowHandle.transform.localScale = new Vector3(0.8f,1f,0.3f);
+        arrowHandle.transform.localRotation=Quaternion.Euler(0,Utilities.ConvertRadiansToDegree(rotationAngle),0);
+        arrowHandle.transform.localScale = new Vector3(0.6f,1f,0.3f);
     }
 
     public virtual void SetAssociatedShape(List<Vector3Int> shape)
@@ -154,6 +179,22 @@ public class MapTile : Entity
     {
         List<Vector3Int> singleShape = new List<Vector3Int>() {shape};
         associatedShape = singleShape;
+    }
+
+    // outputs a list of all the coordinates in the assiciated shape, {x1,y1,z1,x2,y2,z2,...}
+    public int[] GetAssociatedShapeArray()
+    {
+        //int[] shapeArray = associatedShape.ToArray();
+        List<int> shapeList = new List<int>();
+        foreach(Vector3Int spot in associatedShape)
+        {
+            shapeList.Add(spot.x);
+            shapeList.Add(spot.y);
+            shapeList.Add(spot.z);
+        }
+
+        int[] output = shapeList.ToArray();
+        return output;
     }
 
     protected Dictionary<int, float> myBehaviors = new Dictionary<int, float>(); //"what behaviors do I (possibly, if they care about that) exert on my fellow neighbor tiles?"
@@ -175,11 +216,8 @@ public class MapTile : Entity
         //if(GetComponent<MeshRenderer>().material.color!=currentDisplayedColor) GetComponent<MeshRenderer>().material.color = currentDisplayedColor; 
         //currentDisplayedColor = currentRestingColor;
         Render();
-        if(stressOutOfDate==true)
-        {
-            UpdateStressState();
-            stressOutOfDate = false;
-        }
+        if(typeForInspection!=typeKey) typeForInspection = typeKey;
+       
     }
 
      protected void Initialize(MapTile myself)
@@ -194,7 +232,17 @@ public class MapTile : Entity
         baseColor = GetComponent<MeshRenderer>().material.color;
         currentRestingColor = baseColor;
         currentDisplayedColor = baseColor;
+        UpdateStressState();
         //Debug.Log("bin eingeschrieben(initialize)");
+
+       if(propertyArray==null)
+       {
+        propertyArray[0] = (float)cords.x;
+        propertyArray[1] = (float)cords.y;
+        propertyArray[2] = (float)cords.z;
+        propertyArray[c.type] = (float)c.types.MatrixTile; //das stimmt natürlich nur für die matrix tiles. aber alle non matrix tiles sollten ja auch über die placetileshape funktion gemacht worden sein und dann entweder schon einen property array haben oder direkt dann einen neuen bekommen
+       }
+
 
     }
 
@@ -341,6 +389,48 @@ public class MapTile : Entity
 
             // sofern der eintrag aus dem Buffer nicht schon in visitedfriends steht, oder schon in target friends eingetragen wurde, wird er in targetFriends Übertragen
             foreach(MapTile tile in targetFriendsBuffer)
+            {
+                if (!visitedFriends.Contains(tile)&&!targetFriends.Contains(tile)) { targetFriends.Add(tile); }
+            }
+
+            // dann werden alle TargetFriends als visited abgespeichert
+            visitedFriends.AddRange(targetFriends);
+
+           
+        }
+
+        
+        return targetFriends;
+    }
+
+    public List<Vector3Int> GetFriendsCordsByRange(int range) //soll nur die koordinaten zurückgeben, egal ob da jemand sitzt oder nicht
+    {
+        List<Vector3Int> visitedFriends = new List<Vector3Int>();
+        List<Vector3Int> targetFriends = new List<Vector3Int>();
+        List<Vector3Int> targetFriendsBuffer = new List<Vector3Int>();
+        
+        targetFriends.Add(this.cords);
+        visitedFriends.Add(this.cords);
+
+        for(int i=1; i<=range; i++)
+        {
+            // jedes tile in targetFriends findet seine nachbarn und trägt die in targetfriendsBuffer ein
+            foreach (Vector3Int tile in targetFriends) 
+            {
+                List<Vector3Int> friendsCords = new List<Vector3Int>();
+                foreach(Vector3Int spot in positionsArray)
+                {
+                    friendsCords.Add(tile+spot);
+                }
+                targetFriendsBuffer.AddRange(friendsCords); // beautiful. To get the positions of surrounding tiles, we could add the positions vector to eachof them,but we can also find the tile at that position and then ask it what the positions of its freinds are.because it knows, by doing that one very simple calculation
+                
+            }
+
+            // targetFriends liste wird gewiped, damit am ende wirklich nur die Äußersten tiles Drinstehen
+            targetFriends.Clear();
+
+            // sofern der eintrag aus dem Buffer nicht schon in visitedfriends steht, oder schon in target friends eingetragen wurde, wird er in targetFriends Übertragen
+            foreach(Vector3Int tile in targetFriendsBuffer)
             {
                 if (!visitedFriends.Contains(tile)&&!targetFriends.Contains(tile)) { targetFriends.Add(tile); }
             }

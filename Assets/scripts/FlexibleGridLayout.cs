@@ -71,7 +71,7 @@ public class FlexibleGridLayout : LayoutGroup
         }
 
         // set the cellSize Vector with the newfound information
-        cellSize.x = fitX ? cellWidth : cellSize.x;
+        cellSize.x = fitX ? cellWidth : cellSize.x; // pretty sure this means: cellSize.x = eithercellwidth or cellsize.x, depending on if fitX is true or false
         cellSize.y = fitY ? cellHeight: cellSize.y;
 
         int columnCount = 0;

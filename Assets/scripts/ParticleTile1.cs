@@ -14,7 +14,9 @@ public class ParticleTile1 : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        TileLedger.ledgerInstance.SetGlobalStress(this.cords, EventManager.instance.GetGlobalStress());
+        //TileLedger.ledgerInstance.SetGlobalStress(this.cords, EventManager.instance.GetGlobalStress());
+        // der global stress muss jetzt nicht mehr in awake gesetzt werden, da der im updateStressState immer automatisch dazugepackt wird.
+
         //Debug.Log("bin eingeschrieben(awake)");
     }
     
@@ -23,6 +25,8 @@ public class ParticleTile1 : MapTile
     {
         return interfaceStrengh;
     }
+
+
 
     public override float GetToughness()
     {

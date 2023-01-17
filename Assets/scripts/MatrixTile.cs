@@ -12,8 +12,8 @@ public class MatrixTile : MapTile
         this.SetBaseToughness(1);
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
         //StartStretching(EventManager.instance.GetGlobalStress(),c.originf);
-        TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); // war früher this.SetBaseStressState(EventManager.instance.GetGlobalStress()); bevor die stresses zum ledger umgezogen sind
-       
+        //TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); // war früher this.SetBaseStressState(EventManager.instance.GetGlobalStress()); bevor die stresses zum ledger umgezogen sind
+       // der global stress muss jetzt nicht mehr in awake gesetzt werden, da der im updateStressState immer automatisch dazugepackt wird.
     }
   
 

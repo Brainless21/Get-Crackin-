@@ -10,11 +10,14 @@ public class PhaseChangeTile : MapTile
     [SerializeField] public bool isMaxPhase = false;
     [SerializeField] float stressFieldStrength=1;
     [SerializeField] bool star = true;
+    public bool GetStar() => star;
     private Dictionary<Vector3Int, Vector3> stressFieldOutside;
     private Dictionary<Vector3Int, Vector3> stressFieldInside;
     public void SetStar(bool star) { this.star = star;}
     public void SetStressFieldStrength(float strength) {stressFieldStrength = strength;}
+    public float GetStressFieldStrength() => stressFieldStrength;
     internal int minRange=2; // wird beim placement overridden durch blob size
+    public int GetMinrange() => minRange;
     public void SetMinRange(int blobSize)
     {
         minRange = blobSize;
@@ -57,7 +60,7 @@ public class PhaseChangeTile : MapTile
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
-        TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
+        this.UpdateStressState();//war mal TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
     }
 
@@ -86,7 +89,7 @@ public class PhaseChangeTile : MapTile
 
     public override void Anmelden(int range)
     {
-        if(range==2 && isActive == false && isCenter==true && isMaxPhase==true)
+        if(range==4 && isActive == false && isCenter==true && isMaxPhase==true)
         {
         
             MakeActive();
@@ -112,14 +115,14 @@ public class PhaseChangeTile : MapTile
             // if(!isActive) return;
             if(doNextStep==false) return ausgabe; // wenn das resultat der stressvektoren zu klein wird, setzt das den bool auf false, und es wird nichtmehr weitergemacht, selbst wenn die maxrange noch nicht erreicht ist
             // find the friends in range
-            List<MapTile> currentFriends = this.GetFriendsByRange(i);
+            List<Vector3Int> currentFriends = this.GetFriendsCordsByRange(i);
             // Debug.Log(i);
             // Utilities.PrintList(currentFriends);
 
             // give them all their stress by figuring out the vector between source and friend, and then if the stress should be parallel or perpendicular
-            foreach(MapTile tile in currentFriends) 
+            foreach(Vector3Int tile in currentFriends) 
             {
-                Vector3 connection = this.cords - tile.cords; // this has information about the direction but also already about the strength because the farther, the longer the vector
+                Vector3 connection = this.cords - tile; // this has information about the direction but also already about the strength because the farther, the longer the vector
                 float rangeMod = 1;
                 if(star==isStar) // dies überprüft, ob der aufruf dem PartikelÄußeren zugehört. Weil dann wurde die funktion als StressoutFriends(,x star,y,z) aufgerufen. Ist das nicht der Fall, wurde (x,!star,y,z) aufgerufen
                 {
@@ -134,13 +137,13 @@ public class PhaseChangeTile : MapTile
                 
                 if(isStar)
                 { 
-                    ausgabe.Add(tile.cords,result);
+                    ausgabe.Add(tile,result);
                     continue;
                 }
 
                 if(!isStar)
                 {
-                    ausgabe.Add(tile.cords,resultGedreht);
+                    ausgabe.Add(tile,resultGedreht);
                     continue;
                 }
                 

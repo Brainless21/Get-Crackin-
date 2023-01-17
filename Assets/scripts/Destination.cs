@@ -12,12 +12,17 @@ public class Destination : MonoBehaviour
     [SerializeField] Crack crack;
     void Start()
     {
-        cords = Utilities.ConvertCordsToInt(this.gameObject.transform.position);
-        crack.SubscribeToDestinations(this);
+        // cords = Utilities.ConvertCordsToInt(this.gameObject.transform.position);
+        
         
     }
 
-    public void FindTile()
+    public Destination(Vector3Int myCords)
+    {
+        cords = myCords;
+    }
+
+    public void FindAndMarkTile()
     {
         occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
         occupiedTile.gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
