@@ -1291,7 +1291,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17502, y: 139.99997}
+  cellSize: {x: 494.17505, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1600,11 +1600,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinations: []
-  globalStress: {x: 0, y: 0, z: 0}
-  start: {x: 0, y: 0, z: 0}
+  globalStress: {x: 1, y: -2, z: 1}
+  start: {x: -5, y: 3, z: 2}
   startTile: {x: 7, y: -8, z: 1}
   endTile: {x: -5, y: -8, z: 13}
-  index: 0
+  index: 1
 --- !u!1 &681701402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,8 +3786,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinations: []
-  globalStress: {x: 0, y: 0, z: 0}
-  start: {x: 0, y: 0, z: 0}
+  globalStress: {x: 1, y: 0, z: -1}
+  start: {x: -8, y: -2, z: 10}
   startTile: {x: 2, y: 3, z: -5}
   endTile: {x: 7, y: -7, z: 0}
   index: 0
@@ -4006,6 +4006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: globalStress.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422934744154880166, guid: e19e2d1b95f23af46b418e322c862f26,
+        type: 3}
+      propertyPath: isStressVisible
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3422934744154880167, guid: e19e2d1b95f23af46b418e322c862f26,
         type: 3}

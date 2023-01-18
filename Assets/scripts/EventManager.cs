@@ -45,6 +45,7 @@ public class EventManager : MonoBehaviour
 
     public void SetGlobalStress(Vector3Int newGlobalStress)
     {
+        Debug.Log(string.Format("mein stress vector wurde zu {0} geändert",newGlobalStress));
         globalStress = newGlobalStress;
     }
     public Vector3 GetGlobalStress()
@@ -52,6 +53,7 @@ public class EventManager : MonoBehaviour
         // geht sicher, dass der global stress vektor immer betraglich 1 ist
         Vector3 result = globalStress/globalStress.magnitude;
         if(globalStress.magnitude==0) return new Vector3 (0f,0f,0f); //falls der stress 0 ist wird auch nullvektor returned, das /0 macht sonst NaN bs
+        //Debug.Log(string.Format("I was asked for the stress and this is what I said:{0}",result));
         return result;
     }
     // so basically instead of something happens-> that calls a function | we have the event manager as an intermediary.

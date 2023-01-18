@@ -13,7 +13,7 @@ public class Crack : MonoBehaviour
     [SerializeField] Mesh lookOfDestiny;
 
     Etappe currentEtappe;
-    private int etappenCounter = 0;
+    [SerializeField] private int etappenCounter = 0;
     float bestResult = 0; 
     float distanceCurrent=1;
     // einheitsvektor in richtung crack Propagation
@@ -42,6 +42,14 @@ public class Crack : MonoBehaviour
         //propagate = StartCoroutine(CrackPropagation());
 
         playButton.onClick.AddListener(StartCrackPropagation);
+    }
+
+    private void Start() 
+    {
+        currentEtappe = etappen[etappenCounter]; //lädt die aktuelle etappe (normalerweise die erste, counter=0) und setzt start und ziele fest
+        activeDestinations.AddRange(currentEtappe.destinations);
+        EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
+        cords = currentEtappe.start;
     }
 
     private void Update()
@@ -80,7 +88,7 @@ public class Crack : MonoBehaviour
     //     }
     // }
 
-
+    int tiebreaker = 1;
     private MapTile FindBestFriend(Vector3Int currentCords, List<Vector3Int> destinations)
     {
         if(occupiedTile==null)
@@ -97,10 +105,10 @@ public class Crack : MonoBehaviour
         MapTile bestFriend = null;
         Vector3Int bestFriendCords;
         bestResult = 0;
-
+        int i = 0;
         foreach(MapTile inspectedTile in currentFriendsRange1)
         {
-            
+            i++;
             if(inspectedTile==null) continue; //skips to next i if the inspected tile is null
             Vector3Int step = new Vector3Int();
             // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
@@ -127,54 +135,73 @@ public class Crack : MonoBehaviour
             if(progress<0)
             {
                 //Debug.Log("dieser schritt führt uns nicht näher zum ziel");
-                continue; //bricht ab, wenn das tile nicht näher zum ziel führt
+                //continue; //bricht ab, wenn das tile nicht näher zum ziel führt. I think not quite tho, bc we have the code underneath executed 6 times everytime
             }
 
             // berechnet wie gut das tile ist, basierend darauf wie viel näher es dem ziel kommt, und wie schwierig es dem crack ist, dort hinzugehen
             float awesomeness = progress/inspectedTile.GetToughness();
             // wenn das tile besser ist, als das beste bis jetzt, wird es als neues bestes tile abgespeichert, zusammen mit seinen cords und dem score
-            if(awesomeness>bestResult)
+            Debug.Log(string.Format("current awesomeness :{0}\ncurrent bestResult: {1}\n current tiebreaker; {2}\n current tile:{3}\n currentFriendlist has: {4}",awesomeness,bestResult,tiebreaker,i,currentFriendsRange1.Count));
+            if(awesomeness>bestResult) // to give your tile the status of best friend, you either need to have a better score OR it needs to be very close AND we havent made an exeption bc of closeness last time
             {
+        
                bestResult = awesomeness;
                bestFriend = inspectedTile;
-               bestFriendCords = inspectedTile.cords; 
-                
+               bestFriendCords = inspectedTile.cords;
+               Debug.Log(string.Format("non-tiebreaker case eingetragen ({0})",bestResult));
+               
             } 
 
+            else if(awesomeness==bestResult)
+            {
+                if(tiebreaker%4==0)
+                {
+                    bestResult = awesomeness;
+                    bestFriend = inspectedTile;
+                    bestFriendCords = inspectedTile.cords;
+                    Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
+
+                }
+
+                tiebreaker++;
+
+            }
+            
         }
+        Debug.Log("done mit einmal friends durchgehen");
 
         // der ganze spaß wird ctr v wiederholt, nur diesmal mit den friends in range 2. Deren score bekommt nen faktor von 0.1, um den wurzel-verlauf der spannung zu simulieren
-        foreach(MapTile inspectedTile in currentFriendsRange2)
-        {
+        // foreach(MapTile inspectedTile in currentFriendsRange2)
+        // {
             
-            if(inspectedTile==null) continue; //skips to next i if the inspected tile is null
-            Vector3Int step = new Vector3Int();
-            // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
-            step = inspectedTile.cords-cords;
-            float distanceNew = Utilities.FindSmallestDistance(inspectedTile.cords, destinations);
-            float progress = 0;
+        //     if(inspectedTile==null) continue; //skips to next i if the inspected tile is null
+        //     Vector3Int step = new Vector3Int();
+        //     // der vektor, der den aktuell considered schritt wiedergibt, also als richtung
+        //     step = inspectedTile.cords-cords;
+        //     float distanceNew = Utilities.FindSmallestDistance(inspectedTile.cords, destinations);
+        //     float progress = 0;
 
-            if(crackMode==c.CrackMode.Point) progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
-            if(crackMode==c.CrackMode.Direction) progress = Vector3.Dot(stressDirection, step);
+        //     if(crackMode==c.CrackMode.Point) progress = distanceCurrent-distanceNew;   //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
+        //     if(crackMode==c.CrackMode.Direction) progress = Vector3.Dot(stressDirection, step);
             
-            if(progress<0)
-            {
-                //Debug.Log("dieser schritt führt uns nicht näher zum ziel");
-                continue; //bricht ab, wenn das tile nicht näher zum ziel führt
-            }
+        //     if(progress<0)
+        //     {
+        //         //Debug.Log("dieser schritt führt uns nicht näher zum ziel");
+        //         continue; //bricht ab, wenn das tile nicht näher zum ziel führt
+        //     }
 
-            // berechnet wie gut das tile ist, basierend darauf wie viel näher es dem ziel kommt, und wie schwierig es dem crack ist, dort hinzugehen
-            float awesomeness = 0.0001f*progress/inspectedTile.GetToughness();
+        //     // berechnet wie gut das tile ist, basierend darauf wie viel näher es dem ziel kommt, und wie schwierig es dem crack ist, dort hinzugehen
+        //     float awesomeness = 0.0001f*progress/inspectedTile.GetToughness();
 
-            // wenn das tile besser ist, als das beste bis jetzt, wird es als neues bestes tile abgespeichert, zusammen mit seinen cords und dem score
-            if(awesomeness>bestResult)
-            {
-               bestResult = awesomeness;
-               bestFriend = inspectedTile;
-               bestFriendCords = inspectedTile.cords; 
-            } 
+        //     // wenn das tile besser ist, als das beste bis jetzt, wird es als neues bestes tile abgespeichert, zusammen mit seinen cords und dem score
+        //     if(awesomeness>bestResult)
+        //     {
+        //        bestResult = awesomeness;
+        //        bestFriend = inspectedTile;
+        //        bestFriendCords = inspectedTile.cords; 
+        //     } 
 
-        }
+        // }
 
         if(bestFriend==null) Debug.Log("die tile auswahl war leider shit");
         return bestFriend;
@@ -183,19 +210,18 @@ public class Crack : MonoBehaviour
     bool InitiateNextStage()
     {
         // if(currentEtappe==null) currentEtappe = etappen[0]; I feel like not putting this in the beginning makes it more intuitive, and we can start by upping the etappe by one and then laoding all the new stuff in
-        if(currentEtappe==etappen[etappen.Count-1]) return false; //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt dercrack ist fertig
+        Debug.Log("next stage initiated at least attemptetively");
+        if(currentEtappe==etappen[etappen.Count-1]) return false; //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt der crack ist fertig
         
-        etappenCounter ++; // zählt ein hoch
+        etappenCounter ++; // zählt eins hoch
         currentEtappe = etappen[etappenCounter]; // läd die werte der neuen etappe in den speicher
         {
             cords = currentEtappe.start; // versetzt den riss in die neue position
 
             // aktualisiert die liste wo alle aktiven ziele drinstehen
             activeDestinations.Clear();
-            foreach(Vector3Int destination in currentEtappe.destinations)
-            {
-                activeDestinations.AddRange(currentEtappe.destinations);
-            }
+            activeDestinations.AddRange(currentEtappe.destinations);
+            EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
 
 
 
@@ -230,6 +256,7 @@ public class Crack : MonoBehaviour
             InitiateNextStage();
 
             UpdateDistance();
+            return false;
         }
 
         if(occupiedTile!=null) occupiedTile.SayHelloToFriends(4); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
@@ -260,18 +287,19 @@ public class Crack : MonoBehaviour
         //yield return new WaitForSeconds(5f);
         occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
 
-        while(Propagate())
+        while(Propagate()) // the crack will look for a better tile and move there until there are not better spots found or a destination is reached
         {
             yield return new WaitForSeconds(zeit);
             float minimumZeitIntervall = 0.25f;
             if(zeit>minimumZeitIntervall) zeit /= 1.4f;
         }
+
         Debug.Log(finalScore);
         PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
         finalScore = 0;
 
-        cords = startPoint;
-        etappenCounter=0;
+        //cords = startPoint;
+        //etappenCounter=0;
         UpdateDistance();
 
         yield break;

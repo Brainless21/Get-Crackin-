@@ -104,7 +104,11 @@ public class MapTile : Entity
     //     //Debug.Log("I happened, follow the rabbit");
     // }
 
-    public Vector3 GetStressState() => currentStressVector; // "=> currentStressVector;" apparently means: {return currentStressVector;}
+    public Vector3 GetStressState()
+    {
+        UpdateStressState();
+        return currentStressVector; // "=> currentStressVector;" apparently means: {return currentStressVector;}
+    } 
 
     
     public void UpdateStressState()

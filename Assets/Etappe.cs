@@ -5,7 +5,7 @@ using UnityEngine;
 public class Etappe : MonoBehaviour
 {
     public List<Vector3Int> destinations;
-    [SerializeField] Vector3Int globalStress;
+    public Vector3Int globalStress;
     public Vector3Int start;
     [SerializeField] Vector3Int startTile;
     [SerializeField] Vector3Int endTile;

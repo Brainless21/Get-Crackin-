@@ -190,7 +190,7 @@ public class Utilities
 
    public static float FindSmallestDistance(Vector3Int pos1, List<Vector3Int> destinationsList) // returns the magnitude of the smallest possible distance between pos1 and all the spots in the list
    {
-       if(destinationsList == null)
+       if(destinationsList == null|destinationsList.Count==0)
        {
            Debug.Log("keine validen Destinations mitgegeben");
            return 0;
