@@ -34,6 +34,24 @@ public class c
     public static Vector3 olf = new Vector3(0f,-1f,1f);
     public static Vector3 originf = new Vector3(0f,0f,0f);
 
+    // richtunsvektoren enum, alle 12
+    public enum richtungsvektoren
+    {
+      N,
+      NNE,
+      ENE,
+      E,
+      ESE,
+      SSE,
+      S,
+      SSW,
+      WSW,
+      W,
+      WNW,
+      NNW
+
+    }
+
     // einträge für die drehmatrix 90°
     public static float a = 1/3 - 1/Mathf.Sqrt(3);
     public static float b = 1/3 + 1/Mathf.Sqrt(3);
@@ -54,6 +72,7 @@ public class c
       PhaseChangeTile
 
     }
+  
 
     // crack modes
     public enum CrackMode

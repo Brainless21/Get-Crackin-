@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Crack : MonoBehaviour
 {
     public Button playButton;
+    public Button resetButton;
     public Vector3Int cords{get;set;}
     private float finalScore =0;
     private MapTile occupiedTile;
@@ -21,6 +22,7 @@ public class Crack : MonoBehaviour
     Vector3Int startPoint = new Vector3Int();
     [SerializeField] List<Vector3Int> activeDestinations = new List<Vector3Int>();
     Coroutine propagate;
+    bool isCrackCoroutineRunning = false;
     // public enum CrackMode
     // {
     //     Point,
@@ -42,14 +44,16 @@ public class Crack : MonoBehaviour
         //propagate = StartCoroutine(CrackPropagation());
 
         playButton.onClick.AddListener(StartCrackPropagation);
+        resetButton.onClick.AddListener(ResetCrack);
     }
 
     private void Start() 
     {
-        currentEtappe = etappen[etappenCounter]; //lädt die aktuelle etappe (normalerweise die erste, counter=0) und setzt start und ziele fest
-        activeDestinations.AddRange(currentEtappe.destinations);
-        EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
-        cords = currentEtappe.start;
+        // currentEtappe = etappen[etappenCounter]; //lädt die aktuelle etappe (normalerweise die erste, counter=0) und setzt start und ziele fest
+        // activeDestinations.AddRange(currentEtappe.destinations);
+        // EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
+        // cords = currentEtappe.start;
+        LoadEtappeByIndex(etappenCounter);
     }
 
     private void Update()
@@ -59,6 +63,7 @@ public class Crack : MonoBehaviour
 
     void StartCrackPropagation()
     {
+        if(isCrackCoroutineRunning == true) return;
         UpdateDistance();
         crackMode = EventManager.instance.GetCrackMode();
         foreach(Vector3Int destination in activeDestinations)
@@ -87,6 +92,22 @@ public class Crack : MonoBehaviour
     //         progress = distanceCurrent
     //     }
     // }
+
+    void ResetCrack()
+    {
+        Debug.Log("crack resetted");
+        LoadEtappeByIndex(0);
+    }
+
+    void LoadEtappeByIndex(int index)
+    {
+        etappenCounter = index;
+        currentEtappe=etappen[index];
+        cords = currentEtappe.start;
+        activeDestinations.Clear();
+        activeDestinations.AddRange(currentEtappe.destinations);
+        EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
+    }
 
     int tiebreaker = 1;
     private MapTile FindBestFriend(Vector3Int currentCords, List<Vector3Int> destinations)
@@ -162,7 +183,7 @@ public class Crack : MonoBehaviour
                     Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
 
                 }
-
+                Debug.Log("wir sind in der inderin");
                 tiebreaker++;
 
             }
@@ -211,22 +232,24 @@ public class Crack : MonoBehaviour
     {
         // if(currentEtappe==null) currentEtappe = etappen[0]; I feel like not putting this in the beginning makes it more intuitive, and we can start by upping the etappe by one and then laoding all the new stuff in
         Debug.Log("next stage initiated at least attemptetively");
-        if(currentEtappe==etappen[etappen.Count-1]) return false; //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt der crack ist fertig
-        
-        etappenCounter ++; // zählt eins hoch
-        currentEtappe = etappen[etappenCounter]; // läd die werte der neuen etappe in den speicher
+        if(currentEtappe==etappen[etappen.Count-1]) //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt der crack ist fertig
         {
-            cords = currentEtappe.start; // versetzt den riss in die neue position
-
-            // aktualisiert die liste wo alle aktiven ziele drinstehen
-            activeDestinations.Clear();
-            activeDestinations.AddRange(currentEtappe.destinations);
-            EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
-
-
-
-            return true;  
+            Debug.Log("letzte wtappe erreicht, well done. Final score:");
+            return false;
         }
+
+        etappenCounter ++; // zählt eins hoch
+        // currentEtappe = etappen[etappenCounter]; // läd die werte der neuen etappe in den speicher
+        
+        // cords = currentEtappe.start; // versetzt den riss in die neue position
+        // // aktualisiert die liste wo alle aktiven ziele drinstehen
+        // activeDestinations.Clear();
+        // activeDestinations.AddRange(currentEtappe.destinations);
+        // EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
+
+        LoadEtappeByIndex(etappenCounter);
+        return true;  
+        
     }
 
     private bool Propagate()
@@ -283,6 +306,7 @@ public class Crack : MonoBehaviour
 
     private IEnumerator CrackPropagation()
     {
+        isCrackCoroutineRunning = true;
         float zeit = 0.7f;
         //yield return new WaitForSeconds(5f);
         occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
@@ -302,6 +326,7 @@ public class Crack : MonoBehaviour
         //etappenCounter=0;
         UpdateDistance();
 
+        isCrackCoroutineRunning = false;
         yield break;
     }
 

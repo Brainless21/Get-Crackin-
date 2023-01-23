@@ -48,6 +48,11 @@ public class EventManager : MonoBehaviour
         Debug.Log(string.Format("mein stress vector wurde zu {0} geändert",newGlobalStress));
         globalStress = newGlobalStress;
     }
+
+    public void SetGlobalStress(c.richtungsvektoren newGlobalStress)
+    {
+        globalStress = Utilities.getDirectionVectorByEnum(newGlobalStress);
+    }
     public Vector3 GetGlobalStress()
     {
         // geht sicher, dass der global stress vektor immer betraglich 1 ist

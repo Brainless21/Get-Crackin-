@@ -205,4 +205,19 @@ public class Utilities
        return smallestDistance;
    }
 
+   public static Vector3Int getDirectionVectorByEnum(c.richtungsvektoren direction)
+   {
+    bool wholeDirection = true; // wird danach eh geändert aber der compiler meckert wenn ich das hier nicht zuweise weil ja die direction auch null sien könnte I guess?
+    if((int)direction%2!=0) wholeDirection = true;
+    if((int)direction%2==0) wholeDirection = false;
+    int index = Mathf.RoundToInt((int)direction / 2);
+
+    if(wholeDirection == true) return c.positionsArray[index];
+    else return c.positionsArrayHalb[index];
+
+
+
+       
+   }
+
 }
