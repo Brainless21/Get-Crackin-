@@ -169,7 +169,7 @@ public class Crack : MonoBehaviour
                bestResult = awesomeness;
                bestFriend = inspectedTile;
                bestFriendCords = inspectedTile.cords;
-               Debug.Log(string.Format("non-tiebreaker case eingetragen ({0})",bestResult));
+               // Debug.Log(string.Format("non-tiebreaker case eingetragen ({0})",bestResult));
                
             } 
 
@@ -180,7 +180,7 @@ public class Crack : MonoBehaviour
                     bestResult = awesomeness;
                     bestFriend = inspectedTile;
                     bestFriendCords = inspectedTile.cords;
-                    Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
+                    // Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
 
                 }
                 Debug.Log("wir sind in der inderin");

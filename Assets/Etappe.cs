@@ -20,13 +20,22 @@ public class Etappe : MonoBehaviour
     
         Vector3Int gerade = endTile - startTile;
         Vector3Int step = new Vector3Int();
+
         foreach(Vector3Int richtung in c.positionsArray)
         {
-            if(Utilities.IsBasicallyEqual(Vector3.Angle(gerade,richtung),0)) step = richtung;
+            if(Utilities.IsBasicallyEqual(Vector3.Angle(gerade,richtung),0))
+            {
+                step = richtung;
+                Debug.Log(string.Format("passende richtung gefunden: {0}", richtung));
+            } 
         }
         foreach(Vector3Int richtung in c.positionsArrayHalb)
         {
-            if(Utilities.IsBasicallyEqual(Vector3.Angle(richtung,gerade),0)) step = richtung;
+            if(Utilities.IsBasicallyEqual(Vector3.Angle(richtung,gerade),0))
+            {
+                step = richtung;
+                Debug.Log(string.Format("passende richtung gefunden: {0}", richtung));
+            } 
         }
         if(step==null) Debug.Log("das richtung finden hat nicht geklappt :(");
 
