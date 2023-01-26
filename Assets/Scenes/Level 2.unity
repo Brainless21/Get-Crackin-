@@ -498,7 +498,7 @@ MonoBehaviour:
   baseToughness: 3
   menuTileName: 
   mesh: {fileID: 0}
-  interfaceStrength: 1
+  interfaceStrength: 0.8
   stressFieldStrength: 0
   star: 0
   isEraser: 0
@@ -701,6 +701,11 @@ PrefabInstance:
       propertyPath: baseToughness
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8266176167228201921, guid: b196e8c2ee67b044486ca624ee0926db,
+        type: 3}
+      propertyPath: interfaceStrength
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8874255023515250164, guid: b196e8c2ee67b044486ca624ee0926db,
         type: 3}
       propertyPath: shape
@@ -738,7 +743,7 @@ GameObject:
   - component: {fileID: 212778123}
   - component: {fileID: 212778122}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Panel (Menu)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -752,7 +757,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212778120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00004508}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00005150404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2042636951}
@@ -760,9 +765,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 741.3, y: -0.00024414062}
-  m_SizeDelta: {x: -1482.4503, y: -0.00012207031}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 741.30005, y: 540.00006}
+  m_SizeDelta: {x: -1482.4479, y: 1079.9999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &212778122
 MonoBehaviour:
@@ -1214,6 +1219,7 @@ RectTransform:
   - {fileID: 212778121}
   - {fileID: 513037803}
   - {fileID: 1049254864}
+  - {fileID: 1061904274}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1470,7 +1476,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599744631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 342661130}
@@ -1478,7 +1484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 814, y: 462}
+  m_AnchoredPosition: {x: 814, y: 628}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599744633
@@ -2247,6 +2253,80 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!1 &1061904273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061904274}
+  - component: {fileID: 1061904276}
+  - component: {fileID: 1061904275}
+  m_Layer: 5
+  m_Name: Panel (Level View)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1061904274
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061904273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00002575202}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 342661130}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -218.71997, y: -7.0897827}
+  m_SizeDelta: {x: -437.51587, y: -294.06116}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1061904275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061904273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1061904276
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061904273}
+  m_CullTransparentMesh: 0
 --- !u!4 &1074920483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4199733018068350728, guid: d0726c3708f63764ea1c31384f7e5215,
@@ -3350,9 +3430,10 @@ MonoBehaviour:
   destinations: []
   globalStress: 1
   start: {x: -9, y: 3, z: 6}
-  startTile: {x: -4, y: -4, z: 8}
-  endTile: {x: -4, y: 1, z: 3}
+  startTile: {x: -1, y: 0, z: 1}
+  endTile: {x: -3, y: -2, z: 5}
   index: 0
+  score: 0
 --- !u!1001 &1962977088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3793,9 +3874,10 @@ MonoBehaviour:
   destinations: []
   globalStress: 5
   start: {x: -8, y: -2, z: 10}
-  startTile: {x: -5, y: -6, z: 11}
-  endTile: {x: 3, y: -2, z: -1}
+  startTile: {x: 2, y: 3, z: -5}
+  endTile: {x: 7, y: -7, z: 0}
   index: 0
+  score: 0
 --- !u!1 &2135479813
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,6 +4566,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5115224817366191898, guid: 943dee1ec96ef7447be9930c80b69d19,
         type: 3}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: adjustmentValueX
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
+        type: 3}
+      propertyPath: adjustmentValueY
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: restartMapButton

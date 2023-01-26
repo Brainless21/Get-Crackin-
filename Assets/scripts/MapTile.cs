@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,7 @@ public class MapTile : Entity
     internal void ChangeDisplayedColor(Color newColor) {currentDisplayedColor=newColor;}
     public int typeKey { get;set; }
     public int cost { get; set; }
-    protected int baseToughness = 1;
+    [SerializeField] protected int baseToughness = 1;
     [SerializeField] public bool isMortal = true;
     bool isCracked = false;
     bool mouseOver = false;
@@ -239,15 +240,14 @@ public class MapTile : Entity
         UpdateStressState();
         //Debug.Log("bin eingeschrieben(initialize)");
 
-       if(propertyArray==null)
-       {
-        propertyArray[0] = (float)cords.x;
-        propertyArray[1] = (float)cords.y;
-        propertyArray[2] = (float)cords.z;
-        propertyArray[c.type] = (float)c.types.MatrixTile; //das stimmt natürlich nur für die matrix tiles. aber alle non matrix tiles sollten ja auch über die placetileshape funktion gemacht worden sein und dann entweder schon einen property array haben oder direkt dann einen neuen bekommen
-       }
+        this.AdjustPosition();
 
 
+    }
+
+    private void AdjustPosition()
+    {
+        transform.position+=MapBuilder.instance.GetTileAdjustment();
     }
 
     void Render()

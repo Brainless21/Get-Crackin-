@@ -97,6 +97,7 @@ public class Crack : MonoBehaviour
     {
         Debug.Log("crack resetted");
         LoadEtappeByIndex(0);
+        tiebreaker = 0;
     }
 
     void LoadEtappeByIndex(int index)
@@ -183,7 +184,7 @@ public class Crack : MonoBehaviour
                     // Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
 
                 }
-                Debug.Log("wir sind in der inderin");
+                Debug.Log("we are in the tiebreaker bracket");
                 tiebreaker++;
 
             }
@@ -235,6 +236,7 @@ public class Crack : MonoBehaviour
         if(currentEtappe==etappen[etappen.Count-1]) //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt der crack ist fertig
         {
             Debug.Log("letzte wtappe erreicht, well done. Final score:");
+            //SpawnEndCard();
             return false;
         }
 
@@ -282,7 +284,10 @@ public class Crack : MonoBehaviour
             return false;
         }
 
-        if(occupiedTile!=null) occupiedTile.SayHelloToFriends(4); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
+        if(occupiedTile!=null) 
+        {
+        occupiedTile.SayHelloToFriends(4); //der crack sagt allen tiles in range i bescheid, dass er in range i von ihnen ist
+        }
 
         if(FindBestFriend(cords, activeDestinations)==null)
         {
@@ -291,10 +296,10 @@ public class Crack : MonoBehaviour
         }
 
         {
+            occupiedTile.Crack();
             cords = FindBestFriend(cords, activeDestinations).cords;
             occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
             UpdateDistance();
-            occupiedTile.Crack();
 
             float stepScore = 1/bestResult;
             PointPopup.Create(cords,stepScore);
@@ -320,6 +325,7 @@ public class Crack : MonoBehaviour
 
         Debug.Log(finalScore);
         PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
+        currentEtappe.SetScore(Mathf.RoundToInt(finalScore));
         finalScore = 0;
 
         //cords = startPoint;

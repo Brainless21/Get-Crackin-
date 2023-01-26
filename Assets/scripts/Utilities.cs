@@ -184,7 +184,7 @@ public class Utilities
 
     public static bool IsBasicallyEqual(float number1, float number2)
     {
-        if((number1 - number2)<0.001 ) return true;
+        if((number1 - number2)<0.0001 ) return true;
         return false;
     }
 

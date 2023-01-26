@@ -42,6 +42,10 @@ public class FundsAccount : MonoBehaviour
         
     }
 
+    private void Start() 
+    {
+        UpdateDisplay();
+    }
     public void UpdateDisplay()
     {
         int currentExpenses = TileLedger.ledgerInstance.CountCost();

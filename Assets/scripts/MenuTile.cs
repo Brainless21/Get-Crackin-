@@ -62,7 +62,19 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 
         if(isEraser==false&&isInspector==false) mesh = this.gameObject.GetComponentInChildren<MeshFilter>().mesh;
 
+        GetValuesFromMaster();
        
+    }
+
+    private void GetValuesFromMaster()
+    {
+        MasterMenuTile master = gameObject.GetComponentInParent<MasterMenuTile>();
+        if(master == null) return;
+        
+        baseToughness        = master.baseToughness;
+        interfaceStrength    = master.interfaceStrength;
+        costOfTile           = master.costOfTile;
+    
     }
 
     public int GetShapeTypeKey()

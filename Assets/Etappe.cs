@@ -10,9 +10,15 @@ public class Etappe : MonoBehaviour
     [SerializeField] Vector3Int startTile;
     [SerializeField] Vector3Int endTile;
     [SerializeField] int index;
+    [SerializeField] int score;
     void Awake()
     {
         FindDestinations();
+    }
+
+    public void SetScore(int newScore)
+    {
+        score = newScore;
     }
 
     void FindDestinations()

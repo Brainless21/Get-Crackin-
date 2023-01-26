@@ -52,6 +52,19 @@ public class MapBuilder : MonoBehaviour
     public void SetStressFieldStrength(float strength) { stressFieldStrength = strength; }
     [SerializeField] bool star;
     public void SetStar(bool isStar) { star = isStar;}
+    [SerializeField] c.richtungsvektoren adjustmentDirection;
+    [SerializeField] float adjustmentValueX;
+    [SerializeField] float adjustmentValueY;
+
+    public Vector3 GetTileAdjustment()
+    {
+        Vector3 direction1 = Utilities.getDirectionVectorByEnum(adjustmentDirection); // standardmäßig vektor nach oben, kann aber auch geändert werden
+        direction1 *= adjustmentValueY/10;
+       
+        Vector3 direction2 = c.r; //vektor nach rechts
+        direction2 *= adjustmentValueX/10;
+        return direction1+direction2;
+    }
 
     
 
@@ -566,13 +579,15 @@ public class MapBuilder : MonoBehaviour
             obenLinks      = 17;
             obenRechts     = 9;
             unten          = 4;
-            untenRechts    = 6;
             untenLinks     = 14;
+            untenRechts    = 6;
             verticalRechts = 4;
-            verticalLinks  = 10;
+            verticalLinks  = 12;
 
             levelCam.orthographicSize = 10;
         }
+
+        
 
         if(mapSize == c.mapSize.large)
         {
