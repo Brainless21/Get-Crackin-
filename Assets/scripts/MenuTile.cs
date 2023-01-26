@@ -33,8 +33,8 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
         return costOfTile;
     }
 
-    [SerializeField] private int baseToughness;
-    public int GetBaseToughness() { return baseToughness; }
+    [SerializeField] private float baseToughness;
+    public float GetBaseToughness() { return baseToughness; }
     [SerializeField] string menuTileName;
     public string GetName() { return menuTileName; }
     [SerializeField] Mesh mesh;

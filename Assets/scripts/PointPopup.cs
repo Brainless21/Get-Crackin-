@@ -32,6 +32,7 @@ public class PointPopup : MonoBehaviour
     {
         // offsets cords so its not inside the tile
         Vector3 offset = new Vector3(1f,1f,1f);
+        offset += MapBuilder.instance.GetTileAdjustment();
         Vector3 position = tilePosition+offset;
 
         // points processing

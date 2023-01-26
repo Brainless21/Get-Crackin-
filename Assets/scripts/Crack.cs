@@ -58,7 +58,7 @@ public class Crack : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position = cords;
+        this.transform.position = cords+MapBuilder.instance.GetTileAdjustment();
     }
 
     void StartCrackPropagation()
@@ -70,6 +70,8 @@ public class Crack : MonoBehaviour
         {
             TileLedger.ledgerInstance.GetTileByCords(destination).gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
         }
+        occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
+        occupiedTile.Crack();
         propagate = StartCoroutine(CrackPropagation());
         
     }
@@ -296,14 +298,14 @@ public class Crack : MonoBehaviour
         }
 
         {
-            occupiedTile.Crack();
             cords = FindBestFriend(cords, activeDestinations).cords;
             occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
+            occupiedTile.Crack();
             UpdateDistance();
 
             float stepScore = 1/bestResult;
             PointPopup.Create(cords,stepScore);
-            Debug.Log (stepScore);
+            //Debug.Log (stepScore);
             finalScore += stepScore;
             return true;
         }

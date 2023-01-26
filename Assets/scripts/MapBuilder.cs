@@ -37,8 +37,8 @@ public class MapBuilder : MonoBehaviour
     public void SetShape(int shapeType) {shape=shapeType;}
     [SerializeField] private int cost;
     public void SetCost(int modifiedCost) {cost=modifiedCost;}
-    [SerializeField] private int baseToughness;
-    public void SetBaseToughness(int baseToughness) {this.baseToughness=baseToughness;}
+    [SerializeField] private float baseToughness;
+    public void SetBaseToughness(float baseToughness) {this.baseToughness=baseToughness;}
     private int shapeRotation = 0;
     [SerializeField] private int shapeSize = 2;
     public void SetShapeSize(int size) { shapeSize = size;}

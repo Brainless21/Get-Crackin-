@@ -25,7 +25,7 @@ public class MapTile : Entity
     internal void ChangeDisplayedColor(Color newColor) {currentDisplayedColor=newColor;}
     public int typeKey { get;set; }
     public int cost { get; set; }
-    [SerializeField] protected int baseToughness = 1;
+    [SerializeField] protected float baseToughness = 1;
     [SerializeField] public bool isMortal = true;
     bool isCracked = false;
     bool mouseOver = false;
@@ -354,7 +354,7 @@ public class MapTile : Entity
         UpdateDisplayColor();
         return baseToughness*modifier;
     }
-    public void SetBaseToughness(int value){baseToughness = value;}
+    public void SetBaseToughness(float value){baseToughness = value;}
 
 
 
@@ -708,7 +708,7 @@ public class MapTile : Entity
         currentDisplayedColor = currentRestingColor;
     }
 
-    public int GetBaseToughness()
+    public float GetBaseToughness()
     {
         return baseToughness;
     }
