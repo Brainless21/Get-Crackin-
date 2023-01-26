@@ -99,7 +99,7 @@ public class Crack : MonoBehaviour
     {
         Debug.Log("crack resetted");
         LoadEtappeByIndex(0);
-        tiebreaker = 0;
+        tiebreaker = 1;
     }
 
     void LoadEtappeByIndex(int index)
@@ -165,7 +165,7 @@ public class Crack : MonoBehaviour
             // berechnet wie gut das tile ist, basierend darauf wie viel näher es dem ziel kommt, und wie schwierig es dem crack ist, dort hinzugehen
             float awesomeness = progress/inspectedTile.GetToughness();
             // wenn das tile besser ist, als das beste bis jetzt, wird es als neues bestes tile abgespeichert, zusammen mit seinen cords und dem score
-            Debug.Log(string.Format("current awesomeness :{0}\ncurrent bestResult: {1}\n current tiebreaker; {2}\n current tile:{3}\n currentFriendlist has: {4}",awesomeness,bestResult,tiebreaker,i,currentFriendsRange1.Count));
+            //Debug.Log(string.Format("current awesomeness :{0}\ncurrent bestResult: {1}\n current tiebreaker; {2}\n current tile:{3}\n currentFriendlist has: {4}",awesomeness,bestResult,tiebreaker,i,currentFriendsRange1.Count));
             if(awesomeness>bestResult) // to give your tile the status of best friend, you either need to have a better score OR it needs to be very close AND we havent made an exeption bc of closeness last time
             {
         
@@ -186,13 +186,13 @@ public class Crack : MonoBehaviour
                     // Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
 
                 }
-                Debug.Log("we are in the tiebreaker bracket");
+                Debug.Log(string.Format("we are in the tiebreaker bracket, tiebreaker is: {0}",tiebreaker));
                 tiebreaker++;
 
             }
             
         }
-        Debug.Log("done mit einmal friends durchgehen");
+        //Debug.Log("done mit einmal friends durchgehen");
 
         // der ganze spaß wird ctr v wiederholt, nur diesmal mit den friends in range 2. Deren score bekommt nen faktor von 0.1, um den wurzel-verlauf der spannung zu simulieren
         // foreach(MapTile inspectedTile in currentFriendsRange2)
