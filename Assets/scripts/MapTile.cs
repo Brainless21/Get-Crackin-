@@ -41,8 +41,10 @@ public class MapTile : Entity
     internal GameObject stressStateIndicatorArrow;  
     GameObject arrowHandle;
     Coroutine Jiggle;
+     [SerializeField] float interfaceStrenghBase;
 
     [SerializeField] int typeForInspection;
+
 
     float[] propertyArray = new float[11]; //das sollte okay sein, weil bei der zuweisung über die placetileshape funktion das eh komplett neu zugewiesen wird
 
@@ -222,6 +224,10 @@ public class MapTile : Entity
         //currentDisplayedColor = currentRestingColor;
         Render();
         if(typeForInspection!=typeKey) typeForInspection = typeKey;
+        if(baseToughness<0.1) 
+        {
+            gameObject.GetComponent<MeshFilter>().mesh = GameAssets.instance.emptyMesh;
+        }
        
     }
 
@@ -239,9 +245,8 @@ public class MapTile : Entity
         currentDisplayedColor = baseColor;
         UpdateStressState();
         //Debug.Log("bin eingeschrieben(initialize)");
-
+        //this.interfaceStrengh = myself.interfaceStrengh;
         this.AdjustPosition();
-
 
     }
 
@@ -492,6 +497,11 @@ public class MapTile : Entity
                 //Debug.Log("mouseOverError: collsion with other particle");
                 mouseOverValidity = c.noSpace;
             }
+
+            if(TileLedger.ledgerInstance.AreNoneOfThemEdgy(calledShape) == false)
+            {
+                mouseOverValidity = c.edgy;
+            }
             
  
         }
@@ -712,4 +722,20 @@ public class MapTile : Entity
     {
         return baseToughness;
     }
+
+    // public virtual float GetInterfaceStrengh()
+    // {
+    //     return interfaceStrenghBase;
+    // }
+    [SerializeField] bool Edge;
+    public bool isEdge()
+    {
+        bool result = false;
+
+        List<MapTile> friendsList = TileLedger.ledgerInstance.GetTileByCords(friendsCords);
+        if(friendsList.Count<6) result = true;
+        Edge = result;
+        return result;
+    }    
+
 }

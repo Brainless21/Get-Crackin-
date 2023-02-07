@@ -49,4 +49,9 @@ public class MatrixTile : MapTile
         }
         return baseToughness*modifier;
     }
+
+    public float GetInterfaceStrengh()
+    {
+        return 0;
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Crack : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Crack : MonoBehaviour
     private MapTile occupiedTile;
     [SerializeField] List<Etappe> etappen;
     [SerializeField] Mesh lookOfDestiny;
+    [SerializeField] TextMeshPro HighscoreDisplay;
+    int highscore;
 
     Etappe currentEtappe;
     [SerializeField] private int etappenCounter = 0;
@@ -22,6 +25,7 @@ public class Crack : MonoBehaviour
     Vector3Int startPoint = new Vector3Int();
     [SerializeField] List<Vector3Int> activeDestinations = new List<Vector3Int>();
     Coroutine propagate;
+    float zeit;
     bool isCrackCoroutineRunning = false;
     // public enum CrackMode
     // {
@@ -107,6 +111,8 @@ public class Crack : MonoBehaviour
         etappenCounter = index;
         currentEtappe=etappen[index];
         cords = currentEtappe.start;
+        occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
+        occupiedTile.Crack();
         activeDestinations.Clear();
         activeDestinations.AddRange(currentEtappe.destinations);
         EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
@@ -228,6 +234,7 @@ public class Crack : MonoBehaviour
         // }
 
         if(bestFriend==null) Debug.Log("die tile auswahl war leider shit");
+        zeit = 0.2f*1/(1+Mathf.Exp(-bestResult));
         return bestFriend;
     }
     
@@ -239,6 +246,13 @@ public class Crack : MonoBehaviour
         {
             Debug.Log("letzte wtappe erreicht, well done. Final score:");
             //SpawnEndCard();
+            // berechnet den score insgesamt über alle etappen und setzt den highscore wenn er größer ist als der bestehende 
+            int gesamtScore = 0;
+            foreach(Etappe etappe in etappen)
+            {
+            gesamtScore += etappe.GetScore();
+            }
+            if(gesamtScore>highscore) HighscoreDisplay.text = Mathf.Round(highscore).ToString();
             return false;
         }
 
@@ -280,10 +294,10 @@ public class Crack : MonoBehaviour
             // }
 
             // overhaul für das obenstehende
-            InitiateNextStage();
-
             UpdateDistance();
-            return false;
+            return InitiateNextStage();
+
+            
         }
 
         if(occupiedTile!=null) 
@@ -314,18 +328,20 @@ public class Crack : MonoBehaviour
     private IEnumerator CrackPropagation()
     {
         isCrackCoroutineRunning = true;
-        float zeit = 0.7f;
+        //float zeit = 0.7f;
         //yield return new WaitForSeconds(5f);
         occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
 
         while(Propagate()) // the crack will look for a better tile and move there until there are not better spots found or a destination is reached
         {
             yield return new WaitForSeconds(zeit);
-            float minimumZeitIntervall = 0.25f;
-            if(zeit>minimumZeitIntervall) zeit /= 1.4f;
+            // float minimumZeitIntervall = 0.25f;
+            // if(zeit>minimumZeitIntervall) zeit /= 1.4f;
         }
 
         Debug.Log(finalScore);
+        if(Mathf.Round(finalScore*10)>highscore) highscore = Mathf.RoundToInt(finalScore*10);
+        HighscoreDisplay.text = Mathf.Round(highscore).ToString();
         PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
         currentEtappe.SetScore(Mathf.RoundToInt(finalScore));
         finalScore = 0;

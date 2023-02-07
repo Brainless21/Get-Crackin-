@@ -21,6 +21,8 @@ public class Etappe : MonoBehaviour
         score = newScore;
     }
 
+    public int GetScore() => score;
+
     void FindDestinations()
     {
     

@@ -220,4 +220,17 @@ public class Utilities
        
    }
 
+  public static double CustomDotProduct(Vector3 point, int height, Vector3 lineDirection)
+        {
+            float modifiedHeight = height*0.5f;
+            Vector3 linePoint = new Vector3(-1,2,-1)*-modifiedHeight;
+            Vector3 pointToLinePoint = point - linePoint;
+            
+
+            double dotProduct = Vector3.Dot(pointToLinePoint,lineDirection);
+
+
+            return dotProduct;
+        }
+
 }

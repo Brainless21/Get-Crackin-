@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class TileLedger : MonoBehaviour
 
     [SerializeField] private Dictionary<Vector3Int,MapTile> tilesDict = new Dictionary<Vector3Int, MapTile>();
     [SerializeField] private Dictionary<Vector3Int,List<Vector3>> stressDict = new Dictionary<Vector3Int, List<Vector3>>();
+    //[SerializeField] List<Mesh> meshList = new List<Mesh>();
     private List<Vector3Int> positionsWithOutOfDateStress = new List<Vector3Int>();
 
     public Dictionary<Vector3Int,MapTile> PassTilesDict()
@@ -81,7 +83,7 @@ public class TileLedger : MonoBehaviour
 
             // hier wird jetzt der property array zusammengesammelt, aus den im tile stehenden values
             float[] propertyArray = new float[11];
-            propertyArray[c.type] = (float)kvp.Value.typeKey;
+            propertyArray[c.type]  = (float)kvp.Value.typeKey;
             propertyArray[c.xCord] = (float)kvp.Value.cords.x;
             propertyArray[c.yCord] = (float)kvp.Value.cords.y;
             propertyArray[c.zCord] = (float)kvp.Value.cords.z;
@@ -365,5 +367,16 @@ public class TileLedger : MonoBehaviour
     {
         Utilities.PrintDictionary(tilesDict);
     }
-  
+
+    internal bool AreNoneOfThemEdgy(List<Vector3Int> calledShape)
+    {
+        List<MapTile> TileList = GetTileByCords(calledShape);
+
+        foreach(MapTile tile in TileList)
+        {
+            if(tile.isEdge() == true) return false;
+        }
+
+        return true; // true gets returned only if none of the tiles have the edgy trait
+    }
 }

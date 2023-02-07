@@ -18,4 +18,5 @@ public static GameAssets instance;
    public GameObject pointPopup;
    public GameObject matrixTile;
    public GameObject stressArrow;
+   public Mesh emptyMesh;
 }

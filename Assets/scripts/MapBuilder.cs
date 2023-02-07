@@ -20,6 +20,10 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] int untenRechts;
     [SerializeField] int verticalRechts;
     [SerializeField] int verticalLinks;
+    [SerializeField] int hexOr;
+    [SerializeField] int hexOl;
+    [SerializeField] int hexUr;
+    [SerializeField] int hexUl;
     [SerializeField] c.mapSize mapSize = c.mapSize.small;
     [SerializeField] Camera levelCam;
     public Button resetMapButton;
@@ -156,6 +160,7 @@ public class MapBuilder : MonoBehaviour
     private void Start() 
     {
         BuildSavedMap();
+        
     }
 
     GameObject GetTileByTag(int tag)
@@ -307,6 +312,17 @@ public class MapBuilder : MonoBehaviour
             return false;
         }
 
+        // es wird überprüft ob die shape am rand der map liegen würde
+        foreach(MapTile tile in targetTiles)
+        {
+            if(tile.isEdge()==true)
+            {
+                Debug.Log("shape darf nicht den rand berühren");
+                return false;
+            }
+
+        }
+
         // check the funds situation
 
         foreach(Vector3Int spot in currentShape)
@@ -329,7 +345,7 @@ public class MapBuilder : MonoBehaviour
         // es wird überprüft, ob auf der fläche des shapes auch nur tiles sitzen, die üebrschrieben weden dürfen (also nur matrix tiles, die nur matrix tiles als nachbarn haben)
         foreach(MapTile tile in targetTiles)
         {
-            if(tile.CanThisBeOverridden(type,true)==false) return false;
+            // if(tile.CanThisBeOverridden(type,true)==false) return false;
 
             // if(tile.typeKey!=c.matrixTile)
             // {
@@ -583,8 +599,38 @@ public class MapBuilder : MonoBehaviour
             untenRechts    = 6;
             verticalRechts = 4;
             verticalLinks  = 12;
+            hexOr          = 30;
+            hexOl          = 30;
+            hexUr          = 30;
+            hexUl          = 30;
 
             levelCam.orthographicSize = 10;
+
+            adjustmentValueX = 10;
+            adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
+        }
+
+        if(mapSize == c.mapSize.hexagonal)
+        {
+            oben           = 20;
+            obenLinks      = 20;
+            unten          = 20;
+            obenRechts     = 20;
+            untenLinks     = 20;
+            untenRechts    = 20;
+            verticalRechts = 1;
+            verticalLinks  = 13;
+            hexOr          = 8;
+            hexOl          = 16;
+            hexUr          = 2;
+            hexUl          = 10;
+
+            levelCam.orthographicSize = 16;
+
+            adjustmentValueX = 10;
+            adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
         }
 
         
@@ -592,15 +638,23 @@ public class MapBuilder : MonoBehaviour
         if(mapSize == c.mapSize.large)
         {
             oben           = 11;
-            obenLinks      = 20;
+            obenLinks      = 25;
             unten          = 7;
-            obenRechts     = 12;
-            untenLinks     = 17;
+            obenRechts     = 14;
+            untenLinks     = 25;
             untenRechts    = 9;
             verticalRechts = 7;
-            verticalLinks  = 13;
+            verticalLinks  = 17;
+            hexOr          = 30;
+            hexOl          = 30;
+            hexUr          = 30;
+            hexUl          = 30;
 
             levelCam.orthographicSize = 16;
+
+            adjustmentValueX = 10;
+            adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
         }
        //Debug.Log("coroutine started");
        int xStart = -untenLinks;
@@ -629,8 +683,12 @@ public class MapBuilder : MonoBehaviour
             
                     if(zf>=zStart&zf<zEnd) //schneidet die spitzen ecken der raute ab
                     {
-                        if(x<verticalCutoffR[y]+verticalRechts&&x>verticalCutoffL[y]-verticalLinks) // diese lovely abfrage schaut, ob die koordinaten innerhalb der rechten und linken grenzen liegen. dafür wird der y-Wert in die verticalcutoff Liste gegeben und raus kommt, welchen wert x maximal/minimal haben darf, unter berücksichtungung der im editor eingegebenen grenzen.
+                        if(x<verticalCutoffR[y]+verticalRechts && x>verticalCutoffL[y]-verticalLinks) // diese lovely abfrage schaut, ob die koordinaten innerhalb der rechten und linken grenzen liegen. dafür wird der y-Wert in die verticalcutoff Liste gegeben und raus kommt, welchen wert x maximal/minimal haben darf, unter berücksichtungung der im editor eingegebenen grenzen.
                         {
+                            if((Utilities.CustomDotProduct(cords, hexOr, Utilities.getDirectionVectorByEnum(c.richtungsvektoren.NNE))>0)) continue;
+                            if((Utilities.CustomDotProduct(cords, hexOl, Utilities.getDirectionVectorByEnum(c.richtungsvektoren.SSE))<0)) continue;
+                            if((Utilities.CustomDotProduct(cords, -hexUl, Utilities.getDirectionVectorByEnum(c.richtungsvektoren.NNE))<0)) continue;
+                            if((Utilities.CustomDotProduct(cords, -hexUr, Utilities.getDirectionVectorByEnum(c.richtungsvektoren.SSE))>0)) continue;
                             //Debug.Log("nope, rechter cutoff überschritten");
                             MapTile handle = CreateTile(cordsInt,c.matrixTile);
 

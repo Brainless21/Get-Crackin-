@@ -13,8 +13,8 @@ public class c
 
     public static List<Vector3Int> positionsArrayHalb = new List<Vector3Int>()
     {
-      new Vector3Int(1,-2,1),  new Vector3Int(2,-1,1), new Vector3Int(1,1,-2),
-      new Vector3Int(-1,2,-1), new Vector3Int(-1,1,1), new Vector3Int(-1,-1,2)
+      new Vector3Int(1,-2,1),  new Vector3Int(2,-1,-1), new Vector3Int(1,1,-2),
+      new Vector3Int(-1,2,-1), new Vector3Int(-2,1,1), new Vector3Int(-1,-1,2)
     };
     // richtungsvektoren
     public static Vector3Int or = new Vector3Int(1,-1,0);
@@ -125,6 +125,7 @@ public class c
       medium,
       large,
       huge,
+      hexagonal,
       custom
     }
 
@@ -132,6 +133,7 @@ public class c
     public const int valid = 0;
     public const int noSpace = 1;
     public const int outOfBounds = 2;
+    public const int edgy = 3;
 
     // behaviors
     public const int grenzflaeche = 1;

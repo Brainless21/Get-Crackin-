@@ -96,6 +96,11 @@ public class PhaseChangeTile : MapTile
             
         }
     }
+
+    public float GetInterfaceStrengh()
+    {
+        return interfaceStrengh;
+    }
    
 
     
