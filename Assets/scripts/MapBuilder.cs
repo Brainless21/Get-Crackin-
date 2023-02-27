@@ -524,6 +524,9 @@ public class MapBuilder : MonoBehaviour
 
             handle.cost = Mathf.RoundToInt(currentTileProperties[i][c.cost]);
             handle.SetBaseToughness(Mathf.RoundToInt(currentTileProperties[i][c.baseToughness]));
+
+            handle.isErasable = false;
+
             if(type==c.particleTile1)
             {
                 handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
@@ -582,6 +585,7 @@ public class MapBuilder : MonoBehaviour
         }
         DeleteMap();
         BuildFromDictionary(save.GetMapName(), save.GetTileNames(), save.GetTileShapes(), save.GetTileProperties());
+        FundsAccount.instance.UpdateDisplay();
     }
     
 

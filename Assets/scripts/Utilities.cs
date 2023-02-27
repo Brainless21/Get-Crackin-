@@ -233,4 +233,22 @@ public class Utilities
             return dotProduct;
         }
 
+    public static float MapStressLength(float length, float upperBound, float maxValue)
+    {
+        if(length<0) return 1;
+        if(length>=0 & length <=1) return length;
+        if(length>upperBound) return maxValue;
+    
+        float m = (maxValue - 1) / (upperBound - 1);
+        float b = 1 - m;
+        return Mathf.Min(maxValue, m * length + b);
+    }
+
+    public static Vector3 LimitVectorLength(Vector3 inputVector, float upperBound=10, float maxValue=1.5f)
+    {
+        Vector3 outputVector = inputVector.normalized; //scales it to lenght one
+        outputVector *= MapStressLength(inputVector.magnitude, upperBound, maxValue);
+        return outputVector;
+    }
+
 }

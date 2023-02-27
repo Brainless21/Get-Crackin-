@@ -158,8 +158,9 @@ public class Crack : MonoBehaviour
                 // hier kann man einiges auf 1 skalieren. Die Beiden Vektoren vor dem zusammenwursten, den resultierenden vektor nach dem zusammenwursten. Jo das wars eig auch schon.
                 // ich probier als erstes mal, die vorm zusammenwursten nicht zu skalieren, den resultierenden vor dem skalarprodukt aber schon. Die hoffnung ist, dass ich dadurch das abstoßende verhalten an der interfac der phase Change TIles behalte, aber nicht mehr das weirde hin her bei den abstoßenden 
                 Vector3 stressDirection = 0.5f*inspectedTile.GetStressState()+0.5f*occupiedTile.GetStressState();
-                progress = Vector3.Dot(Utilities.ScaleLenghtToOne(stressDirection),step);
-            
+                // progress = Vector3.Dot(Utilities.ScaleLenghtToOne(stressDirection),step); //diese variante gibt punkte nur nach richtung des stressVectors, nicht nach länge
+                // progress = Vector3.Dot(stressDirection,step); // diese variante berückscihtigt auch wie lang der stress vektor ist, also bei mehr stress in eine richtung gibts insgesamt weniger punkte für den schritt
+                progress = Vector3.Dot(Utilities.LimitVectorLength(stressDirection),step); // diese variante ist eine mischung aus den zweien davor. Sie berücksichtigt die länge des stressVectors, aber der effekt wird nie größer als 1.5
             }
             //berechnet die distanz vom betrachteten tile zum ziel, dann wie viel weiter man dem ziel kommt wenn man auf das tile geht
             if(progress<0)

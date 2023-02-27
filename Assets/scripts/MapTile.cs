@@ -29,6 +29,7 @@ public class MapTile : Entity
     [SerializeField] public bool isMortal = true;
     bool isCracked = false;
     bool mouseOver = false;
+    public bool isErasable = true;
     [SerializeField] internal List<Vector3Int> associatedShape = new List<Vector3Int>();
     int mouseOverValidity;
     [SerializeField] string tileName = "nonNamedMaptile";
@@ -571,6 +572,7 @@ public class MapTile : Entity
         // plaziertung eines matrix tiles= radiergummi tool, löscht also das tile und die associated shape
         if(mouseMode==c.clearTile)
         {
+            if(isErasable==false) return;
             MapBuilder.instance.SetTileType(c.matrixTile);
             MapBuilder.instance.PlaceTile(this.cords,false,false,true);
             
