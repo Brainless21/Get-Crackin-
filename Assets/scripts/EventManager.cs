@@ -52,6 +52,7 @@ public class EventManager : MonoBehaviour
     public void SetGlobalStress(c.richtungsvektoren newGlobalStress)
     {
         globalStress = Utilities.getDirectionVectorByEnum(newGlobalStress);
+        TileLedger.ledgerInstance.UpdateAllStresses();
     }
     public Vector3 GetGlobalStress()
     {

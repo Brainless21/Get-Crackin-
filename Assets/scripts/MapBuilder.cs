@@ -144,7 +144,7 @@ public class MapBuilder : MonoBehaviour
         // DontDestroyOnLoad(this.gameObject);
 
         resetMapButton.onClick.AddListener(ResetMap);
-        restartMapButton.onClick.AddListener(RestartMap);
+        //restartMapButton.onClick.AddListener(RestartMap);
         deleteMapButton.onClick.AddListener(DeleteMap);
         loadSavedMapButton.onClick.AddListener(BuildSavedMap);
 
@@ -174,8 +174,9 @@ public class MapBuilder : MonoBehaviour
     }
 
 
-    void RestartMap()
+    public void RestartMap()
     {
+
         Dictionary<Vector3Int,MapTile> currentMap = TileLedger.ledgerInstance.PassTilesDict();
 
         foreach(KeyValuePair<Vector3Int,MapTile> tile in currentMap)
@@ -634,6 +635,28 @@ public class MapBuilder : MonoBehaviour
 
             adjustmentValueX = 10;
             adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
+        }
+
+        if(mapSize == c.mapSize.hexagonalLarge)
+        {
+            oben           = 20;
+            obenLinks      = 20;
+            unten          = 20;
+            obenRechts     = 20;
+            untenLinks     = 20;
+            untenRechts    = 20;
+            verticalRechts = 3;
+            verticalLinks  = 15;
+            hexOr          = 10;
+            hexOl          = 18;
+            hexUr          = 4;
+            hexUl          = 12;
+
+            levelCam.orthographicSize = 18;
+
+            adjustmentValueX = 7;
+            adjustmentValueY = -3.5f;
             adjustmentDirection = c.richtungsvektoren.N;
         }
 

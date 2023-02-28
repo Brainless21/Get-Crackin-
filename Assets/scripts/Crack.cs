@@ -47,8 +47,8 @@ public class Crack : MonoBehaviour
 
         //propagate = StartCoroutine(CrackPropagation());
 
-        playButton.onClick.AddListener(StartCrackPropagation);
         resetButton.onClick.AddListener(ResetCrack);
+        playButton.onClick.AddListener(StartCrackPropagation); // the orderis very important bc they are both triggered by the same play button, so we need to reset before starting
     }
 
     private void Start() 
@@ -67,7 +67,8 @@ public class Crack : MonoBehaviour
 
     void StartCrackPropagation()
     {
-        if(isCrackCoroutineRunning == true) return;
+        
+        if(isCrackCoroutineRunning) return;
         UpdateDistance();
         crackMode = EventManager.instance.GetCrackMode();
         foreach(Vector3Int destination in activeDestinations)
@@ -101,6 +102,8 @@ public class Crack : MonoBehaviour
 
     void ResetCrack()
     {
+        if(isCrackCoroutineRunning) return;
+        MapBuilder.instance.RestartMap();
         Debug.Log("crack resetted");
         LoadEtappeByIndex(0);
         tiebreaker = 1;

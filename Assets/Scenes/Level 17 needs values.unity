@@ -5225,7 +5225,7 @@ MonoBehaviour:
   baseToughness: 3
   menuTileName: Tough Particle
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 1
   stressFieldStrength: 0
   star: 0
   isEraser: 0
@@ -7271,7 +7271,7 @@ MonoBehaviour:
   isShape: 1
   costOfShape: 0
   costOfTile: 4
-  baseToughness: 1.9
+  baseToughness: 2.5
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
   interfaceStrength: 1
@@ -9248,7 +9248,7 @@ MonoBehaviour:
   size: 2
   isShape: 1
   costOfShape: 0
-  costOfTile: 2
+  costOfTile: 3
   baseToughness: 1.9
   menuTileName: Tough Particle
   mesh: {fileID: 0}
@@ -9424,7 +9424,7 @@ MonoBehaviour:
   size: 0
   isShape: 1
   costOfShape: 0
-  costOfTile: 2
+  costOfTile: 3
   baseToughness: 1.9
   menuTileName: Tough Particle
   mesh: {fileID: 0}
@@ -9964,7 +9964,7 @@ MonoBehaviour:
   baseToughness: 3
   menuTileName: Basic Particle
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 1
   stressFieldStrength: 0
   star: 0
   isEraser: 0

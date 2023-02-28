@@ -166,9 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinations: []
   globalStress: 3
-  start: {x: -15, y: -2, z: 17}
-  startTile: {x: 2, y: 3, z: -5}
-  endTile: {x: 7, y: -7, z: -1}
+  start: {x: -13, y: -3, z: 16}
+  startTile: {x: 6, y: -7, z: 1}
+  endTile: {x: 2, y: 1, z: -3}
   index: 0
   score: 0
 --- !u!1001 &21178903
@@ -466,12 +466,12 @@ PrefabInstance:
         type: 3}
       propertyPath: etappen.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 819992936}
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
       propertyPath: etappen.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 651599650}
     - target: {fileID: 1567869443710866, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_Name
       value: Crack
@@ -1953,6 +1953,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599744631}
   m_CullTransparentMesh: 0
+--- !u!1 &651599648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 651599649}
+  - component: {fileID: 651599650}
+  m_Layer: 0
+  m_Name: Etappe 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &651599649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651599648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946191207}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651599650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651599648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6da407e42c283240971e0c96516ba39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinations: []
+  globalStress: 5
+  start: {x: -5, y: -11, z: 16}
+  startTile: {x: -10, y: 8, z: 2}
+  endTile: {x: 0, y: 3, z: -3}
+  index: 0
+  score: 0
 --- !u!1 &681701402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,6 +2524,56 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5443174743271777795}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &819992934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 819992935}
+  - component: {fileID: 819992936}
+  m_Layer: 0
+  m_Name: Etappe 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &819992935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819992934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1946191207}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &819992936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819992934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6da407e42c283240971e0c96516ba39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinations: []
+  globalStress: 1
+  start: {x: -13, y: 5, z: 8}
+  startTile: {x: 1, y: -14, z: 13}
+  endTile: {x: 6, y: -9, z: 3}
+  index: 0
+  score: 0
 --- !u!1 &836683235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,7 +3051,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 16
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9078,7 +9178,7 @@ PrefabInstance:
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: mapSize
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}

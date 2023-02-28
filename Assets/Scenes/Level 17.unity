@@ -441,7 +441,7 @@ PrefabInstance:
         type: 3}
       propertyPath: resetButton
       value: 
-      objectReference: {fileID: 1749381285}
+      objectReference: {fileID: 1044469728}
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
       propertyPath: lookOfDestiny
@@ -5225,7 +5225,7 @@ MonoBehaviour:
   baseToughness: 3
   menuTileName: Tough Particle
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 1
   stressFieldStrength: 0
   star: 0
   isEraser: 0
@@ -7271,7 +7271,7 @@ MonoBehaviour:
   isShape: 1
   costOfShape: 0
   costOfTile: 4
-  baseToughness: 1.9
+  baseToughness: 2.5
   menuTileName: Carbon Fiber
   mesh: {fileID: 0}
   interfaceStrength: 1
@@ -8840,7 +8840,7 @@ PrefabInstance:
     - target: {fileID: 5575112607965457714, guid: 11299da46926ef049addf6c22c37e896,
         type: 3}
       propertyPath: funds
-      value: 80
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5575112607965457714, guid: 11299da46926ef049addf6c22c37e896,
         type: 3}
@@ -9145,7 +9145,7 @@ PrefabInstance:
         type: 3}
       propertyPath: restartMapButton
       value: 
-      objectReference: {fileID: 1749381285}
+      objectReference: {fileID: 1044469728}
     - target: {fileID: 5957669748549164328, guid: c2ff7c80afe1dd343b8030df34cff3c4,
         type: 3}
       propertyPath: loadSavedMapButton
@@ -9248,7 +9248,7 @@ MonoBehaviour:
   size: 2
   isShape: 1
   costOfShape: 0
-  costOfTile: 2
+  costOfTile: 3
   baseToughness: 1.9
   menuTileName: Tough Particle
   mesh: {fileID: 0}
@@ -9424,7 +9424,7 @@ MonoBehaviour:
   size: 0
   isShape: 1
   costOfShape: 0
-  costOfTile: 2
+  costOfTile: 3
   baseToughness: 1.9
   menuTileName: Tough Particle
   mesh: {fileID: 0}
@@ -9964,7 +9964,7 @@ MonoBehaviour:
   baseToughness: 3
   menuTileName: Basic Particle
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 1
   stressFieldStrength: 0
   star: 0
   isEraser: 0

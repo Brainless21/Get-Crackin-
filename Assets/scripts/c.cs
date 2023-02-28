@@ -126,6 +126,7 @@ public class c
       large,
       huge,
       hexagonal,
+      hexagonalLarge,
       custom
     }
 

@@ -19,6 +19,15 @@ public class TileLedger : MonoBehaviour
         return tilesDict;
     }
 
+    public void UpdateAllStresses()
+    {
+        // schreibt das gesamte stress dict in die zu updaten liste, damit die dann im nächsten frame geudated werden. Actually glaube ich aber dass die inert stresses da gar nicht dirn stehen...
+        foreach (KeyValuePair<Vector3Int,MapTile> kvp in tilesDict)
+        {
+            positionsWithOutOfDateStress.Add(kvp.Key);
+        }
+        return;
+    }
     void Awake() 
     {
         // MAKE ledgerINSTANCE
@@ -129,7 +138,7 @@ public class TileLedger : MonoBehaviour
     
     public void RemoveStressFromPosition(Vector3Int position, Vector3 obsoleteStressVector)
     {
-        Debug.Log("stress remover called");
+        // Debug.Log("stress remover called");
         //Debug.Log(string.Format("stress remover called to remove {0} from {1}",Utilities.GetPreciseVectorString(obsoleteStressVector),position));
         if(!stressDict.ContainsKey(position))
         {
@@ -158,12 +167,12 @@ public class TileLedger : MonoBehaviour
                 listCopy.RemoveAt(i);
                 //Debug.Log(string.Format("korrigierte Liste: {0}",Utilities.GetListString(listCopy)));
                 stressDict.Remove(position); // thtas gonna fuck me again isnt it?
-                Debug.Log("about to add the list back in");
+                //Debug.Log("about to add the list back in");
                 stressDict.Add(position,listCopy);
-                Debug.Log("list added ");
+                //Debug.Log("list added ");
                 // GetTileByCords(position).UpdateStressState(); wird replaced durch:
                 positionsWithOutOfDateStress.Add(position);
-                Debug.Log("stress updated in list");
+                //Debug.Log("stress updated in list");
                 //Debug.Log(string.Format("was steht an der stelle {0} jetzt im stressdict:{1}",position,Utilities.GetListString(listCopy)));
                 
                 //stressDictCopy[position].RemoveAt(i); //whyyy you no working. You got the stupid vector in there man.
@@ -240,10 +249,10 @@ public class TileLedger : MonoBehaviour
 
     public void RemoveStressField(Dictionary<Vector3Int,Vector3> fieldList)
     {
-        Debug.Log("removestressfield() got called");
+        // Debug.Log("removestressfield() got called");
         foreach(KeyValuePair<Vector3Int, Vector3> entry in fieldList)
         {
-            Debug.Log("start removing stress now");
+            // Debug.Log("start removing stress now");
             RemoveStressFromPosition(entry.Key, entry.Value);
         }
     }
