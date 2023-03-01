@@ -441,7 +441,7 @@ public class MapBuilder : MonoBehaviour
         // es wird überprüft, ob auf der fläche des shapes auch nur tiles sitzen, die üebrschrieben weden dürfen (also nur matrix tiles, die nur matrix tiles als nachbarn haben)
         foreach(MapTile tile in targetTiles)
         {
-            // if(tile.CanThisBeOverridden(type,true)==false) return false;
+            if(tile.CanThisBeOverridden(type,true)==false) return false;
 
             // if(tile.typeKey!=c.matrixTile)
             // {

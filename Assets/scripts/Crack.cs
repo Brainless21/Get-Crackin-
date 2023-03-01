@@ -256,21 +256,36 @@ public class Crack : MonoBehaviour
     {
         // if(currentEtappe==null) currentEtappe = etappen[0]; I feel like not putting this in the beginning makes it more intuitive, and we can start by upping the etappe by one and then laoding all the new stuff in
         Debug.Log("next stage initiated at least attemptetively");
+        currentEtappe.SetScore(Mathf.RoundToInt(finalScore*10));
+
         if(currentEtappe==etappen[etappen.Count-1]) //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt der crack ist fertig
         {
             Debug.Log("letzte wtappe erreicht, well done. Final score:");
             //SpawnEndCard();
             // berechnet den score insgesamt über alle etappen und setzt den highscore wenn er größer ist als der bestehende 
-            int gesamtScore = 0;
+            int gesamtScore = currentEtappe.GetScore();
+            Debug.Log(string.Format("gesamtscore ursprünglich gesetzt als: {0}",gesamtScore));
+
             foreach(Etappe etappe in etappen)
             {
-            gesamtScore += etappe.GetScore();
+            if(gesamtScore>etappe.GetScore()) gesamtScore = etappe.GetScore(); // jeder score wird durchgegangen, und der kleinste davon bleibt als gesamtScore stehen
             }
-            if(gesamtScore>highscore) HighscoreDisplay.text = Mathf.Round(highscore).ToString();
+
+            Debug.Log(string.Format("gesamtscore am ende ausgewertet als: {0}",gesamtScore));
+
+            if(gesamtScore>highscore)
+            {
+                HighscoreDisplay.text = Mathf.Round(gesamtScore).ToString();
+                highscore = gesamtScore;
+            }
+
+
+            // so this whole score jiggle comes out as 0 actually, which kinda makes no sense because at least the last etappe has a score in the end so the result should be that but its not 
             return false;
         }
 
         etappenCounter ++; // zählt eins hoch
+        finalScore = 0;
         // currentEtappe = etappen[etappenCounter]; // läd die werte der neuen etappe in den speicher
         
         // cords = currentEtappe.start; // versetzt den riss in die neue position
@@ -308,7 +323,10 @@ public class Crack : MonoBehaviour
             // }
 
             // overhaul für das obenstehende
+            // currentEtappe.SetScore(Mathf.RoundToInt(finalScore*10)); // speichert den aktuellen score als etappenscore ab
+            // finalScore = 0;
             UpdateDistance();
+            PointPopup.Create(this.cords,finalScore,5,4);
             return InitiateNextStage();
 
             
@@ -355,9 +373,9 @@ public class Crack : MonoBehaviour
 
         Debug.Log(finalScore);
         if(Mathf.Round(finalScore*10)>highscore) highscore = Mathf.RoundToInt(finalScore*10);
-        HighscoreDisplay.text = Mathf.Round(highscore).ToString();
-        PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
-        currentEtappe.SetScore(Mathf.RoundToInt(finalScore));
+        // HighscoreDisplay.text = Mathf.Round(highscore).ToString();
+        // PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);
+
         finalScore = 0;
 
         //cords = startPoint;
