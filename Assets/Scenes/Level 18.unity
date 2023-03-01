@@ -441,7 +441,7 @@ PrefabInstance:
         type: 3}
       propertyPath: resetButton
       value: 
-      objectReference: {fileID: 1749381285}
+      objectReference: {fileID: 1044469728}
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
       propertyPath: lookOfDestiny
@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
       propertyPath: etappen.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
@@ -471,7 +471,7 @@ PrefabInstance:
         type: 3}
       propertyPath: etappen.Array.data[2]
       value: 
-      objectReference: {fileID: 651599650}
+      objectReference: {fileID: 0}
     - target: {fileID: 1567869443710866, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_Name
       value: Crack
@@ -1953,56 +1953,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599744631}
   m_CullTransparentMesh: 0
---- !u!1 &651599648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 651599649}
-  - component: {fileID: 651599650}
-  m_Layer: 0
-  m_Name: Etappe 3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &651599649
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651599648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1946191207}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &651599650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651599648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6da407e42c283240971e0c96516ba39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinations: []
-  globalStress: 5
-  start: {x: -5, y: -11, z: 16}
-  startTile: {x: -10, y: 8, z: 2}
-  endTile: {x: 0, y: 3, z: -3}
-  index: 0
-  score: 0
 --- !u!1 &681701402
 GameObject:
   m_ObjectHideFlags: 0

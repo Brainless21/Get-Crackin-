@@ -136,7 +136,6 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("click registered");
-        int mouseMode = EventManager.instance.GetMouseMode();
 
         // ändert den placetile Type, wenn das Menutile ein type hat
         if(isType==true)
@@ -147,6 +146,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
             EventManager.instance.SetMouseMode(c.placeTile);
         }
 
+        int mouseMode = EventManager.instance.GetMouseMode();
         // ändert den shapeType, wenn das Menutile eine Shape hat
         if(isShape==true&&mouseMode==c.placeTile)
         {

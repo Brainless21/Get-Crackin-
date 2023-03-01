@@ -27,13 +27,13 @@ public class Entity : MonoBehaviour
     public virtual void MouseEnter(Vector3Int cords, List<Vector3Int> shape)
     {
         if(this.cords!=cords) return;
-        Debug.Log("base entity mouse enter");
+        // Debug.Log("base entity mouse enter");
     }
     
     public virtual void MouseExit(Vector3Int cords, List<Vector3Int> shape)
     {
         if(this.cords!=cords) return;
-        Debug.Log("base entitiy mouse exit");
+        // Debug.Log("base entitiy mouse exit");
     }
 
     // public virtual void MouseInteraction(Vector2Int mouseMode, int interactionType)

@@ -232,7 +232,7 @@ public class MapTile : Entity
        
     }
 
-     protected void Initialize(MapTile myself)
+    protected void Initialize(MapTile myself)
     {
         cords = ConvertToHex(myself);
         WriteFriendsCords();

@@ -159,8 +159,103 @@ public class MapBuilder : MonoBehaviour
 
     private void Start() 
     {
+        SetMapSize();
         BuildSavedMap();
         
+    }
+
+    void SetMapSize()
+    {
+        if(mapSize == c.mapSize.small)
+        {
+            oben           = 8;
+            obenLinks      = 17;
+            obenRechts     = 9;
+            unten          = 4;
+            untenLinks     = 14;
+            untenRechts    = 6;
+            verticalRechts = 4;
+            verticalLinks  = 12;
+            hexOr          = 30;
+            hexOl          = 30;
+            hexUr          = 30;
+            hexUl          = 30;
+
+            levelCam.orthographicSize = 10;
+
+            adjustmentValueX = 10;
+            adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
+        }
+
+        if(mapSize == c.mapSize.hexagonal)
+        {
+            oben           = 20;
+            obenLinks      = 20;
+            unten          = 20;
+            obenRechts     = 20;
+            untenLinks     = 20;
+            untenRechts    = 20;
+            verticalRechts = 1;
+            verticalLinks  = 13;
+            hexOr          = 8;
+            hexOl          = 16;
+            hexUr          = 2;
+            hexUl          = 10;
+
+            levelCam.orthographicSize = 16;
+
+            adjustmentValueX = 10;
+            adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
+        }
+
+        if(mapSize == c.mapSize.hexagonalLarge)
+        {
+            oben           = 20;
+            obenLinks      = 20;
+            unten          = 20;
+            obenRechts     = 20;
+            untenLinks     = 20;
+            untenRechts    = 20;
+            verticalRechts = 3;
+            verticalLinks  = 15;
+            hexOr          = 10;
+            hexOl          = 18;
+            hexUr          = 4;
+            hexUl          = 12;
+
+            levelCam.orthographicSize = 18;
+
+            adjustmentValueX = 7;
+            adjustmentValueY = -3.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
+        }
+
+        
+
+        if(mapSize == c.mapSize.large)
+        {
+            oben           = 11;
+            obenLinks      = 25;
+            unten          = 7;
+            obenRechts     = 14;
+            untenLinks     = 25;
+            untenRechts    = 9;
+            verticalRechts = 7;
+            verticalLinks  = 17;
+            hexOr          = 30;
+            hexOl          = 30;
+            hexUr          = 30;
+            hexUl          = 30;
+
+            levelCam.orthographicSize = 16;
+
+            adjustmentValueX = 10;
+            adjustmentValueY = -2.5f;
+            adjustmentDirection = c.richtungsvektoren.N;
+        }
+        return;
     }
 
     GameObject GetTileByTag(int tag)
@@ -594,95 +689,7 @@ public class MapBuilder : MonoBehaviour
     private IEnumerator Build()
 
     {
-        if(mapSize == c.mapSize.small)
-        {
-            oben           = 8;
-            obenLinks      = 17;
-            obenRechts     = 9;
-            unten          = 4;
-            untenLinks     = 14;
-            untenRechts    = 6;
-            verticalRechts = 4;
-            verticalLinks  = 12;
-            hexOr          = 30;
-            hexOl          = 30;
-            hexUr          = 30;
-            hexUl          = 30;
-
-            levelCam.orthographicSize = 10;
-
-            adjustmentValueX = 10;
-            adjustmentValueY = -2.5f;
-            adjustmentDirection = c.richtungsvektoren.N;
-        }
-
-        if(mapSize == c.mapSize.hexagonal)
-        {
-            oben           = 20;
-            obenLinks      = 20;
-            unten          = 20;
-            obenRechts     = 20;
-            untenLinks     = 20;
-            untenRechts    = 20;
-            verticalRechts = 1;
-            verticalLinks  = 13;
-            hexOr          = 8;
-            hexOl          = 16;
-            hexUr          = 2;
-            hexUl          = 10;
-
-            levelCam.orthographicSize = 16;
-
-            adjustmentValueX = 10;
-            adjustmentValueY = -2.5f;
-            adjustmentDirection = c.richtungsvektoren.N;
-        }
-
-        if(mapSize == c.mapSize.hexagonalLarge)
-        {
-            oben           = 20;
-            obenLinks      = 20;
-            unten          = 20;
-            obenRechts     = 20;
-            untenLinks     = 20;
-            untenRechts    = 20;
-            verticalRechts = 3;
-            verticalLinks  = 15;
-            hexOr          = 10;
-            hexOl          = 18;
-            hexUr          = 4;
-            hexUl          = 12;
-
-            levelCam.orthographicSize = 18;
-
-            adjustmentValueX = 7;
-            adjustmentValueY = -3.5f;
-            adjustmentDirection = c.richtungsvektoren.N;
-        }
-
         
-
-        if(mapSize == c.mapSize.large)
-        {
-            oben           = 11;
-            obenLinks      = 25;
-            unten          = 7;
-            obenRechts     = 14;
-            untenLinks     = 25;
-            untenRechts    = 9;
-            verticalRechts = 7;
-            verticalLinks  = 17;
-            hexOr          = 30;
-            hexOl          = 30;
-            hexUr          = 30;
-            hexUl          = 30;
-
-            levelCam.orthographicSize = 16;
-
-            adjustmentValueX = 10;
-            adjustmentValueY = -2.5f;
-            adjustmentDirection = c.richtungsvektoren.N;
-        }
        //Debug.Log("coroutine started");
        int xStart = -untenLinks;
        int xEnd = obenRechts;

@@ -57,12 +57,22 @@ public class Crack : MonoBehaviour
         // activeDestinations.AddRange(currentEtappe.destinations);
         // EventManager.instance.SetGlobalStress(currentEtappe.globalStress);
         // cords = currentEtappe.start;
+        FindEtappen();
         LoadEtappeByIndex(etappenCounter);
     }
 
     private void Update()
     {
         this.transform.position = cords+MapBuilder.instance.GetTileAdjustment();
+    }
+
+    void FindEtappen()
+    {
+        int etappenCount = this.gameObject.transform.childCount;
+        for(int i =0; i<etappenCount; i++)
+        {
+            etappen.Add(this.gameObject.transform.GetChild(i).GetComponent<Etappe>());
+        }
     }
 
     void StartCrackPropagation()
