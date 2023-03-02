@@ -31,6 +31,16 @@ public class PhaseChangeTile : MapTile
     
         TileLedger.ledgerInstance.AddStressField(stressFieldOutside);
         TileLedger.ledgerInstance.AddStressField(stressFieldInside);
+        if(!isMaxPhase) return; // wenn wir nicht bei crack erst aktiv werden, sind wir heir fertig
+        // hier kommt der code für die farbänderung rein:
+        List<MapTile> particle = TileLedger.ledgerInstance.GetTileByCords(associatedShape);
+        foreach(MapTile tile in particle)
+        {
+            //tile.gameObject.GetComponent<MeshRenderer>().material.color *= 0.5f;
+            // because I dont undersand my rendering function anymore and i dont want to, well just crack these mfs because that darkens them as well, and the crack shouldnt go thru them so no one would ever know
+           // tile.Crack(); // that looks ugly tho
+           tile.BrightenUp();
+        }
         //delayedStress = StartCoroutine(WaitFrameAndStress());
     }
 
@@ -43,6 +53,17 @@ public class PhaseChangeTile : MapTile
 
         TileLedger.ledgerInstance.RemoveStressField(stressFieldInside);
         TileLedger.ledgerInstance.RemoveStressField(stressFieldOutside);
+
+        if(!isMaxPhase) return; // wenn wir nicht bei crack erst aktiv werden, sind wir heir fertig
+        // hier kommt der code für die farbänderung rein:
+        List<MapTile> particle = TileLedger.ledgerInstance.GetTileByCords(associatedShape);
+        foreach(MapTile tile in particle)
+        {
+            //tile.gameObject.GetComponent<MeshRenderer>().material.color *= 0.5f;
+            // because I dont undersand my rendering function anymore and i dont want to, well just crack these mfs because that darkens them as well, and the crack shouldnt go thru them so no one would ever know
+           // tile.Crack(); // that looks ugly tho
+           tile.BrightenDown();
+        }
     }
 
     public override void Reset()
@@ -62,7 +83,12 @@ public class PhaseChangeTile : MapTile
         this.cost = FundsAccount.instance.GetPriceByType(typeKey);
         this.UpdateStressState();//war mal TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
+        EventManager.instance.etappenEnde+=Reset;
     }
+
+    // private void Start()
+    // {
+    // }
 
     private void OnDisable() 
     {
@@ -73,6 +99,7 @@ public class PhaseChangeTile : MapTile
         TileLedger.ledgerInstance.RemoveStressField(stressFieldOutside);
         TileLedger.ledgerInstance.RemoveStressField(stressFieldInside);
         }
+        EventManager.instance.etappenEnde-=Reset;
     }
 
     public override void SetAssociatedShape(List<Vector3Int> shape)

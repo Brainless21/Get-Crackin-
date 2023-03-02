@@ -42,9 +42,11 @@ public class MapTile : Entity
     internal GameObject stressStateIndicatorArrow;  
     GameObject arrowHandle;
     Coroutine Jiggle;
-     [SerializeField] float interfaceStrenghBase;
+    [SerializeField] float interfaceStrenghBase;
 
     [SerializeField] int typeForInspection;
+
+    bool isBrightenedUp = false;
 
 
     float[] propertyArray = new float[11]; //das sollte okay sein, weil bei der zuweisung über die placetileshape funktion das eh komplett neu zugewiesen wird
@@ -274,6 +276,14 @@ public class MapTile : Entity
 
         finalColor = currentRestingColor;
 
+        if(isBrightenedUp==true)
+        {
+            finalColor *= 2;
+            finalColor.r *= 0.9f;
+            finalColor.a =1;
+            finalColor = Color.yellow;
+            finalColor.g = 0.65f;
+        }
 
         if(isCracked==true) 
         {
@@ -283,6 +293,17 @@ public class MapTile : Entity
 
         GetComponent<MeshRenderer>().material.color = finalColor;
     }
+
+    public void BrightenUp()
+    {
+        isBrightenedUp = true;
+    }
+    internal void BrightenDown()
+    {
+        isBrightenedUp = false;
+    }
+
+
 
     private IEnumerator Stretch(Vector3 axis, Vector3 origin, float animationTime)
     {
@@ -738,6 +759,7 @@ public class MapTile : Entity
         if(friendsList.Count<6) result = true;
         Edge = result;
         return result;
-    }    
+    }
 
+    
 }

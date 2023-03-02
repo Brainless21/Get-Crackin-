@@ -15,6 +15,8 @@ public class EventManager : MonoBehaviour
     public event Action<Vector3Int> MouseClickLeft;
     public event Action buttonPressQ;
 
+    public event Action etappenEnde; // happens when the crack finishes an etappe
+
     [SerializeField] bool isStressVisible = false;
     public void SetStressVisibility(bool isVisible)
     {
@@ -103,6 +105,11 @@ public class EventManager : MonoBehaviour
     public void InvokeButtonPressQ()
     {
         buttonPressQ?.Invoke();
+    }
+
+    public void InvokeEtappenEnde()
+    {
+        etappenEnde?.Invoke();
     }
    
 }

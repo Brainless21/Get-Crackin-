@@ -284,6 +284,7 @@ public class Crack : MonoBehaviour
             return false;
         }
 
+        EventManager.instance.InvokeEtappenEnde();
         etappenCounter ++; // zählt eins hoch
         finalScore = 0;
         // currentEtappe = etappen[etappenCounter]; // läd die werte der neuen etappe in den speicher
