@@ -725,6 +725,7 @@ public class MapBuilder : MonoBehaviour
                             if((Utilities.CustomDotProduct(cords, -hexUr, Utilities.getDirectionVectorByEnum(c.richtungsvektoren.SSE))>0)) continue;
                             //Debug.Log("nope, rechter cutoff überschritten");
                             MapTile handle = CreateTile(cordsInt,c.matrixTile);
+                            //handle.SetName("Matrix Tile");
 
                             
                         }

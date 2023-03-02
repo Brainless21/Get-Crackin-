@@ -32,7 +32,7 @@ public class MapTile : Entity
     public bool isErasable = true;
     [SerializeField] internal List<Vector3Int> associatedShape = new List<Vector3Int>();
     int mouseOverValidity;
-    [SerializeField] string tileName = "nonNamedMaptile";
+    string tileName = "Matrix";
     public void SetName(string newName) {this.tileName = newName;}
     public string GetTileName() { return this.tileName; }
     [SerializeField] bool isJiggly = false;
@@ -533,12 +533,12 @@ public class MapTile : Entity
         {
             //Debug.Log(string.Format( "map tile mouse enter at {0}",this.cords));
             mouseOver = true;
+            if(EventManager.instance.IsMouseModeEqualTo(c.inspect))
+            {
+                InfoDisplay.instance.UpdateInfoDisplay(this);
+            }
         }
 
-        if(EventManager.instance.IsMouseModeEqualTo(c.inspect))
-        {
-            InfoDisplay.instance.UpdateInfoDisplay(this);
-        }
     }
 
     public override void MouseExit(Vector3Int calledCords, List<Vector3Int> shape)

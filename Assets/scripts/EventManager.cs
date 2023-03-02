@@ -31,7 +31,7 @@ public class EventManager : MonoBehaviour
         return crackMode;
     }
 
-    [SerializeField] int mouseMode = c.placeTile;
+    [SerializeField] int mouseMode = c.inspect;
     public int GetMouseMode() { return mouseMode; }
     
     public void SetMouseMode(int x)

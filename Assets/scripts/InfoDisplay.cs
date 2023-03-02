@@ -16,7 +16,7 @@ public class InfoDisplay : MonoBehaviour
     public void UpdateInfoDisplay(MapTile mapTile)
     {   
        string displaytext="";
-       //displaytext += "name: ";
+       // displaytext += "Map: ";
        displaytext += mapTile.GetTileName();
        displaytext += "\ntoughness: ";
        displaytext += mapTile.GetBaseToughness().ToString();
@@ -41,7 +41,7 @@ public class InfoDisplay : MonoBehaviour
     public void UpdateInfoDisplay(MenuTile menuTile)
     {   
        string displaytext="";
-       //displaytext += "Name: ";
+       // displaytext += "menu: ";
        displaytext += menuTile.GetName();
        displaytext += "\nToughness: ";
        displaytext += menuTile.GetBaseToughness().ToString();

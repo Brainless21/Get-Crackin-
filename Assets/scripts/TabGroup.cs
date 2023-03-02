@@ -10,6 +10,8 @@ public class TabGroup : MonoBehaviour
     public Color tabHovered;
     public Color tabSelected;
     public TabButton selectedTab;
+    public string description;
+    // [SerializeField] TMPro infodisplay;
     //[SerializeField] bool sharesSpace;
 
     // private void Start()
@@ -29,7 +31,9 @@ public class TabGroup : MonoBehaviour
     public void OnTabEnter(TabButton button)
     {
         ResetTabs();
-        if(button!=selectedTab) button.background.color = tabHovered;
+        // if(button!=selectedTab) 
+        button.background.color = tabHovered;
+
     }
 
     public void OnTabExit(TabButton button)
@@ -51,7 +55,8 @@ public class TabGroup : MonoBehaviour
     {
         foreach(TabButton tab in tabButtons)
         {
-            if(tab!=selectedTab) tab.background.color = tab.backgroudTabIdle;
+            // if(tab!=selectedTab) 
+            tab.background.color = tab.backgroudTabIdle;
         }
     }
 
