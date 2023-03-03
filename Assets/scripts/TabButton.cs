@@ -56,6 +56,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         tabGroup.OnTabEnter(this);
+        InfoDisplay.instance.UpdateInfoDisplay(Utilities.GetMenuTilesInAllChildren(page));
     }
 
     public void OnPointerClick(PointerEventData eventData)

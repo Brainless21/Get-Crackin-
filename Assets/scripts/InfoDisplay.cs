@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
+
 
 public class InfoDisplay : MonoBehaviour
 {
@@ -18,8 +20,12 @@ public class InfoDisplay : MonoBehaviour
        string displaytext="";
        // displaytext += "Map: ";
        displaytext += mapTile.GetTileName();
-       displaytext += "\ntoughness: ";
-       displaytext += mapTile.GetBaseToughness().ToString();
+       float toughness = mapTile.GetBaseToughness();
+       if(toughness!=0)
+       {
+       displaytext += "\nToughness: ";
+       displaytext += toughness.ToString();
+       }
        if(mapTile.typeKey==c.particleTile1) // i think ill just give mapTile a field for interface strength
        {
        ParticleTile1 handle = mapTile.gameObject.GetComponent<ParticleTile1>();
@@ -50,6 +56,66 @@ public class InfoDisplay : MonoBehaviour
        displaytext += "\nCost: ";
        displaytext += menuTile.GetCost().ToString();
        infoDisplay.SetText(displaytext);
+
+    }
+
+    public void UpdateInfoDisplay(List<MenuTile> list)
+    {
+        if(list.Contains(null)) return;
+        if(list.Count==0) return;
+        if(list.Count==1) // do the same thing as the singleton menu tile version but without displaying the cost pls.
+        {
+            MenuTile menuTile = list[0];
+            string displaytext1="";
+            // displaytext += "menu: ";
+            displaytext1 += menuTile.GetName();
+            displaytext1 += "\nToughness: ";
+            displaytext1 += menuTile.GetBaseToughness().ToString();
+            displaytext1 += "\nInterface: ";
+            displaytext1 += menuTile.GetInterfaceStrengh().ToString();
+            infoDisplay.SetText(displaytext1);
+        }
+
+        List<float> differentInterFaces = new List<float>();
+        List<float> diffentToughnesses = new List<float>();
+        List<string> differentNames = new List<string>();
+
+        foreach(MenuTile menuTile in list)
+        {
+            differentInterFaces.Add(menuTile.GetInterfaceStrengh());
+            diffentToughnesses.Add(menuTile.GetBaseToughness());
+            differentNames.Add(menuTile.GetName());
+        }
+
+        string displaytext="";
+        // displaytext += "menu: ";
+        displaytext += differentNames[0];
+        displaytext += "\nToughness: ";
+        displaytext += GenerateValueString(diffentToughnesses);
+        displaytext += "\nInterface: ";
+        displaytext += GenerateValueString(differentInterFaces);
+        infoDisplay.SetText(displaytext);
+
+        
+
+    }
+
+    string GenerateValueString(List<float> list)
+    {
+        string output= "";
+        if(list.ToArray().Min()==list.ToArray().Max())
+        {
+            output += list.ToArray().Max().ToString();
+            return output;
+        }
+
+        output += list.ToArray().Min().ToString();
+        output += " - ";
+        output += list.ToArray().Max().ToString();
+
+        return output;
+
+
 
     }
 

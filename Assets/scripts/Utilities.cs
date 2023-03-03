@@ -251,4 +251,17 @@ public class Utilities
         return outputVector;
     }
 
+    // this is supposed to return a list of all the components found in the children, if there are multiple, OR just return the one component if there is one component/child
+    public static List<MenuTile> GetMenuTilesInAllChildren(GameObject parent) 
+    {
+        int childCount = parent.transform.childCount;
+        List<MenuTile> output = new List<MenuTile>();
+        for(int i = 0; i<childCount; i++)
+        {
+            MenuTile entry = parent.transform.GetChild(i).gameObject.GetComponent<MenuTile>();
+            if(entry != null) output.Add(entry);
+        }
+
+        return output;
+    }
 }
