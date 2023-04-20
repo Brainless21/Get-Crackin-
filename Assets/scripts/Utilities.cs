@@ -211,7 +211,7 @@ public class Utilities
     if((int)direction%2!=0) wholeDirection = true;
     if((int)direction%2==0) wholeDirection = false;
     int index = Mathf.RoundToInt((int)direction / 2);
-
+    if(direction==c.richtungsvektoren.none) return new Vector3Int(0,0,0);
     if(wholeDirection == true) return c.positionsArray[index];
     else return c.positionsArrayHalb[index];
 
@@ -264,4 +264,116 @@ public class Utilities
 
         return output;
     }
+
+    void AddAndPrint(int a, int b)
+    {
+        int sum = a+b;
+        Debug.Log(sum);
+        return;
+    }
+
+    void Main()
+    {
+        int v1 = 4;
+        int v2 = 2;
+        AddAndPrint(v1,v2);
+
+        int fourSquared = Square(4);
+    }
+
+    // returnType FunctionName()
+    // {
+    //     command 1;
+    //     command 2;
+    // }
+    // FunctionName();
+
+    int Square(int number)
+    {
+        int squaredNumber = number*number;
+        return squaredNumber;
+    }
+
+   float getVectorLength(Vector2 vector)
+   {
+       float result = Mathf.Sqrt(vector.x*vector.x + vector.y*vector.y);
+       return result;
+   }
+
+   float getVectorLength(Vector3 vector)
+   {
+       float result = Mathf.Sqrt(vector.x*vector.x + vector.y*vector.y + vector.z*vector.z);
+       return result;
+   }
+
+   public class Shape
+   {        
+       private float area;
+       public virtual float GetArea()
+       {
+           return area;
+       }
+   }
+
+   public class Triangle : Shape 
+    {
+        private float basef;
+        private float height;
+        public override float GetArea()
+        {
+            float result = 0.5f*basef*height;
+            return result;
+        }
+    }
+
+    public class Circle : Shape
+    {
+        private float radius;
+        public override float GetArea()
+        {
+            float result = Mathf.PI*radius*radius;
+            return result;
+        }
+
+        int a;
+        
+        void examples()
+       { 
+        a = a + 2;   // this will add 2 to the value of a
+        a += 15; // this does not work, because 4.5 is not an integer
+       }
+    }
+
+    void examples2()
+    {
+        int a = 0;
+        for(int i = 0; i<100; i++)
+        {
+          a = a+i;  
+        }
+
+        List<Vector3> vectorList = new List<Vector3>();
+        List<Vector3> scaledVectorList = new List<Vector3>();
+
+        foreach(Vector3 vector in vectorList)
+        {
+            scaledVectorList.Add(vector/vector.magnitude);
+        }
+    }
+    
+    public class Ball : MonoBehaviour
+    {
+        private void Update() 
+        {
+            move(Vector3.left, 0.5f);
+        }
+
+        private void move(Vector3 direction, float speed)
+        {
+            this.transform.position += direction*speed;
+        }
+    }
+
+
+    
 }

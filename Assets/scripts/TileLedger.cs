@@ -102,6 +102,7 @@ public class TileLedger : MonoBehaviour
             if(kvp.Value.typeKey == c.particleTile1)
             {
                propertyArray[c.interfaceStrength] = kvp.Value.gameObject.GetComponent<ParticleTile1>().GetInterfaceStrengh();
+               Debug.Log(string.Format("saved interfaceStr: {0}",kvp.Value.gameObject.GetComponent<ParticleTile1>().GetInterfaceStrengh()));
             }
 
             if(kvp.Value.typeKey == c.maxPhase || kvp.Value.typeKey == c.PhaseChangeTile) // those are actually the same class, just one bool is different

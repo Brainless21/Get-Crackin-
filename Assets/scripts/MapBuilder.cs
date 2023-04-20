@@ -625,7 +625,8 @@ public class MapBuilder : MonoBehaviour
 
             if(type==c.particleTile1)
             {
-                handle.ModifyBehavior(c.grenzflaeche, interfaceStrength);
+                Debug.Log("hier ist ein grenzflächen behaviour zugeteilt worden");
+                handle.ModifyBehavior(c.grenzflaeche, currentTileProperties[i][c.interfaceStrength]);
             }
 
             if(type==c.maxPhase)

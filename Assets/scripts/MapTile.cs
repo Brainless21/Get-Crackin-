@@ -149,7 +149,7 @@ public class MapTile : Entity
 
         // wenn der sress nicht angezeigt werden muss, und auch keiner da ist, sind wir hier fertig. Ansonsten wird der pfeil erstellt bzw. gedreht
         if(!EventManager.instance.GetStressVisibility&arrowHandle==null) return; // das kann ich auch noch machen wenn es wegen performance sein muss, grade komm ihc auch damit klar die pfeile im ersntfall einmal zu kreiren und dann direkt wieder zu löschen
-        // wenn schon (von vorher) ein pfeil da ist aber die bisibility jetzt aus ist,muss der pfeil ausßerdem gelöscht werden
+        // wenn schon (von vorher) ein pfeil da ist aber die visibility jetzt aus ist, muss der pfeil ausßerdem gelöscht werden
         if(!EventManager.instance.GetStressVisibility&arrowHandle!=null)
          {
             Destroy(arrowHandle);

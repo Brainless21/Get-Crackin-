@@ -48,7 +48,9 @@ public class c
       WSW,
       W,
       WNW,
-      NNW
+      NNW,
+      none
+
 
     }
 

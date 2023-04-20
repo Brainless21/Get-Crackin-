@@ -30,13 +30,17 @@ public class InfoDisplay : MonoBehaviour
        {
        ParticleTile1 handle = mapTile.gameObject.GetComponent<ParticleTile1>();
        displaytext += "\nInterface: ";
-       displaytext += handle.GetInterfaceStrengh().ToString(); // sooo sometimes they dont have an interface strengh. like when they are a matrix tile. mostly then honestly.
+       float interfacePercent = handle.GetInterfaceStrengh()*100;
+       displaytext += interfacePercent.ToString(); // sooo sometimes they dont have an interface strengh. like when they are a matrix tile. mostly then honestly.
+       displaytext += "%";
        }
        if(mapTile.typeKey==c.PhaseChangeTile) // i think ill just give mapTile a field for interface strength
        {
        PhaseChangeTile handle = mapTile.gameObject.GetComponent<PhaseChangeTile>();
        displaytext += "\nInterface: ";
-       displaytext += handle.GetInterfaceStrengh().ToString(); // sooo sometimes they dont have an interface strengh. like when they are a matrix tile. mostly then honestly.
+       float interfacePercent = handle.GetInterfaceStrengh()*100;
+       displaytext += interfacePercent.ToString(); // sooo sometimes they dont have an interface strengh. like when they are a matrix tile. mostly then honestly.
+       displaytext += "%";
        }
        displaytext += "\ncost: ";
        displaytext += FundsAccount.instance.GetPriceByType(mapTile.typeKey).ToString();
@@ -52,7 +56,9 @@ public class InfoDisplay : MonoBehaviour
        displaytext += "\nToughness: ";
        displaytext += menuTile.GetBaseToughness().ToString();
        displaytext += "\nInterface: ";
-       displaytext += menuTile.GetInterfaceStrengh().ToString();
+       float interfacePercent = menuTile.GetInterfaceStrengh() * 100;
+       displaytext += interfacePercent.ToString();
+       displaytext += "%";
        displaytext += "\nCost: ";
        displaytext += menuTile.GetCost().ToString();
        infoDisplay.SetText(displaytext);
@@ -61,7 +67,7 @@ public class InfoDisplay : MonoBehaviour
 
     public void UpdateInfoDisplay(List<MenuTile> list)
     {
-        if(list.Contains(null)) return;
+        if(list.Contains(null)) return; // I think that didnt work? and instead the function providing the list just never gives out lists with null entries
         if(list.Count==0) return;
         if(list.Count==1) // do the same thing as the singleton menu tile version but without displaying the cost pls.
         {
@@ -72,7 +78,9 @@ public class InfoDisplay : MonoBehaviour
             displaytext1 += "\nToughness: ";
             displaytext1 += menuTile.GetBaseToughness().ToString();
             displaytext1 += "\nInterface: ";
-            displaytext1 += menuTile.GetInterfaceStrengh().ToString();
+            float interfacePercent = menuTile.GetInterfaceStrengh() * 100;
+            displaytext1 += interfacePercent.ToString();
+            displaytext1 += "%%";
             infoDisplay.SetText(displaytext1);
         }
 
@@ -93,7 +101,7 @@ public class InfoDisplay : MonoBehaviour
         displaytext += "\nToughness: ";
         displaytext += GenerateValueString(diffentToughnesses);
         displaytext += "\nInterface: ";
-        displaytext += GenerateValueString(differentInterFaces);
+        displaytext += GenerateValueStringPercent(differentInterFaces);
         infoDisplay.SetText(displaytext);
 
         
@@ -115,6 +123,31 @@ public class InfoDisplay : MonoBehaviour
 
         return output;
 
+
+
+    }
+
+    string GenerateValueStringPercent(List<float> list)
+    {
+        string output = "";
+        List<float> listPercent = new List<float>();
+        foreach(float entry in list)
+        {
+            listPercent.Add(entry * 100);
+        }
+        if(list.ToArray().Min()==list.ToArray().Max())
+        {
+            output += listPercent.ToArray().Max().ToString();
+            output += "%";
+            return output;
+        }
+
+        output += listPercent.ToArray().Min().ToString();
+        output += " - ";
+        output += listPercent.ToArray().Max().ToString();
+        output += "%";
+
+        return output;
 
 
     }
