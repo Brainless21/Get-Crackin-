@@ -26,7 +26,7 @@ public class ParticleTile1 : MapTile
         return interfaceStrengh;
     }
 
-
+    
 
     public override float GetToughness()
     {

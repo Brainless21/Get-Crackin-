@@ -1366,7 +1366,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17508, y: 139.99997}
+  cellSize: {x: 494.17505, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1546,7 +1546,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599744631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 342661130}
@@ -1554,7 +1554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 814, y: 462}
+  m_AnchoredPosition: {x: 814, y: 631}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599744633
@@ -2968,6 +2968,7 @@ MonoBehaviour:
   tabHovered: {r: 1, g: 0.32156864, b: 0.32156864, a: 1}
   tabSelected: {r: 0.7019608, g: 0.22352941, b: 0.22352941, a: 1}
   selectedTab: {fileID: 0}
+  description: 
 --- !u!1 &1440069345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,6 +5123,7 @@ MonoBehaviour:
   tabHovered: {r: 0.6666667, g: 0.6509804, b: 0.6156863, a: 1}
   tabSelected: {r: 1, g: 0.85490197, b: 0.4745098, a: 1}
   selectedTab: {fileID: 0}
+  description: 
 --- !u!222 &5443174742310697182
 CanvasRenderer:
   m_ObjectHideFlags: 0

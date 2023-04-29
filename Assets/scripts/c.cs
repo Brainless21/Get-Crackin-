@@ -54,6 +54,13 @@ public class c
 
     }
 
+    // events for the tutorial
+    public enum tutorialEvents
+    {
+      levelLoaded,
+      clickedPlay
+    }
+
     // einträge für die drehmatrix 90°
     public static float a = 1/3 - 1/Mathf.Sqrt(3);
     public static float b = 1/3 + 1/Mathf.Sqrt(3);
