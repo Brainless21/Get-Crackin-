@@ -12,6 +12,7 @@ public class MouseCursor : MonoBehaviour
     [SerializeField] private Entity pointedEntity = null;
     [SerializeField] private GameObject currentRaycastHit;
     [SerializeField] private TextMeshPro infoDisplay;
+    public bool isEnabled = true;
     public static MouseCursor instance;
 
      void Awake() 
@@ -26,6 +27,7 @@ public class MouseCursor : MonoBehaviour
     }
     void Update()
     {
+        if(!isEnabled) return;
         mousePosition = Input.mousePosition;
         this.transform.position = mousePosition;
 

@@ -277,6 +277,7 @@ public class Crack : MonoBehaviour
             {
                 HighscoreDisplay.text = Mathf.Round(gesamtScore).ToString();
                 highscore = gesamtScore;
+                LevelProgression.instance.Activate(gesamtScore);
             }
 
 
