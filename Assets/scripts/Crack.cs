@@ -7,7 +7,7 @@ using TMPro;
 public class Crack : MonoBehaviour
 {
     public Button playButton;
-    public Button resetButton;
+    // public Button resetButton;
     public Vector3Int cords{get;set;}
     private float finalScore =0;
     private MapTile occupiedTile;
@@ -47,7 +47,7 @@ public class Crack : MonoBehaviour
 
         //propagate = StartCoroutine(CrackPropagation());
 
-        resetButton.onClick.AddListener(ResetCrack);
+        // resetButton.onClick.AddListener(ResetCrack);
         playButton.onClick.AddListener(StartCrackPropagation); // the orderis very important bc they are both triggered by the same play button, so we need to reset before starting
     }
 
@@ -79,11 +79,13 @@ public class Crack : MonoBehaviour
     {
         
         if(isCrackCoroutineRunning) return;
+        if(MouseCursor.instance.isEnabled==false) return;
+        ResetCrack();
         UpdateDistance();
         crackMode = EventManager.instance.GetCrackMode();
         foreach(Vector3Int destination in activeDestinations)
         {
-            TileLedger.ledgerInstance.GetTileByCords(destination).gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
+            // TileLedger.ledgerInstance.GetTileByCords(destination).gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
         }
         occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
         occupiedTile.Crack();
@@ -273,12 +275,12 @@ public class Crack : MonoBehaviour
 
             Debug.Log(string.Format("gesamtscore am ende ausgewertet als: {0}",gesamtScore));
 
-            if(gesamtScore>highscore)
+            if(gesamtScore>=highscore)
             {
                 HighscoreDisplay.text = Mathf.Round(gesamtScore).ToString();
                 highscore = gesamtScore;
-                LevelProgression.instance.Activate(gesamtScore);
             }
+            LevelProgression.instance.Activate(gesamtScore);
 
 
             // so this whole score jiggle comes out as 0 actually, which kinda makes no sense because at least the last etappe has a score in the end so the result should be that but its not 
@@ -328,7 +330,7 @@ public class Crack : MonoBehaviour
             // currentEtappe.SetScore(Mathf.RoundToInt(finalScore*10)); // speichert den aktuellen score als etappenscore ab
             // finalScore = 0;
             UpdateDistance();
-            PointPopup.Create(this.cords,finalScore,5,4);
+            // PointPopup.Create(this.cords,finalScore,5,4);
             return InitiateNextStage();
 
             

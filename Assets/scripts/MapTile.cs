@@ -24,7 +24,7 @@ public class MapTile : Entity
     internal Color currentDisplayedColor;
     internal void ChangeDisplayedColor(Color newColor) {currentDisplayedColor=newColor;}
     public int typeKey { get;set; }
-    public int cost { get; set; }
+    [SerializeField] public int cost { get; set; }
     [SerializeField] protected float baseToughness = 1;
     [SerializeField] public bool isMortal = true;
     bool isCracked = false;
@@ -574,12 +574,12 @@ public class MapTile : Entity
             }
     
         }
-        if(mouseMode==c.placeTile) //mode:place type:leftclick
-        {
+        // if(mouseMode==c.placeTile) //mode:place type:leftclick
+        // {
 
-            MapBuilder.instance.PlaceTileShape(cords);
+        //     MapBuilder.instance.PlaceTileShape(cords);
             
-        }
+        // }
 
         
         

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TileLedger : MonoBehaviour
 {
-    public Button saveMapButton;
+    // public Button saveMapButton;
     public static TileLedger ledgerInstance;
 
     [SerializeField] private Dictionary<Vector3Int,MapTile> tilesDict = new Dictionary<Vector3Int, MapTile>();
@@ -36,7 +36,7 @@ public class TileLedger : MonoBehaviour
 
         // DONT DESTROY ON SCENE CHANGE
         //DontDestroyOnLoad(this.gameObject);
-        saveMapButton.onClick.AddListener(SerializeMapAndSave);
+        // saveMapButton.onClick.AddListener(SerializeMapAndSave);
     }
 
     private void Update() 

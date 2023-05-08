@@ -26,10 +26,10 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] int hexUl;
     [SerializeField] c.mapSize mapSize = c.mapSize.small;
     [SerializeField] Camera levelCam;
-    public Button resetMapButton;
-    public Button restartMapButton;
-    public Button deleteMapButton;
-    public Button loadSavedMapButton;
+    // public Button resetMapButton;
+    // public Button restartMapButton;
+    // public Button deleteMapButton;
+    // public Button loadSavedMapButton;
     Coroutine coroutineBuild;    
     Dictionary<int,GameObject> tileTypeDict = new Dictionary<int,GameObject>(); // this would probably also better work as an enum but it works now so
     private Dictionary<int, int> verticalCutoffR = new Dictionary<int, int>();
@@ -109,11 +109,24 @@ public class MapBuilder : MonoBehaviour
         return true;
     }
 
+    public void adjustShapeRotation(Vector3Int cords)
+    {
+        // this is for the visualisation of the tiles, so the yellow tile preview disappears from the old tiles 
+        EventManager.instance.InvokeMouseExit(cords,DrawShape(cords));
+
+        shapeRotation+=1;
+        if(shapeRotation>5) { shapeRotation-=6; }
+        if(shapeRotation<0) { shapeRotation+=6; }
+
+        // this is so the yellow preview effect appears on the new tiles
+        EventManager.instance.InvokeMouseEnter(cords, DrawShape(cords));
+    }
+
     public void adjustShapeRotation(int increment)
     {
         shapeRotation+=increment;
         if(shapeRotation>5) { shapeRotation-=6; }
-        if(shapeRotation<0) { shapeRotation+=6; }
+        if(shapeRotation<0) { shapeRotation+=6; } 
     }
 
     public bool AdjustShapeSize(int increment)
@@ -143,10 +156,10 @@ public class MapBuilder : MonoBehaviour
         // DONT DESTROY ON SCENE CHANGE
         // DontDestroyOnLoad(this.gameObject);
 
-        resetMapButton.onClick.AddListener(ResetMap);
+        //resetMapButton.onClick.AddListener(ResetMap);
         //restartMapButton.onClick.AddListener(RestartMap);
-        deleteMapButton.onClick.AddListener(DeleteMap);
-        loadSavedMapButton.onClick.AddListener(BuildSavedMap);
+        //deleteMapButton.onClick.AddListener(DeleteMap);
+        //loadSavedMapButton.onClick.AddListener(BuildSavedMap);
 
         tileTypeDict.Add(c.matrixTile, matrixTile);
         tileTypeDict.Add(c.particleTile1, particleTile1);
@@ -161,7 +174,13 @@ public class MapBuilder : MonoBehaviour
     {
         SetMapSize();
         BuildSavedMap();
+        EventManager.instance.MouseClickRight += adjustShapeRotation;
         
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.instance.MouseClickRight -= adjustShapeRotation;   
     }
 
     void SetMapSize()
@@ -329,6 +348,7 @@ public class MapBuilder : MonoBehaviour
     {
         
         MapTile currentOccupant = TileLedger.ledgerInstance.GetTileByCords(cords);
+        
     	GameObject tileType = GetTileByTag(type); //muss gameObject sein, weil instantiate das so braucht
 
         if(currentOccupant==null&&canCreateNewSpace==false) 
