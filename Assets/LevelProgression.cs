@@ -13,6 +13,7 @@ public class LevelProgression : MonoBehaviour
    [SerializeField] int nextLevelIndex;
    public TextMeshProUGUI scoreText;
    TextMeshProUGUI levelMessage;
+  int score;
 
     private void Start()
     {
@@ -37,8 +38,14 @@ public class LevelProgression : MonoBehaviour
         else if (instance != this) { Destroy(gameObject); }
     }
 
-    public void Activate(int score)
+    public void InvokeActivation(int score)
     {
+        this.score = score;
+        Invoke("Activate", 0.7f);
+    }
+    public void Activate()
+    {
+       
         gameObject.SetActive(true);
         string levelMessageText = "Not Enough Points";
         nextLevelButton.gameObject.SetActive(false);

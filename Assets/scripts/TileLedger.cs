@@ -355,6 +355,7 @@ public class TileLedger : MonoBehaviour
 
         foreach(KeyValuePair<Vector3Int, MapTile> tile in tilesDict)
         {
+            // bc we dont want to count the matrix tiles
             if(tile.Value.isMortal) cost+=tile.Value.cost;
         }
 

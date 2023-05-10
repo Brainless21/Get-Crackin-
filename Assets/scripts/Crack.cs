@@ -280,7 +280,7 @@ public class Crack : MonoBehaviour
                 HighscoreDisplay.text = Mathf.Round(gesamtScore).ToString();
                 highscore = gesamtScore;
             }
-            LevelProgression.instance.Activate(gesamtScore);
+            LevelProgression.instance.InvokeActivation(gesamtScore);
 
 
             // so this whole score jiggle comes out as 0 actually, which kinda makes no sense because at least the last etappe has a score in the end so the result should be that but its not 
@@ -330,7 +330,7 @@ public class Crack : MonoBehaviour
             // currentEtappe.SetScore(Mathf.RoundToInt(finalScore*10)); // speichert den aktuellen score als etappenscore ab
             // finalScore = 0;
             UpdateDistance();
-            // PointPopup.Create(this.cords,finalScore,5,4);
+             PointPopup.Create(new Vector3Int(-5,-3,8),finalScore,5,4);
             return InitiateNextStage();
 
             
