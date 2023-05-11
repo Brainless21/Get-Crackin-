@@ -167,8 +167,8 @@ MonoBehaviour:
   destinations: []
   globalStress: 3
   start: {x: -10, y: -2, z: 12}
-  startTile: {x: 2, y: 3, z: -5}
-  endTile: {x: 7, y: -7, z: -1}
+  startTile: {x: 7, y: -7, z: 0}
+  endTile: {x: 2, y: 3, z: -5}
   index: 0
   score: 0
 --- !u!1 &29101648
@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
       propertyPath: etappen.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
@@ -386,6 +386,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956948875019876, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23313225581080984, guid: b9c5ab851b762b74f8bcba314257140c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3080,6 +3085,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668817289884855, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: scoreThreshold
+      value: 185
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 127d95e033fbdf54ab9dcc72a91ac05e, type: 3}
