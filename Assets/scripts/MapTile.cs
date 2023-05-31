@@ -654,7 +654,7 @@ public class MapTile : Entity
     {
         //this.GetComponent<MeshRenderer>().material.color = Color.black;
         isCracked = true;
-        Debug.Log("crack");
+        //Debug.Log("crack");
         // currentRestingColor *=0.5f;
         // currentRestingColor.a =1;
         // UpdateDisplayColor();

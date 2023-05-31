@@ -53,7 +53,7 @@ public class PointPopup : MonoBehaviour
         return pointInstance;
     }
 
-    public static PointPopup Create(Vector3 tilePosition, int price)
+    public static PointPopup Create(Vector3 tilePosition, int price, bool error=false)
     {
         // offsets cords so its not inside the tile
         Vector3 offset = new Vector3(1f,1f,1f);
@@ -62,13 +62,19 @@ public class PointPopup : MonoBehaviour
          // instantiate Text, get a handle on the script 
         GameObject pointPopupObject = Instantiate(GameAssets.instance.pointPopup,position,Quaternion.Euler(45,-135,180));
         PointPopup pointInstance = pointPopupObject.GetComponent<PointPopup>();
-
+        if(error==true)
+        {
+            pointInstance.SetupPrice(999);
+            return pointInstance;
+        }
          // set the Value that should be displayed
         pointInstance.SetupPrice(price);
         return pointInstance;
 
         
     }
+
+   
 
     private void Awake() 
     {
@@ -88,5 +94,24 @@ public class PointPopup : MonoBehaviour
        if(balance<0) textMesh.color = Color.red;
        if(balance>=0) textMesh.color = Color.green;
    }
+    public static PointPopup CreateError(Vector3 tilePosition)
+    {
+        Vector3 offset = new Vector3(0f,0f,1f);
+        Vector3 position = tilePosition+offset;
+
+         // instantiate Text, get a handle on the script 
+        GameObject pointPopupObject = Instantiate(GameAssets.instance.pointPopup,position,Quaternion.Euler(45,-135,180));
+        PointPopup pointInstance = pointPopupObject.GetComponent<PointPopup>();
+
+         // set the Value that should be displayed
+        pointInstance.SetUpError();
+        return pointInstance;
+    }
+
+    private void SetUpError()
+    {
+        textMesh.color = Color.red;
+        textMesh.SetText("not enough $$");
+    }
 
 }

@@ -207,6 +207,28 @@ public class MapBuilder : MonoBehaviour
             adjustmentDirection = c.richtungsvektoren.N;
         }
 
+        // if(mapSize == c.mapSize.hexagonal)
+        // {
+        //     oben           = 20;
+        //     obenLinks      = 20;
+        //     unten          = 20;
+        //     obenRechts     = 20;
+        //     untenLinks     = 20;
+        //     untenRechts    = 20;
+        //     verticalRechts = 1;
+        //     verticalLinks  = 13;
+        //     hexOr          = 8;
+        //     hexOl          = 16;
+        //     hexUr          = 2;
+        //     hexUl          = 10;
+
+        //     levelCam.orthographicSize = 16;
+
+        //     adjustmentValueX = 10;
+        //     adjustmentValueY = -2.5f;
+        //     adjustmentDirection = c.richtungsvektoren.N;
+        // }
+
         if(mapSize == c.mapSize.hexagonal)
         {
             oben           = 20;
@@ -222,10 +244,10 @@ public class MapBuilder : MonoBehaviour
             hexUr          = 2;
             hexUl          = 10;
 
-            levelCam.orthographicSize = 16;
+            levelCam.orthographicSize = 12.4f;
 
-            adjustmentValueX = 10;
-            adjustmentValueY = -2.5f;
+            adjustmentValueX = 20;
+            adjustmentValueY = -4f;
             adjustmentDirection = c.richtungsvektoren.N;
         }
 
@@ -244,7 +266,7 @@ public class MapBuilder : MonoBehaviour
             hexUr          = 4;
             hexUl          = 12;
 
-            levelCam.orthographicSize = 18;
+            levelCam.orthographicSize = 15;
 
             adjustmentValueX = 7;
             adjustmentValueY = -3.5f;
@@ -382,7 +404,9 @@ public class MapBuilder : MonoBehaviour
             int futureBalance = currentBalance+transactionBalance;
             if(careAboutCost==true&futureBalance<0) 
             {
+                //were never actually here you guys
                 Debug.Log("nicht genug funds");
+                PointPopup.Create(cords, transactionBalance, true);
                 return null;
             }
 
@@ -453,6 +477,7 @@ public class MapBuilder : MonoBehaviour
         if(futureBalance<0)
         {
             Debug.Log("nicht genug funds für die shape");
+            PointPopup.CreateError(Utilities.ConvertIntToCords(origin));
             return false;
         }
 

@@ -85,7 +85,7 @@ public class Crack : MonoBehaviour
         crackMode = EventManager.instance.GetCrackMode();
         foreach(Vector3Int destination in activeDestinations)
         {
-            // TileLedger.ledgerInstance.GetTileByCords(destination).gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
+            //TileLedger.ledgerInstance.GetTileByCords(destination).gameObject.GetComponent<MeshFilter>().mesh = lookOfDestiny;
         }
         occupiedTile = TileLedger.ledgerInstance.GetTileByCords(cords);
         occupiedTile.Crack();
@@ -116,7 +116,7 @@ public class Crack : MonoBehaviour
     {
         if(isCrackCoroutineRunning) return;
         MapBuilder.instance.RestartMap();
-        Debug.Log("crack resetted");
+        //Debug.Log("crack resetted");
         LoadEtappeByIndex(0);
         tiebreaker = 1;
     }
@@ -208,7 +208,7 @@ public class Crack : MonoBehaviour
                     // Debug.Log(string.Format("tiebreaker case activated ({0})",bestResult)); 
 
                 }
-                Debug.Log(string.Format("we are in the tiebreaker bracket, tiebreaker is: {0}",tiebreaker));
+                //Debug.Log(string.Format("we are in the tiebreaker bracket, tiebreaker is: {0}",tiebreaker));
                 tiebreaker++;
 
             }
@@ -249,7 +249,7 @@ public class Crack : MonoBehaviour
 
         // }
 
-        if(bestFriend==null) Debug.Log("die tile auswahl war leider shit");
+        //if(bestFriend==null) Debug.Log("die tile auswahl war leider shit");
         zeit = 0.2f*1/(1+Mathf.Exp(-bestResult));
         return bestFriend;
     }
@@ -257,23 +257,23 @@ public class Crack : MonoBehaviour
     bool InitiateNextStage()
     {
         // if(currentEtappe==null) currentEtappe = etappen[0]; I feel like not putting this in the beginning makes it more intuitive, and we can start by upping the etappe by one and then laoding all the new stuff in
-        Debug.Log("next stage initiated at least attemptetively");
+        //Debug.Log("next stage initiated at least attemptetively");
         currentEtappe.SetScore(Mathf.RoundToInt(finalScore*10));
 
         if(currentEtappe==etappen[etappen.Count-1]) //wenn man schon in der letzten etappe ist, wenn das aufgerufen wird, wird false ausgegeben und das heißt der crack ist fertig
         {
-            Debug.Log("letzte wtappe erreicht, well done. Final score:");
+            //Debug.Log("letzte wtappe erreicht, well done. Final score:");
             //SpawnEndCard();
             // berechnet den score insgesamt über alle etappen und setzt den highscore wenn er größer ist als der bestehende 
             int gesamtScore = currentEtappe.GetScore();
-            Debug.Log(string.Format("gesamtscore ursprünglich gesetzt als: {0}",gesamtScore));
+            //Debug.Log(string.Format("gesamtscore ursprünglich gesetzt als: {0}",gesamtScore));
 
             foreach(Etappe etappe in etappen)
             {
-            if(gesamtScore>etappe.GetScore()) gesamtScore = etappe.GetScore(); // jeder score wird durchgegangen, und der kleinste davon bleibt als gesamtScore stehen
+                if(gesamtScore>etappe.GetScore()) gesamtScore = etappe.GetScore(); // jeder score wird durchgegangen, und der kleinste davon bleibt als gesamtScore stehen
             }
 
-            Debug.Log(string.Format("gesamtscore am ende ausgewertet als: {0}",gesamtScore));
+            //Debug.Log(string.Format("gesamtscore am ende ausgewertet als: {0}",gesamtScore));
 
             if(gesamtScore>=highscore)
             {
@@ -343,7 +343,7 @@ public class Crack : MonoBehaviour
 
         if(FindBestFriend(cords, activeDestinations)==null)
         {
-            Debug.Log("Kein passender nächster schritt gefunden");
+            //Debug.Log("Kein passender nächster schritt gefunden");
             return false;        
         }
 
@@ -375,7 +375,7 @@ public class Crack : MonoBehaviour
             // if(zeit>minimumZeitIntervall) zeit /= 1.4f;
         }
 
-        Debug.Log(finalScore);
+        //Debug.Log(finalScore);
         if(Mathf.Round(finalScore*10)>highscore) highscore = Mathf.RoundToInt(finalScore*10);
         // HighscoreDisplay.text = Mathf.Round(highscore).ToString();
         // PointPopup.Create(new Vector3Int(-1,-2,3),finalScore,5,4);

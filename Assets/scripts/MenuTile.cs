@@ -135,7 +135,7 @@ public class MenuTile : Entity, IPointerClickHandler, IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("click registered");
+        //Debug.Log("click registered");
 
         // ändert den placetile Type, wenn das Menutile ein type hat
         if(isType==true)

@@ -9,7 +9,8 @@ public class LevelLoader : MonoBehaviour
 {
     public Button startButton;
     public Button exitButton;
-    public Button optionsButton;
+    public Button firstLevelButton;
+    
     public Button returnToMenuButtonLevel;
     public Button returnToMenuButtonSettings;
 
@@ -35,7 +36,8 @@ public class LevelLoader : MonoBehaviour
     {
         startButton.onClick.AddListener(OpenStartMenu);
         exitButton.onClick.AddListener(ExitApplication);
-        optionsButton.onClick.AddListener(OpenOptionsMenu);
+        firstLevelButton.onClick.AddListener(StartFirstLevel);
+       
         returnToMenuButtonLevel.onClick.AddListener(ReturnToMenu);
         returnToMenuButtonSettings.onClick.AddListener(ReturnToMenu);
     }
@@ -50,7 +52,7 @@ public class LevelLoader : MonoBehaviour
     private void OpenOptionsMenu()
     {
         mainMenuPage.SetActive(false);
-        optionsMenuPage.SetActive(true);
+        
         activePage = optionsMenuPage;
     }
 
@@ -70,5 +72,10 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel(string levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void StartFirstLevel()
+    {
+        SceneManager.LoadScene(1);
     }
 }

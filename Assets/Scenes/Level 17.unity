@@ -167,8 +167,8 @@ MonoBehaviour:
   destinations: []
   globalStress: 3
   start: {x: -15, y: -2, z: 17}
-  startTile: {x: 2, y: 3, z: -5}
-  endTile: {x: 7, y: -7, z: -1}
+  startTile: {x: 12, y: -11, z: -1}
+  endTile: {x: 4, y: 5, z: -9}
   index: 0
   score: 0
 --- !u!1001 &21178903
@@ -348,10 +348,10 @@ RectTransform:
   m_Father: {fileID: 1600169684}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 298.3159, y: -65}
+  m_SizeDelta: {x: 119.326355, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29101650
 MonoBehaviour:
@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
       propertyPath: etappen.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2842551360187633513, guid: b9c5ab851b762b74f8bcba314257140c,
         type: 3}
@@ -530,6 +530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956948875019876, guid: b9c5ab851b762b74f8bcba314257140c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23313225581080984, guid: b9c5ab851b762b74f8bcba314257140c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1359,7 +1364,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 3
   baseToughness: 1.9
-  menuTileName: Tough Particle
+  menuTileName: Pr3T
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 4
@@ -1547,10 +1552,10 @@ RectTransform:
   m_Father: {fileID: 1600169684}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 178.98953, y: -65}
+  m_SizeDelta: {x: 119.326355, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522454885
 MonoBehaviour:
@@ -1866,10 +1871,10 @@ RectTransform:
   m_Father: {fileID: 1600169684}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 59.663177, y: -65}
+  m_SizeDelta: {x: 119.326355, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681701404
 MonoBehaviour:
@@ -2126,7 +2131,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708325168}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!1 &734020487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2609,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 3
   baseToughness: 1.9
-  menuTileName: Tough Particle
+  menuTileName: L4C
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 3
@@ -2742,7 +2747,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941517410}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!1 &959955235
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,6 +3166,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4822668816319404039, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816319404039, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816319404039, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816319404039, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4822668816613836633, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
         type: 3}
       propertyPath: m_Name
@@ -3275,6 +3300,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816743229933, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816743229933, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816743229933, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668816743229933, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822668817289884855, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
+        type: 3}
+      propertyPath: scoreThreshold
+      value: 240
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 127d95e033fbdf54ab9dcc72a91ac05e, type: 3}
@@ -4152,6 +4202,7 @@ GameObject:
   - component: {fileID: 1275378804}
   - component: {fileID: 1275378806}
   - component: {fileID: 1275378805}
+  - component: {fileID: 1275378807}
   m_Layer: 5
   m_Name: Back to Menu Button
   m_TagString: Untagged
@@ -4215,6 +4266,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275378803}
   m_CullTransparentMesh: 0
+--- !u!114 &1275378807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275378803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1288917d0e7a7c347baecead3dd05916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1302456782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4854,7 +4917,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600169683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cebb1a38d715aa46b30ea9394c58480, type: 3}
   m_Name: 
@@ -4868,7 +4931,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: -3.3333333, y: -10}
+  cellSize: {x: 119.326355, y: 130}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -5066,7 +5129,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 2
   baseToughness: 3
-  menuTileName: Tough Particle
+  menuTileName: "\u03B2-PrO"
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -5224,7 +5287,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729755719}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!224 &1789748365 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2673458591722611016, guid: 51c809367af92cf4c9b82679070380fc,
@@ -5556,7 +5619,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 4
   baseToughness: 3
-  menuTileName: Carbon Fiber
+  menuTileName: Taffil Fiber
   mesh: {fileID: 0}
   interfaceStrength: 0.7
   stressFieldStrength: 0
@@ -5581,7 +5644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2094346529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5596,9 +5659,9 @@ RectTransform:
   m_Father: {fileID: 1049254864}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 210, y: -77.078766}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094346530
@@ -6123,7 +6186,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969118008477568047}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!23 &946469227899384541
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6595,7 +6658,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2580096405622413851}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!4 &2577628080379147675
 Transform:
   m_ObjectHideFlags: 0
@@ -6997,7 +7060,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 4
   baseToughness: 2.5
-  menuTileName: Carbon Fiber
+  menuTileName: Pextel Fiber
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -7273,7 +7336,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4180663104883007028}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!64 &4243581758688994488
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7669,7 +7732,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5427575496980796851}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!1 &5427575496980796851
 GameObject:
   m_ObjectHideFlags: 0
@@ -8086,7 +8149,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c809367af92cf4c9b82679070380fc, type: 3}
 --- !u!114 &5443174742310697168
@@ -8419,7 +8482,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+      objectReference: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
     - target: {fileID: 8636084785963170602, guid: ba2db63bfe7e72b438d8ad62b15f715b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8976,7 +9039,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 3
   baseToughness: 1.9
-  menuTileName: Tough Particle
+  menuTileName: Do2Ln3
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -9030,7 +9093,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6582725907175633514}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!4 &6580112283220188650
 Transform:
   m_ObjectHideFlags: 0
@@ -9129,7 +9192,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6769998064704268980}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!114 &6745607751520181244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9152,7 +9215,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 3
   baseToughness: 1.9
-  menuTileName: Tough Particle
+  menuTileName: Do2Ln3
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -9295,7 +9358,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7817572447815061188}
-  m_Mesh: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 31048d640905d5a448a723dd7007433e, type: 3}
 --- !u!23 &7795150098813382710
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9393,7 +9456,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 1573031270032103981, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -9403,7 +9466,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 1987661205380043712, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -9413,7 +9476,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 2067709588842247277, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -9428,7 +9491,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 4470530634348239040, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -9438,12 +9501,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 5939807466437366660, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 5980069578583180008, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -9563,7 +9626,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ac4a5a9e24f3efa44b8f02171e9eefda, type: 3}
+      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
     - target: {fileID: 8474466569341119874, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -9688,7 +9751,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 2
   baseToughness: 3
-  menuTileName: Basic Particle
+  menuTileName: "\u03B2-PrO"
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0

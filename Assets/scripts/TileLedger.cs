@@ -52,7 +52,7 @@ public class TileLedger : MonoBehaviour
             i++;
         }
         positionsWithOutOfDateStress.Clear();
-        Debug.Log(string.Format("es wurden {0} tiles geupdated",i)); //not exactly accurate anymore because sometimes the i++ will be skipped over but ultimately irrelevant
+        //Debug.Log(string.Format("es wurden {0} tiles geupdated",i)); //not exactly accurate anymore because sometimes the i++ will be skipped over but ultimately irrelevant
         
     }
 

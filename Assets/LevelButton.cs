@@ -12,6 +12,7 @@ public class LevelButton : MonoBehaviour
     string levelName;
     private void Start() 
     {
+        levelButton = GetComponent<Button>();
         levelButton.onClick.AddListener(LoadLevel);
     }
     void LoadLevel()

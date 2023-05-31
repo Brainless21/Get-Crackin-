@@ -47,6 +47,7 @@ public class LevelProgression : MonoBehaviour
     {
        
         gameObject.SetActive(true);
+        MouseCursor.instance.isEnabled = false;
         string levelMessageText = "Not Enough Points";
         nextLevelButton.gameObject.SetActive(false);
         
@@ -87,6 +88,6 @@ public class LevelProgression : MonoBehaviour
     }
     private void OnEnable()
     {
-        MouseCursor.instance.isEnabled = false;
+        
     }
 }

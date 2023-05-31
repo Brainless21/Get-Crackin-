@@ -42,8 +42,11 @@ public class InfoDisplay : MonoBehaviour
        displaytext += interfacePercent.ToString(); // sooo sometimes they dont have an interface strengh. like when they are a matrix tile. mostly then honestly.
        displaytext += "%";
        }
-       displaytext += "\ncost: ";
-       displaytext += FundsAccount.instance.GetPriceByType(mapTile.typeKey).ToString();
+       if(mapTile.typeKey != c.matrixTile)
+       {
+            displaytext += "\ncost: ";
+            displaytext += FundsAccount.instance.GetPriceByType(mapTile.typeKey).ToString();
+       }
        infoDisplay.SetText(displaytext);
 
     }
