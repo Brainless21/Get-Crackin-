@@ -993,7 +993,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17505, y: 139.99997}
+  cellSize: {x: 494.17508, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -3142,7 +3142,7 @@ PrefabInstance:
     - target: {fileID: 4822668817289884855, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
         type: 3}
       propertyPath: scoreThreshold
-      value: 185
+      value: 170
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 127d95e033fbdf54ab9dcc72a91ac05e, type: 3}

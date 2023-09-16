@@ -24,7 +24,21 @@ public class MapTile : Entity
     internal Color currentDisplayedColor;
     internal void ChangeDisplayedColor(Color newColor) {currentDisplayedColor=newColor;}
     public int typeKey { get;set; }
-    [SerializeField] public int cost { get; set; }
+    private int costField = 1;
+    public int cost
+    { 
+        get
+        {
+            //Debug.Log(string.Format("cost of this tile read to be {0}, type {1}", costField,typeKey));
+            return costField;
+        }
+        set
+        {
+            costField=value;
+            Debug.Log(string.Format("cost of this tile set to {0}, type {1}, location {2}",value, typeKey, cords));
+            FundsAccount.instance.UpdateDisplay();
+        }
+    }
     [SerializeField] protected float baseToughness = 1;
     [SerializeField] public bool isMortal = true;
     bool isCracked = false;

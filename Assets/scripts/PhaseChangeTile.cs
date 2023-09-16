@@ -80,7 +80,7 @@ public class PhaseChangeTile : MapTile
         this.SetBaseToughness(2);
         this.AddBehavior(c.grenzflaeche, interfaceStrengh);
         this.typeKey = c.particleTile1;
-        this.cost = FundsAccount.instance.GetPriceByType(typeKey);
+        //this.cost = FundsAccount.instance.GetPriceByType(typeKey);
         this.UpdateStressState();//war mal TileLedger.ledgerInstance.SetGlobalStress(this.cords,EventManager.instance.GetGlobalStress()); //war mal this.SetBaseStressState(EventManager.instance.GetGlobalStress());
         //Debug.Log("bin eingeschrieben(awake)");
         EventManager.instance.etappenEnde+=Reset;

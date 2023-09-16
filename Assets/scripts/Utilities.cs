@@ -265,6 +265,43 @@ public class Utilities
         return output;
     }
 
+    // public static string ConvertToSubscript(string input)
+    // {
+    //     string subscript = string.Empty;
+    //     foreach (char c in input)
+    //     {
+    //         if (c >= '0' && c <= '9')
+    //         {
+    //             int offset = (int)'₀'; // Unicode subscript zero character
+    //             subscript += (char)(offset + (c - '0'));
+    //         }
+    //         else
+    //         {
+    //             subscript += c;
+    //         }
+    //     }
+    //     return subscript;
+    // }
+
+    public static string ConvertToSubscript(string input) {
+        {
+        string subscript = string.Empty;
+        foreach (char c in input)
+        {
+            if (c >= '0' && c <= '9')
+            {
+                subscript += "<sub>";
+                subscript += c;
+                subscript += "</sub>";
+            }
+            else
+            {
+                subscript += c;
+            }
+        }
+        return subscript;  
+        }
+    }
     void AddAndPrint(int a, int b)
     {
         int sum = a+b;

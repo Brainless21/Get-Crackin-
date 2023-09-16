@@ -49,6 +49,7 @@ public class FundsAccount : MonoBehaviour
     public void UpdateDisplay()
     {
         int currentExpenses = TileLedger.ledgerInstance.CountCost();
+        Debug.Log(string.Format("currently spent {0} on tiles",TileLedger.ledgerInstance.CountCost()));
         balance = funds-currentExpenses;
         string displaytext = balance.ToString();
         displaytext += "$$";

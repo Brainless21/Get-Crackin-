@@ -47,8 +47,12 @@ public class InfoDisplay : MonoBehaviour
             displaytext += "\ncost: ";
             displaytext += FundsAccount.instance.GetPriceByType(mapTile.typeKey).ToString();
        }
+       if(toughness==0) // manual override for pores
+       {
+           displaytext="Pore\ntoughness: 0\n";
+       }
        infoDisplay.SetText(displaytext);
-
+        Debug.Log("Update MapTile");
     }
 
     public void UpdateInfoDisplay(MenuTile menuTile)
@@ -65,7 +69,7 @@ public class InfoDisplay : MonoBehaviour
        displaytext += "\nCost: ";
        displaytext += menuTile.GetCost().ToString();
        infoDisplay.SetText(displaytext);
-
+        Debug.Log("Update MenuTile");
     }
 
     public void UpdateInfoDisplay(List<MenuTile> list)
@@ -108,7 +112,7 @@ public class InfoDisplay : MonoBehaviour
         infoDisplay.SetText(displaytext);
 
         
-
+        Debug.Log("Update ListMenuTile");
     }
 
     string GenerateValueString(List<float> list)

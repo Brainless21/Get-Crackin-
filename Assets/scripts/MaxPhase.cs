@@ -11,7 +11,7 @@ public class MaxPhase : MapTile
         Initialize(this);
         this.typeKey = c.maxPhase;
         this.SetBaseToughness(5);
-        this.cost = FundsAccount.instance.GetPriceByType(typeKey);
+        //this.cost = FundsAccount.instance.GetPriceByType(typeKey);
     }
     public override float GetToughness()
     {

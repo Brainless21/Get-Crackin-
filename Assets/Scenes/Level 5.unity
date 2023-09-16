@@ -977,10 +977,10 @@ MonoBehaviour:
   isShape: 1
   costOfShape: 0
   costOfTile: 4
-  baseToughness: 5
-  menuTileName: Taffil Fiber
+  baseToughness: 1.9
+  menuTileName: Lib Fiber, laminated
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 0.45
   stressFieldStrength: 0
   star: 0
   isEraser: 0
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   forcedSquares: 0
   rows: 1
   columns: 3
-  cellSize: {x: 494.17505, y: 139.99997}
+  cellSize: {x: 494.17508, y: 139.99997}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1960,7 +1960,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 67794448246017098, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -1970,7 +1970,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 564277126777170919, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -1980,7 +1980,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 1058850037492762023, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -1995,7 +1995,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 3946897854810293262, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Name
@@ -2110,7 +2110,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 5303046276032503138, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -2120,7 +2120,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 7997855917568832008, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -2822,10 +2822,10 @@ MonoBehaviour:
   isShape: 1
   costOfShape: 0
   costOfTile: 4
-  baseToughness: 5
-  menuTileName: Taffil Fiber
+  baseToughness: 1.9
+  menuTileName: Lib Fiber, laminated
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 0.45
   stressFieldStrength: 0
   star: 0
   isEraser: 0
@@ -2990,7 +2990,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 1573031270032103981, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -3000,7 +3000,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 1987661205380043712, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -3010,7 +3010,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 2067709588842247277, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -3025,7 +3025,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 4470530634348239040, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -3035,12 +3035,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 5939807466437366660, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 5980069578583180008, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -3160,7 +3160,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 8474466569341119874, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -3442,7 +3442,7 @@ PrefabInstance:
     - target: {fileID: 4822668817289884855, guid: 127d95e033fbdf54ab9dcc72a91ac05e,
         type: 3}
       propertyPath: scoreThreshold
-      value: 206
+      value: 140
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 127d95e033fbdf54ab9dcc72a91ac05e, type: 3}
@@ -3469,7 +3469,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 555978410497731759, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -3604,7 +3604,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 2364698233647842245, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -3619,7 +3619,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 7491991425292737280, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -3629,7 +3629,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 7618391064012935917, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -3639,7 +3639,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 7b4cb68aa4866e24b840b01b3cb8e69f, type: 3}
+      objectReference: {fileID: 4300000, guid: a594cd8ba6e867f4699aa3d16d755581, type: 3}
     - target: {fileID: 7970698373556385088, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -3804,10 +3804,10 @@ MonoBehaviour:
   isShape: 1
   costOfShape: 0
   costOfTile: 4
-  baseToughness: 5
-  menuTileName: Taffil Fiber
+  baseToughness: 1.9
+  menuTileName: Lib Fiber, laminated
   mesh: {fileID: 0}
-  interfaceStrength: 0.7
+  interfaceStrength: 0.45
   stressFieldStrength: 0
   star: 0
   isEraser: 0
@@ -3983,7 +3983,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 4
   baseToughness: 1.9
-  menuTileName: Pextel Fiber
+  menuTileName: Lib Fiber
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -4624,7 +4624,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 4
   baseToughness: 1.9
-  menuTileName: Pextel Fiber
+  menuTileName: Lib Fiber
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -5355,7 +5355,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c809367af92cf4c9b82679070380fc, type: 3}
 --- !u!114 &5443174742310697168
@@ -5815,7 +5815,7 @@ PrefabInstance:
     - target: {fileID: 5575112607965457714, guid: 11299da46926ef049addf6c22c37e896,
         type: 3}
       propertyPath: funds
-      value: 76
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 5575112607965457714, guid: 11299da46926ef049addf6c22c37e896,
         type: 3}
@@ -6100,7 +6100,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 1573031270032103981, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -6110,7 +6110,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 1987661205380043712, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -6120,7 +6120,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 2067709588842247277, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -6135,7 +6135,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 4470530634348239040, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -6145,12 +6145,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 5939807466437366660, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 5980069578583180008, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -6270,7 +6270,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 8474466569341119874, guid: f52307bbcad33eb4c99ed29b5ffba057,
         type: 3}
       propertyPath: m_Mesh
@@ -6289,7 +6289,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 67794448246017098, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -6299,7 +6299,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 564277126777170919, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -6309,7 +6309,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 1058850037492762023, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -6324,7 +6324,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 3946897854810293262, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Name
@@ -6439,7 +6439,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 5303046276032503138, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -6449,7 +6449,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 7997855917568832008, guid: 221dcf182594c574f83ed02eb4e4ab10,
         type: 3}
       propertyPath: m_Mesh
@@ -6479,7 +6479,7 @@ MonoBehaviour:
   costOfShape: 0
   costOfTile: 4
   baseToughness: 1.9
-  menuTileName: Pextel Fiber
+  menuTileName: Lib Fiber
   mesh: {fileID: 0}
   interfaceStrength: 1
   stressFieldStrength: 0
@@ -6498,7 +6498,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 555978410497731759, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -6633,7 +6633,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 2364698233647842245, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -6648,7 +6648,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 7491991425292737280, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -6658,7 +6658,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 7618391064012935917, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh
@@ -6668,7 +6668,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 32bf8e89e0e369540a99872076a7ead9, type: 3}
+      objectReference: {fileID: 4300000, guid: 150942d75cdef8e41a71887d3400b4ac, type: 3}
     - target: {fileID: 7970698373556385088, guid: c80be717cb42c314d8b9dea07eec4e8c,
         type: 3}
       propertyPath: m_Mesh

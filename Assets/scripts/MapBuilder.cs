@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -177,7 +177,7 @@ public class MapBuilder : MonoBehaviour
         EventManager.instance.MouseClickRight += adjustShapeRotation;
         
     }
-    
+   
     private void OnDisable()
     {
         EventManager.instance.MouseClickRight -= adjustShapeRotation;   
@@ -508,7 +508,9 @@ public class MapBuilder : MonoBehaviour
 
            if(cost!=0)
            {
-               handle.cost=cost; 
+               handle.cost=cost;
+               // FundsAccount.instance.UpdateDisplay(); // is now in the acessor
+               //Debug.Log(string.Format(string.Format("cost set to {0}",handle.cost)));
            }
 
 
